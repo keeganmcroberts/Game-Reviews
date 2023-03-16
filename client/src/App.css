@@ -36,3 +36,24 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* .banner-div{
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+} */
+.banner{
+  display: flex;
+  justify-content: space-evenly;
+  width: 100vw;
+  height: 60px;
+  position: fixed;
+  color: white;
+  background-color: rgb(45, 2, 45);
+}
+
+.banner-link{
+  cursor: pointer;
+}
