@@ -6,6 +6,7 @@ import Login from './components/login';
 import Games from './components/games';
 import Banner from './components/banner';
 import UserProfile from './components/userProfile';
+import Platforms from './components/platforms';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path='/login' element={<Login/>} > </Route>
         <Route path='/profile' element={<UserProfile/>} > </Route>
         <Route path ='/games' element={<Games/>} > </Route>
+        <Route path='/platform/:id' element={<Platforms/>}></Route>
       </Routes>
     </div>
   );

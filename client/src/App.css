@@ -79,3 +79,17 @@
 .login-title{
   margin-top: 0px;
 }
+
+
+.platform-grid{
+  display: grid;
+  grid-template-columns: 200px 200px 200px 200px;
+  grid-column-gap: 150px;
+  grid-row-gap: 100px;
+  justify-content: center;
+}
+.platform-image{
+  height: 200px;
+  width: 200px;
+  border-radius: 10%;
+}
