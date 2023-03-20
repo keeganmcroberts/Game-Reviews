@@ -93,3 +93,17 @@
   width: 200px;
   border-radius: 10%;
 }
+
+.game-image{
+  height: 200px;
+  width: 200px;
+  border-radius: 10%;
+}
+
+.games-grid{
+  display: grid;
+  grid-template-columns: 200px 200px 200px 200px;
+  grid-column-gap: 150px;
+  grid-row-gap: 100px;
+  justify-content: center;
+}

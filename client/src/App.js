@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import logo from './logo.svg';
 import './App.css';
 import { Route, Routes} from "react-router-dom"
@@ -9,6 +10,9 @@ import UserProfile from './components/userProfile';
 import Platforms from './components/platforms';
 
 function App() {
+
+  const [gamesDB, setGamesDB] = useState({})
+
   return (
     <div className="App">
       <Banner></Banner>
@@ -16,8 +20,8 @@ function App() {
         <Route path="/" element={<Home logo={logo} />} > </Route>
         <Route path='/login' element={<Login/>} > </Route>
         <Route path='/profile' element={<UserProfile/>} > </Route>
-        <Route path ='/games' element={<Games/>} > </Route>
-        <Route path='/platform/:id' element={<Platforms/>}></Route>
+        <Route path ='/games' element={<Games gamesDB={gamesDB} setGamesDB={setGamesDB}/>} > </Route>
+        <Route path='/platform/:id' element={<Platforms gamesDB={gamesDB} setGamesDB={setGamesDB}/>}></Route>
       </Routes>
     </div>
   );

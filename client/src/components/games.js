@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import {useNavigate} from 'react-router-dom';
 
-function Games(){
+function Games({gamesDB, setGamesDB}){
 
 
-    const [gamesDB, setGamesDB] = useState({})
+
     const [platformDB, setPlatformDB] = useState({})
     const [ps5Games, setPs5Games] = useState([])
 
@@ -56,14 +56,17 @@ console.log("PLATFORMS", platformDB.results)
             <br></br>
             <br></br>
             <br></br>
-            Platforms</h1>
+            Platforms:</h1>
+            <br></br>
+            <br></br>
+            <br></br>
             {platformDB.results ? 
             <div className="platform-grid">
                 {platformDB.results.map(eachPlatform=>{
                     return(
                         <div>
                         <h3>{eachPlatform.name}</h3>
-                        <img onClick={()=>viewGames(eachPlatform.name)} className="platform-image" src={eachPlatform.image_background}></img>
+                        <img onClick={()=>viewGames(eachPlatform.slug)} className="platform-image" src={eachPlatform.image_background}></img>
                         </div>
                         )
                 })}
