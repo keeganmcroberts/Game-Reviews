@@ -1,41 +1,80 @@
-import {useNavigate, useParams} from 'react-router-dom';
+import { useEffect, useState } from "react";
+import {useNavigate} from 'react-router-dom';
+
+function Games({gamesDB, setGamesDB}){
 
 
-function Platforms({gamesDB}){
 
-    const params = useParams()
-    const {id} = params
+    const [platformDB, setPlatformDB] = useState({})
+    const [ps5Games, setPs5Games] = useState([])
 
-    console.log(id)
-    console.log("games DB from App.js", gamesDB)
+
+useEffect(()=>{
+
+    fetch('https://api.rawg.io/api/platforms?key=9937c17ee7f344e0a27e3d66c7b454e3')
+    .then(r=>r.json())
+    .then(data=>setPlatformDB(data))
+    
+},[])
+
+useEffect(()=>{
+
+    fetch('https://api.rawg.io/api/games?key=9937c17ee7f344e0a27e3d66c7b454e3')
+    .then(r=>r.json())
+    .then(data=>setGamesDB(data))
+    
+},[])
+
+console.log("games DB", gamesDB)
+console.log("PLATFORMS", platformDB.results)
+
+
+
+    //  if (platformDB.results){
+    //      platformDB.results.map(platform=>{
+    //          if (platform.name === 'PlayStation 5'){
+    //              platform.games.map(eachGame=>{
+    //                  ps5Games.push(eachGame)
+    //                 })
+    //             }
+    //         })
+    //     }
+
+        
+ console.log("ps5 games:",ps5Games)
+
+ let navigate = useNavigate()
+ function viewGames(id){
+    navigate(`/platform/${id}`)
+ }
+
+
     return(
         <div>
+        <h1>
             <br></br>
             <br></br>
             <br></br>
-        <h1>Platforms: {id}</h1>
+            <br></br>
+            Platforms:</h1>
             <br></br>
             <br></br>
             <br></br>
-        {gamesDB.results ? 
-        <div className='games-grid'>
-        {gamesDB.results.map(eachGame=>{
-            if (eachGame.platforms.some(platform=>{
-                return platform.platform.slug === id
-            }) ){
-                return(
-                    <div>
-                        <h2>{eachGame.name}</h2>
-                        <img className='game-image' src={eachGame.background_image}></img>
-                    </div>
-                )
-            }
-        })}
-
+            {platformDB.results ? 
+            <div className="platform-grid">
+                {platformDB.results.map(eachPlatform=>{
+                    return(
+                        <div>
+                        <h3>{eachPlatform.name}</h3>
+                        <img onClick={()=>viewGames(eachPlatform.slug)} className="platform-image" src={eachPlatform.image_background}></img>
+                        </div>
+                        )
+                })}
+            </div>
+            : null}
         </div>
-        : null}
-        </div>
+            
     )
 }
 
-export default Platforms;
+export default Games;
