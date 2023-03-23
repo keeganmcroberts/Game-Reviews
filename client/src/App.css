@@ -69,15 +69,32 @@
   /* margin-top: -50px;
   margin-left: -40px; */
   width: 400px;
-  height: 350px;
+  height: 400px;
   background: rgb(240, 216, 241);
   box-shadow: 8px 8px 16px 5px rgba(146, 14, 96, 0.748);
   /* margin-top: 50px; */
   display: block;
 }
 
+.login_form{
+  margin-bottom: 20px;
+}
+
 .login-title{
-  margin-top: 0px;
+  margin-top: -50px;
+  margin-bottom: 50px;
+}
+
+.login_submit{
+  margin-top: 10px;
+}
+.create-account{
+  margin-top: 20px;
+}
+
+.login-links:hover{
+  color: blue;
+  cursor: pointer;
 }
 
 

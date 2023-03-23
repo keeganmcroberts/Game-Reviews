@@ -2,12 +2,16 @@ import React, { useRef, useEffect, useState } from 'react';
 
 function Login(){
 
+    const [toggle, setToggle] = useState(false)
+
     const [userProfile, setUserProfile] = useState({
-        username: "",
+        first_name: "",
+        last_name: "",
+        email: "",
         password: ""
     })
 
-    const {username, password} = userProfile
+    const {email, password, first_name, last_name} = userProfile
     
     function handleChange(e){
         const {name, value} = e.target
@@ -17,8 +21,21 @@ function Login(){
 
     function login(e){
         e.preventDefault()
+
+        let newUser = {
+            first_name,
+            last_name,
+            email,
+            password
+        }
     }
 
+    function switchToggle(){
+        setToggle(!toggle)
+    }
+
+
+    console.log(first_name, last_name, email, password)
 
 
 
@@ -27,16 +44,48 @@ function Login(){
            <br></br>
            <br></br>
            <br></br>
-           <h3 className="login-title">Login</h3>
-           <form>
-            <h5>username:</h5>
-            <input className="login-field" name="username" value={username} onChange={handleChange}></input>
-            <h5>password:</h5>
-            <input className="login-field" name="password" value={password} onChange={handleChange}></input>
-            <input type='submit'></input>
-           </form>
-
-
+           {
+            !toggle
+            ? 
+            <div>
+                <h3 className="login-title">Login</h3>
+                <form onSubmit={login} className='login_form'>
+                    <h5>email:</h5>
+                    <input className="login-field" name="email" value={email} onChange={handleChange}></input>
+                    <h5>password:</h5>
+                    <input className="login-field" name="password" value={password} onChange={handleChange}></input>
+                    <br></br>
+                    <input className='login_submit' type='submit'></input>
+                </form>
+                 or
+                <div className='create-account'>
+                    <h5 className='login-links' onClick={switchToggle}>Create Account</h5>
+                    <h5 className='login-links'>Forgot Password?</h5>
+                </div>
+            </div>     
+            : 
+            <div>
+                <h3 className="login-title">Sign Up</h3>
+                <form className='login_form'>
+                <h5>First Name:</h5>
+                    <input className="login-field" name="first_name" value={first_name} onChange={handleChange}></input>
+                    <h5>Last Name:</h5>
+                    <input className="login-field" name="last_name" value={last_name} onChange={handleChange}></input>
+                    <h5>email:</h5>
+                    <input className="login-field" name="email" value={email} onChange={handleChange}></input>
+                    <h5>password:</h5>
+                    <input className="login-field" name="password" value={password} onChange={handleChange}></input>
+                    <br></br>
+                    <input className='login_submit' type='submit'></input>
+                </form>
+                or
+                <div className='create-account'>
+                    <h5 className='login-links' onClick={switchToggle}>Sign in</h5>
+                    <h5 className='login-links'>Forgot Password?</h5>
+                </div>
+            </div>
+            
+            }
        </div>
     )
 }
