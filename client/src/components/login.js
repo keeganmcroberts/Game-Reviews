@@ -28,6 +28,26 @@ function Login(){
             email,
             password
         }
+
+        fetch("/signup", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(newUser),
+        })
+        .then((res)=>{
+            if (res.ok){
+                res.json().then(user=>{
+                    console.log("new User:", user)
+                    alert("SUCCESS new user:", user)
+                })
+            }else{
+                res.json().then((errors) => {
+                    console.log(errors.errors)
+                })
+            }
+        })
+
+    
     }
 
     function switchToggle(){
