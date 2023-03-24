@@ -1,13 +1,16 @@
 
 
-function UserProfile(){
+function UserProfile({user}){
     return(
+        <div>
         <h1> 
             <br></br>
             <br></br>
             <br></br>
             <br></br>
-            Profile </h1>
+             </h1>
+            <h4>hello {user.first_name}</h4>
+        </div>
     )
 }
 

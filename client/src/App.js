@@ -19,11 +19,11 @@ function App() {
 
   return (
     <div className="App">
-      <Banner></Banner>
+      <Banner user={user}></Banner>
       <Routes>
-        <Route path="/" element={<Home logo={logo} />} > </Route>
+        <Route path="/" element={<Home user={user} setUser={setUser} logo={logo} />} > </Route>
         <Route path='/login' element={<Login user={user} setUser={setUser}/>} > </Route>
-        <Route path='/profile' element={<UserProfile/>} > </Route>
+        <Route path='/profile' element={<UserProfile user={user}/>} > </Route>
         <Route path='/games' element={<Games gamesDB={gamesDB} setGamesDB={setGamesDB}/>}></Route>
         <Route path ='/platforms' element={<Platforms gamesDB={gamesDB} setGamesDB={setGamesDB}/>} > </Route>
         <Route path='/platform/:id' element={<PlatformGames gamesDB={gamesDB} setGamesDB={setGamesDB}/>}></Route>

@@ -1,7 +1,18 @@
+import { useEffect } from "react";
 import steve from "/Users/keegan/Development/code/gamereviews/client/src/favicon-32x32.png"
 
 
-function Home({logo}) {
+function Home({logo, user, setUser}) {
+
+
+useEffect(()=>{
+  fetch("/usersession")
+  .then(r=>r.json())
+  .then(user=>(setUser(user)))
+
+},[])
+
+
     return (
       <div className="App">
         <header className="App-header">

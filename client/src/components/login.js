@@ -1,9 +1,11 @@
 import React, { useRef, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Login({user, setUser}){
 
     const [toggle, setToggle] = useState(false)
-
+    const [loginErrorMessage, setLoginErrorMessage] = useState("")
+    const [loginError, setLoginError] = useState(true)
     const [userProfile, setUserProfile] = useState({
         first_name: "",
         last_name: "",
@@ -12,6 +14,8 @@ function Login({user, setUser}){
     })
 
     const {email, password, first_name, last_name} = userProfile
+
+    let navigate = useNavigate();
     
     function handleChange(e){
         const {name, value} = e.target
@@ -47,13 +51,38 @@ function Login({user, setUser}){
                 })
             }
         })
-
-    
     }
+
+
 
     function switchToggle(){
         setToggle(!toggle)
     }
+
+
+    function signin(event){
+        event.preventDefault()
+        const user = {
+            email,
+            password
+        }
+        fetch (`/login`,{
+            method: 'POST',
+            headers:{'Content-Type': 'application/json'},
+            body:JSON.stringify(user)
+        })
+        .then(res=>{
+            if(res.ok){
+                res.json().then(user=>{
+                  setLoginError(false)
+                    navigate(`/profile`)
+                })
+            } if(!res.ok){
+              setLoginError(true)
+              setLoginErrorMessage("Username or Password is Incorrect")     
+              }
+            })
+        }
 
 
     console.log(first_name, last_name, email, password)
@@ -70,7 +99,7 @@ function Login({user, setUser}){
             ? 
             <div>
                 <h3 className="login-title">Login</h3>
-                <form className='login_form'>
+                <form onSubmit={signin} className='login_form'>
                     <h5>email:</h5>
                     <input className="login-field" name="email" value={email} onChange={handleChange}></input>
                     <h5>password:</h5>
@@ -78,6 +107,7 @@ function Login({user, setUser}){
                     <br></br>
                     <input className='login_submit' type='submit'></input>
                 </form>
+                <h4 className='login-error'>{loginErrorMessage}</h4>
                  or
                 <div className='create-account'>
                     <h5 className='login-links' onClick={switchToggle}>Create Account</h5>

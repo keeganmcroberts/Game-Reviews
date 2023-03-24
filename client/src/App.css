@@ -97,6 +97,10 @@
   cursor: pointer;
 }
 
+.login-error{
+  color: red;
+}
+
 
 .platform-grid{
   display: grid;
