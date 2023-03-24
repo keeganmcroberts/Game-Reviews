@@ -18,7 +18,7 @@ function Platforms({gamesDB}){
             <br></br>
             <br></br>
         {gamesDB.results ? 
-        <div className='games-grid'>
+        <div className='platformGames-grid'>
         {gamesDB.results.map(eachGame=>{
             if (eachGame.platforms.some(platform=>{
                 return platform.platform.slug === id

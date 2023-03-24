@@ -25,12 +25,15 @@ if (gamesDB)
             <br></br>
             <br></br>
             <h1>Games:</h1>
+            <br></br>
+            <br></br>
+            <br></br>
                 
-            <div className="platform-grid">
+            <div className="games-grid">
                 {gamesDB.map(eachGame=>{
                     return(
                         <div >
-                            <h3>{eachGame.name}</h3>
+                            <h6>{eachGame.name}</h6>
                             <img className="platform-image" src={eachGame.background_image}></img>
                         </div>
                     )

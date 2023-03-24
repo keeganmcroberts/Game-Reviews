@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
     def create
         user = User.create(strong_params)
         if user.valid?
@@ -15,5 +16,4 @@ class UsersController < ApplicationController
     def strong_params
         params.permit(:first_name, :last_name, :email, :password)
     end
-    
 end

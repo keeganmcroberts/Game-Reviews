@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 
-function Login(){
+function Login({user, setUser}){
 
     const [toggle, setToggle] = useState(false)
 
@@ -19,7 +19,7 @@ function Login(){
         setUserProfile({...userProfile, [name]: value})
     }
 
-    function login(e){
+    function signup(e){
         e.preventDefault()
 
         let newUser = {
@@ -37,6 +37,7 @@ function Login(){
         .then((res)=>{
             if (res.ok){
                 res.json().then(user=>{
+                    setUser(user)
                     console.log("new User:", user)
                     alert("SUCCESS new user:", user)
                 })
@@ -69,7 +70,7 @@ function Login(){
             ? 
             <div>
                 <h3 className="login-title">Login</h3>
-                <form onSubmit={login} className='login_form'>
+                <form className='login_form'>
                     <h5>email:</h5>
                     <input className="login-field" name="email" value={email} onChange={handleChange}></input>
                     <h5>password:</h5>
@@ -86,15 +87,15 @@ function Login(){
             : 
             <div>
                 <h3 className="login-title">Sign Up</h3>
-                <form className='login_form'>
-                <h5>First Name:</h5>
-                    <input className="login-field" name="first_name" value={first_name} onChange={handleChange}></input>
+                <form onSubmit={signup} className='login_form'>
+                    <h5>First Name:</h5>
+                        <input className="login-field" name="first_name" value={first_name} onChange={handleChange}></input>
                     <h5>Last Name:</h5>
-                    <input className="login-field" name="last_name" value={last_name} onChange={handleChange}></input>
+                        <input className="login-field" name="last_name" value={last_name} onChange={handleChange}></input>
                     <h5>email:</h5>
-                    <input className="login-field" name="email" value={email} onChange={handleChange}></input>
+                        <input className="login-field" name="email" value={email} onChange={handleChange}></input>
                     <h5>password:</h5>
-                    <input className="login-field" name="password" value={password} onChange={handleChange}></input>
+                        <input className="login-field" name="password" value={password} onChange={handleChange}></input>
                     <br></br>
                     <input className='login_submit' type='submit'></input>
                 </form>
