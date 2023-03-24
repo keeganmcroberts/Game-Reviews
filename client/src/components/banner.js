@@ -33,8 +33,7 @@ function Banner({user, setUser}){
         })
         .then( res => {
             if (res.ok){
-                setUser(null)
-                console.log(user)
+                setUser(false)
         }})
         alert("You've been Logged out")
     }
@@ -49,7 +48,7 @@ function Banner({user, setUser}){
             <h3 onClick={viewPlatforms} className='banner-link'>Platforms</h3>
             <h3 onClick={viewGames} className='banner-link'>Games</h3>
             <h3 onClick={viewProfile} className='banner-link'>Profile</h3>
-            {user ?  
+            {user.id ?  
             <h3 onClick={logout} className='banner-link'>Logout</h3>
             :
             <h3 onClick={viewLogin} className='banner-link'>Login</h3>

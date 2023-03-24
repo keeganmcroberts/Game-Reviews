@@ -75,7 +75,7 @@ function Login({user, setUser}){
             if(res.ok){
                 res.json().then(user=>{
                   setLoginError(false)
-                    navigate(`/profile`)
+                    navigate(`/`)
                 })
             } if(!res.ok){
               setLoginError(true)

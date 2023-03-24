@@ -15,14 +15,9 @@ function App() {
   const [gamesDB, setGamesDB] = useState({})
   const [user, setUser] = useState({})
 
- console.log(user)
+ console.log("OUR USER:",user)
 
- useEffect(()=>{
-  fetch("/usersession")
-  .then(r=>r.json())
-  .then(user=>(setUser(user)))
 
-},[])
 
   return (
     <div className="App">
