@@ -1,7 +1,7 @@
 import {useNavigate} from 'react-router-dom';
 
 
-function Banner({user}){
+function Banner({user, setUser}){
 
 
     let navigate = useNavigate();
@@ -27,6 +27,18 @@ function Banner({user}){
         navigate('/games')
     }
 
+    function logout(){
+        fetch ("/logout",{
+            method: "DELETE"
+        })
+        .then( res => {
+            if (res.ok){
+                setUser(null)
+                console.log(user)
+        }})
+        alert("You've been Logged out")
+    }
+
 
 
     
@@ -38,7 +50,7 @@ function Banner({user}){
             <h3 onClick={viewGames} className='banner-link'>Games</h3>
             <h3 onClick={viewProfile} className='banner-link'>Profile</h3>
             {user ?  
-            <h3 onClick={viewLogin} className='banner-link'>Logout</h3>
+            <h3 onClick={logout} className='banner-link'>Logout</h3>
             :
             <h3 onClick={viewLogin} className='banner-link'>Login</h3>
             }   

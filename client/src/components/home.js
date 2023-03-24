@@ -5,12 +5,9 @@ import steve from "/Users/keegan/Development/code/gamereviews/client/src/favicon
 function Home({logo, user, setUser}) {
 
 
-useEffect(()=>{
-  fetch("/usersession")
-  .then(r=>r.json())
-  .then(user=>(setUser(user)))
 
-},[])
+
+console.log("user:", user)
 
 
     return (

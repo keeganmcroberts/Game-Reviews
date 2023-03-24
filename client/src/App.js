@@ -15,11 +15,18 @@ function App() {
   const [gamesDB, setGamesDB] = useState({})
   const [user, setUser] = useState({})
 
-  console.log("logged in user:",user)
+ console.log(user)
+
+ useEffect(()=>{
+  fetch("/usersession")
+  .then(r=>r.json())
+  .then(user=>(setUser(user)))
+
+},[])
 
   return (
     <div className="App">
-      <Banner user={user}></Banner>
+      <Banner user={user} setUser={setUser}></Banner>
       <Routes>
         <Route path="/" element={<Home user={user} setUser={setUser} logo={logo} />} > </Route>
         <Route path='/login' element={<Login user={user} setUser={setUser}/>} > </Route>

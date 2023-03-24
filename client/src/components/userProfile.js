@@ -9,7 +9,7 @@ function UserProfile({user}){
             <br></br>
             <br></br>
              </h1>
-            <h4>hello {user.first_name}</h4>
+            <h4>hello {user?.first_name}</h4>
         </div>
     )
 }

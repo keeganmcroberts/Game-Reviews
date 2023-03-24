@@ -26,6 +26,13 @@ class SessionController < ApplicationController
     end
 
 
+    def destroy
+        session.delete(:user_id)
+    
+        render json: {}
+      end
+
+
 
     private
 
