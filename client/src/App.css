@@ -136,3 +136,25 @@
   grid-row-gap: 100px;
   justify-content: center;
 }
+
+.games-banner{
+  padding: 0;
+  margin: 0;
+  font-family: monospace;
+}
+
+.browse-by{
+  list-style: none;
+  background-color: blue;
+
+}
+
+.dropdown li{
+  display: inline-block;
+  position: relative;
+}
+
+
+
+
+

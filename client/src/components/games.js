@@ -24,11 +24,57 @@ if (gamesDB)
             <br></br>
             <br></br>
             <br></br>
-            <h1>Games:</h1>
             <br></br>
             <br></br>
             <br></br>
+            <div className="games-banner">
+                <h3>Browse By:</h3>
                 
+                
+                <ul class="browse-by">
+                <li> <a href="#">Home</a></li>
+                <li> <a href="#">Back</a></li>
+                <li className="genre-dropdown">
+                        <a href="#">Genre</a>
+                        <ul class="dropdown">
+                            <li> <a href="#">Action</a> </li>
+                            <li> <a href="#">Adventure</a> </li>
+                            <li> <a href="#">Indie</a> </li>
+                            <li> <a href="#">MMO</a> </li>
+                            <li> <a href="#">RPG</a> </li>
+                            <li> <a href="#">Shooter</a> </li>
+                            <li> <a href="#">Puzzle</a> </li>
+                        </ul>
+                    </li>
+                    <li className="genre-dropdown">
+                        <a href="#">Genre</a>
+                        <ul class="dropdown">
+                            <li> <a href="#">Action</a> </li>
+                            <li> <a href="#">Adventure</a> </li>
+                            <li> <a href="#">Indie</a> </li>
+                            <li> <a href="#">MMO</a> </li>
+                            <li> <a href="#">RPG</a> </li>
+                            <li> <a href="#">Shooter</a> </li>
+                            <li> <a href="#">Puzzle</a> </li>
+                        </ul>
+                    </li>
+                    <li className="genre-dropdown">
+                        <a href="#">Genre</a>
+                        <ul class="dropdown">
+                            <li> <a href="#">Action</a> </li>
+                            <li> <a href="#">Adventure</a> </li>
+                            <li> <a href="#">Indie</a> </li>
+                            <li> <a href="#">MMO</a> </li>
+                            <li> <a href="#">RPG</a> </li>
+                            <li> <a href="#">Shooter</a> </li>
+                            <li> <a href="#">Puzzle</a> </li>
+                        </ul>
+                    </li>
+                    
+                </ul>
+            </div>
+            <br></br>
+            <br></br>
             <div className="games-grid">
                 {gamesDB.map(eachGame=>{
                     return(
