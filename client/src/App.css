@@ -48,6 +48,7 @@
 .banner{
   display: flex;
   justify-content: space-evenly;
+  line-height: 60px;
   width: 100vw;
   height: 60px;
   position: fixed;
@@ -144,16 +145,17 @@
   display: flex;
   justify-content: center;
   /* text-align: center; */
+  margin-bottom: 50px;
 }
 .page-navbar {
-  width: fit-content;
+  width: 580px;
+  box-shadow: 0 4px 8px 0 #490b3e, 0 6px 20px 0 #540c54;
   /* left: 50%;
   width: 500px; */
   list-style-type: none;
   /* margin: 0; */
   /* padding: 0; */
   color: white;
-  box-shadow: 0 4px 8px 0 #490b3e, 0 6px 20px 0 #540c54;
   /* overflow: hidden; */
 }
 
@@ -183,7 +185,7 @@
 }
 
 .dropdown:hover .dropdown-content {
-  display: block;
+  display: grid;
 }
 
 li.dropdown {
@@ -197,6 +199,15 @@ li.dropdown {
   cursor: pointer;
 }
 
+.search-right{
+
+  margin-left: 100px;
+}
+
+.search{
+ color: white;
+  background-color: #282c34;
+}
 
 
 
