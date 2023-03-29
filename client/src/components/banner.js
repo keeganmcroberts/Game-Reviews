@@ -27,6 +27,10 @@ function Banner({user, setUser}){
         navigate('/games')
     }
 
+    function test(){
+        navigate('/test')
+    }
+
     function logout(){
         fetch ("/logout",{
             method: "DELETE"
@@ -44,6 +48,7 @@ function Banner({user, setUser}){
     return(
         <div className="banner-div">
         <div className="banner">
+            <h3 onClick={test} className='banner-link'>Test</h3>
             <h3 onClick={goHome} className='banner-link'>Home</h3>
             <h3 onClick={viewPlatforms} className='banner-link'>Platforms</h3>
             <h3 onClick={viewGames} className='banner-link'>Games</h3>
@@ -53,6 +58,7 @@ function Banner({user, setUser}){
             :
             <h3 onClick={viewLogin} className='banner-link'>Login</h3>
             }   
+
 
 
         </div>

@@ -52,7 +52,9 @@
   height: 60px;
   position: fixed;
   color: white;
-  background-color: rgb(45, 2, 45);
+  /* background-color: rgb(83, 36, 83); */
+  background-color: #282c34;
+  box-shadow: 0 4px 8px 0 #490b3e, 0 6px 20px 0 #540c54;
 }
 
 .banner-link{
@@ -137,21 +139,62 @@
   justify-content: center;
 }
 
+
 .games-banner{
-  padding: 0;
-  margin: 0;
-  font-family: monospace;
+  display: flex;
+  justify-content: center;
+  /* text-align: center; */
+}
+.page-navbar {
+  width: fit-content;
+  /* left: 50%;
+  width: 500px; */
+  list-style-type: none;
+  /* margin: 0; */
+  /* padding: 0; */
+  color: white;
+  box-shadow: 0 4px 8px 0 #490b3e, 0 6px 20px 0 #540c54;
+  /* overflow: hidden; */
 }
 
-.browse-by{
-  list-style: none;
-  background-color: blue;
-
+.page-navbar li{
+  display: inline;
+  border-right: 1px solid rgb(247, 246, 246);
 }
 
-.dropdown li{
+.page-navbar li a {
+  display: block;
+  color: rgb(243, 240, 240);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  display: inline;
+ 
+}
+
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #444b59;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(80, 9, 79, 0.748);
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+li.dropdown {
   display: inline-block;
-  position: relative;
+}
+
+
+
+.dropdown-content a:hover {
+  opacity: 50%;
+  cursor: pointer;
 }
 
 

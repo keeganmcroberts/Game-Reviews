@@ -28,50 +28,40 @@ if (gamesDB)
             <br></br>
             <br></br>
             <div className="games-banner">
-                <h3>Browse By:</h3>
-                
-                
-                <ul class="browse-by">
-                <li> <a href="#">Home</a></li>
-                <li> <a href="#">Back</a></li>
-                <li className="genre-dropdown">
-                        <a href="#">Genre</a>
-                        <ul class="dropdown">
-                            <li> <a href="#">Action</a> </li>
-                            <li> <a href="#">Adventure</a> </li>
-                            <li> <a href="#">Indie</a> </li>
-                            <li> <a href="#">MMO</a> </li>
-                            <li> <a href="#">RPG</a> </li>
-                            <li> <a href="#">Shooter</a> </li>
-                            <li> <a href="#">Puzzle</a> </li>
-                        </ul>
+                <ul className="page-navbar">
+                    <li class="dropdown">
+                        <a href="javascript:void(0)" class="dropbtn">Genre</a>
+                        <div class="dropdown-content">
+                            <a href="#">Action</a> 
+                            <a href="#">Adventure</a> 
+                            <a href="#">Indie</a> 
+                            <a href="#">MMO</a> 
+                            <a href="#">RPG</a> 
+                            <a href="#">Shooter</a> 
+                            <a href="#">Puzzle</a> 
+                        </div>
                     </li>
-                    <li className="genre-dropdown">
-                        <a href="#">Genre</a>
-                        <ul class="dropdown">
-                            <li> <a href="#">Action</a> </li>
-                            <li> <a href="#">Adventure</a> </li>
-                            <li> <a href="#">Indie</a> </li>
-                            <li> <a href="#">MMO</a> </li>
-                            <li> <a href="#">RPG</a> </li>
-                            <li> <a href="#">Shooter</a> </li>
-                            <li> <a href="#">Puzzle</a> </li>
-                        </ul>
+                    <li class="dropdown">
+                        <a href="javascript:void(0)" class="dropbtn">Platform</a>
+                        <div class="dropdown-content">
+                            <a href="#">Playstation</a> 
+                            <a href="#">Xbox</a> 
+                            <a href="#">PC</a> 
+                            <a href="#">Nintendo</a> 
+                        </div>
                     </li>
-                    <li className="genre-dropdown">
-                        <a href="#">Genre</a>
-                        <ul class="dropdown">
-                            <li> <a href="#">Action</a> </li>
-                            <li> <a href="#">Adventure</a> </li>
-                            <li> <a href="#">Indie</a> </li>
-                            <li> <a href="#">MMO</a> </li>
-                            <li> <a href="#">RPG</a> </li>
-                            <li> <a href="#">Shooter</a> </li>
-                            <li> <a href="#">Puzzle</a> </li>
-                        </ul>
-                    </li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0)" class="dropbtn">Rating</a>
+                        <div class="dropdown-content">
+                            <a href="#">High to Low</a> 
+                            <a href="#">Low to High</a> 
+                            <a href="#">Hot</a> 
+                        </div>
                     
-                </ul>
+                    </li>
+                   
+            </ul>
+    
             </div>
             <br></br>
             <br></br>

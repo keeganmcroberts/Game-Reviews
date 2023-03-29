@@ -9,6 +9,7 @@ import Banner from './components/banner';
 import UserProfile from './components/userProfile';
 import Platforms from './components/platforms';
 import PlatformGames from "./components/platformGames";
+import Test from "./components/test";
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
     <div className="App">
       <Banner user={user} setUser={setUser}></Banner>
       <Routes>
+        <Route path="/test" element={<Test></Test>}></Route>
         <Route path="/" element={<Home user={user} setUser={setUser} logo={logo} />} > </Route>
         <Route path='/login' element={<Login user={user} setUser={setUser}/>} > </Route>
         <Route path='/profile' element={<UserProfile user={user}/>} > </Route>
