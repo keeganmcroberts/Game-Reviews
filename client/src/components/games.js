@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 function Games(){
@@ -29,6 +30,10 @@ function Games(){
       setAllBands(resultofSearch)
     }
 
+    let navigate = useNavigate();
+    function viewGame(id){
+        navigate(`/game/${id}`)
+    }
 
 
 
@@ -107,6 +112,7 @@ if (gamesDB)
                         <div >
                             <h6>{eachGame.name}</h6>
                             <img className="platform-image" src={eachGame.background_image}></img>
+                            <button onClick={()=>viewGame(eachGame.slug)}>View</button>
                         </div>
                     )
                 })}
