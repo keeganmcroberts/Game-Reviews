@@ -12,7 +12,7 @@ function Home({logo, user, setUser}) {
   
   },[])
 
-console.log("user:", user)
+
 
 
     return (

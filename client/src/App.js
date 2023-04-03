@@ -18,7 +18,7 @@ function App() {
   const [gamesDB, setGamesDB] = useState({})
   const [user, setUser] = useState({})
 
- console.log("OUR USER:",user)
+ console.log("OUR USER:",user.id)
 
  useEffect(()=>{
   fetch("/usersession")
@@ -36,7 +36,7 @@ function App() {
         <Route path='/login' element={<Login user={user} setUser={setUser}/>} > </Route>
         <Route path='/profile' element={<UserProfile user={user}/>} > </Route>
         <Route path='/games' element={<Games gamesDB={gamesDB} setGamesDB={setGamesDB}/>}></Route>
-        <Route path='/game/:id' element={<GameDetailPage/>}></Route>
+        <Route path='/game/:id' element={<GameDetailPage user={user}/>}></Route>
         <Route path='/review/:id' element={<Review/>}></Route>
         <Route path ='/platforms' element={<Platforms gamesDB={gamesDB} setGamesDB={setGamesDB}/>} > </Route>
         <Route path='/platform/:id' element={<PlatformGames gamesDB={gamesDB} setGamesDB={setGamesDB}/>}></Route>
