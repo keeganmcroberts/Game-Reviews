@@ -37,6 +37,18 @@ function GameDetailPage(){
            
             <h2>{gameState.name}</h2>
             <img className="detailPage-image" src={gameState.background_image}></img>
+            <h3>Leave a Review:</h3>
+            <form className="review-form">
+            {/* need a user_id, numerical score for Gameplay, graphics, and difficulty, comment, and game slug  */}
+            <h2></h2>
+            <input></input>
+            <br></br>
+            <input></input>
+            <br></br>
+            <input></input>
+            <br></br>
+            <input></input>
+            </form>
         </div>
     )
 }

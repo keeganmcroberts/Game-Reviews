@@ -11,6 +11,7 @@ import Platforms from './components/platforms';
 import PlatformGames from "./components/platformGames";
 import Test from "./components/test";
 import GameDetailPage from "./components/gameDetailPage";
+import Review from "./components/review";
 
 function App() {
 
@@ -36,6 +37,7 @@ function App() {
         <Route path='/profile' element={<UserProfile user={user}/>} > </Route>
         <Route path='/games' element={<Games gamesDB={gamesDB} setGamesDB={setGamesDB}/>}></Route>
         <Route path='/game/:id' element={<GameDetailPage/>}></Route>
+        <Route path='/review/:id' element={<Review/>}></Route>
         <Route path ='/platforms' element={<Platforms gamesDB={gamesDB} setGamesDB={setGamesDB}/>} > </Route>
         <Route path='/platform/:id' element={<PlatformGames gamesDB={gamesDB} setGamesDB={setGamesDB}/>}></Route>
       </Routes>
