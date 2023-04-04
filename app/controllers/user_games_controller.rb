@@ -1,4 +1,9 @@
 class UserGamesController < ApplicationController
+
+
+    def index
+        render json: UserGame.all
+    end
    
 
     def create 
@@ -17,6 +22,6 @@ class UserGamesController < ApplicationController
     private
 
     def strong_params
-        params.permit(:user_id, :parkCode, :liked)
+        params.permit(:user_id, :slug, :liked)
     end
 end

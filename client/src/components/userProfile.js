@@ -1,6 +1,53 @@
-
+import { useEffect, useState } from "react";
 
 function UserProfile({user}){
+
+
+const [gamesDB, setGamesDB] = useState([])
+const [viewGame, setViewGames] = useState(true)
+const [viewReviews, setViewReviews] = useState(false)
+const [viewFriends, setViewFriends] = useState(false)
+
+function viewGameList(){
+    setViewReviews(false)
+    setViewFriends(false)
+    setViewGames(true)
+}
+
+function viewReviewsList(){
+    setViewGames(false)
+    setViewFriends(false)
+    setViewReviews(true)
+}
+
+function viewFriendsList(){
+    setViewGames(false)
+    setViewReviews(false)
+    setViewFriends(true)
+}
+
+console.log("profile page user", user.user_games)
+
+
+useEffect(()=>{
+
+    fetch('https://api.rawg.io/api/games?key=9937c17ee7f344e0a27e3d66c7b454e3')
+    .then(r=>r.json())
+    .then(data=>{
+        data.results.map(eachGame=>{
+            if (eachGame.slug === user.user_games.map(eachLikedGame=>{
+                return eachLikedGame.slug
+            })){
+                console.log( "need this game", eachGame )
+            }
+        })
+    })
+        
+    
+},[])
+
+console.log(gamesDB)
+
     return(
         <div>
         <h1> 
@@ -13,54 +60,13 @@ function UserProfile({user}){
             <div className="games-banner">
                 <ul className="page-navbar">
                     <li class="dropdown">
-                        <a href="javascript:void(0)" class="dropbtn">Platform &#9660;</a>
-                        <div class="dropdown-content">
-                            <a href="#">Playstation</a> 
-                            <a href="#">Xbox</a> 
-                            <a href="#">PC</a> 
-                            <a href="#">Nintendo</a> 
-                        </div>
+                        <h4 onClick={viewGameList}  href="javascript:void(0)" class="dropbtn">My Games &#9660;</h4>
                     </li>
                     <li class="dropdown">
-                        <a href="javascript:void(0)" class="dropbtn">Genre &#9660;</a>
-                        <div class="dropdown-content">
-                            <a href="#">Action</a> 
-                            <a href="#">Adventure</a> 
-                            <a href="#">Indie</a> 
-                            <a href="#">MMO</a> 
-                            <a href="#">RPG</a> 
-                            <a href="#">Shooter</a> 
-                            <a href="#">Puzzle</a> 
-                        </div>
+                        <h4 onClick={viewReviewsList} href="javascript:void(0)" class="dropbtn">My Reviews &#9660;</h4>
                     </li>
                     <li class="dropdown">
-                        <a href="javascript:void(0)" class="dropbtn">Rating &#9660;</a>
-                        <div class="dropdown-content">
-                            <a href="#">High to Low</a> 
-                            <a href="#">Low to High</a> 
-                            <a href="#">Popular</a> 
-                        </div>
-                    </li>
-                    <li class="dropdown">
-                        <a href="javascript:void(0)" class="dropbtn">Year &#9660;</a>
-                        <div class="dropdown-content">
-                            <a href="#">2023</a> 
-                            <a href="#">2022</a> 
-                            <a href="#">2021</a> 
-                            <a href="#">2020</a> 
-                            <a href="#">2019</a> 
-                            <a href="#">2018</a> 
-                            <a href="#">2017</a> 
-                            <a href="#">2016</a> 
-                            <a href="#">2016</a> 
-                            <a href="#">2016</a> 
-                            <a href="#">2015</a> 
-                            <a href="#">2014</a> 
-                            <a href="#">2013</a> 
-                            <a href="#">2012</a> 
-                            <a href="#">2011</a> 
-                            <a href="#">2010</a> 
-                        </div>
+                        <h4  onClick={viewFriendsList} href="javascript:void(0)" class="dropbtn">My Friends &#9660;</h4>
                     </li>
                    
             </ul>
@@ -68,6 +74,29 @@ function UserProfile({user}){
                     /></div>
     
             </div>
+            {viewGame ? 
+
+            <div className="profile-games-list">
+                <h4>Games</h4>
+            </div>
+            
+            : null}
+           
+            {viewReviews ? 
+            
+            <div className="profile-reviews-list">
+                <h4>Reviews</h4>
+            </div>
+            
+            : null}
+            
+            {viewFriends ? 
+            
+            <div className="profile-friends-list">
+                <h4>Friends</h4>
+            </div>
+            
+            : null}
         </div>
     )
 }

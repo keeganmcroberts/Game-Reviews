@@ -40,6 +40,19 @@ function GameDetailPage({user}){
         
     },[])
 
+    useEffect(()=>{
+
+        fetch('/usergames')
+        .then(r=>r.json())
+        .then(data=>{
+            data.map(eachGame=>{
+                if (eachGame.user_id === user_id && eachGame.slug === id && eachGame.liked === true){
+                    setLikedGame(true)
+                }
+            })
+        })
+    })
+
     console.log("individual game:", gameState)
 
     console.log(review)
@@ -84,8 +97,34 @@ function GameDetailPage({user}){
     }
 
 
-    function likeGame(){
+    function likeGame(slug){
         setLikedGame(!likedGame)
+
+        let object = {
+            user_id: user_id,
+            slug: slug,
+            liked: true
+        }
+
+        fetch('/likeGame', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(object)
+        })
+
+        .then((res =>{
+            if (res.ok){
+                res.json()
+                .then(response=>{
+                console.log(response)
+                 })
+            }
+            else{
+                res.json().then(errors=>{
+                    console.log(errors.errors)
+                })
+            }
+        }))
     }
  
 
@@ -102,9 +141,9 @@ function GameDetailPage({user}){
             <h2 className="game-review-title">{gameState.name} 
             {likedGame 
             ? 
-            <RiThumbUpFill className="thumbs-up"   size={35} cursor='pointer' color="purple" onClick={likeGame}/>
+            <RiThumbUpFill className="thumbs-up"   size={35} cursor='pointer' color="purple"/>
             : 
-            <RiThumbUpLine className="thumbs-up"  size={35} cursor='pointer' onClick={likeGame}/>
+            <RiThumbUpLine className="thumbs-up"  size={35} cursor='pointer' onClick={()=>likeGame(gameState.slug)}/>
             }
             </h2>
             <img className="detailPage-image" src={gameState.background_image}></img>

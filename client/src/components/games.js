@@ -55,18 +55,18 @@ if (gamesDB)
             <br></br>
             <div className="games-banner">
                 <ul className="page-navbar">
-                    <li class="dropdown">
+                    <li className="dropdown">
                         <a href="javascript:void(0)" class="dropbtn">Platform &#9660;</a>
-                        <div class="dropdown-content">
+                        <div className="dropdown-content">
                             <a href="#">Playstation</a> 
                             <a href="#">Xbox</a> 
                             <a href="#">PC</a> 
                             <a href="#">Nintendo</a> 
                         </div>
                     </li>
-                    <li class="dropdown">
-                        <a href="javascript:void(0)" class="dropbtn">Genre &#9660;</a>
-                        <div class="dropdown-content">
+                    <li className="dropdown">
+                        <a href="javascript:void(0)" className="dropbtn">Genre &#9660;</a>
+                        <div className="dropdown-content">
                             <a href="#">Action</a> 
                             <a href="#">Adventure</a> 
                             <a href="#">Indie</a> 
@@ -76,17 +76,17 @@ if (gamesDB)
                             <a href="#">Puzzle</a> 
                         </div>
                     </li>
-                    <li class="dropdown">
-                        <a href="javascript:void(0)" class="dropbtn">Rating &#9660;</a>
-                        <div class="dropdown-content">
+                    <li className="dropdown">
+                        <a href="javascript:void(0)" className="dropbtn">Rating &#9660;</a>
+                        <div className="dropdown-content">
                             <a href="#">High to Low</a> 
                             <a href="#">Low to High</a> 
                             <a href="#">Popular</a> 
                         </div>
                     </li>
-                    <li class="dropdown">
-                        <a href="javascript:void(0)" class="dropbtn">Year &#9660;</a>
-                        <div class="dropdown-content">
+                    <li className="dropdown">
+                        <a href="javascript:void(0)" className="dropbtn">Year &#9660;</a>
+                        <div className="dropdown-content">
                             <a href="#">2023</a> 
                             <a href="#">2022</a> 
                             <a href="#">2021</a> 
