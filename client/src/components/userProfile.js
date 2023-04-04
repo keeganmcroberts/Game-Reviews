@@ -7,6 +7,8 @@ const [gamesDB, setGamesDB] = useState([])
 const [viewGame, setViewGames] = useState(true)
 const [viewReviews, setViewReviews] = useState(false)
 const [viewFriends, setViewFriends] = useState(false)
+const [allGames, setAllGames] = useState([])
+// const [myGames, setMyGames] = useState([])
 
 function viewGameList(){
     setViewReviews(false)
@@ -26,27 +28,45 @@ function viewFriendsList(){
     setViewFriends(true)
 }
 
-console.log("profile page user", user.user_games)
+
+
+    const myGames = user.user_games
+    console.log("MY GAMES", myGames)
+
+
 
 
 useEffect(()=>{
 
     fetch('https://api.rawg.io/api/games?key=9937c17ee7f344e0a27e3d66c7b454e3')
     .then(r=>r.json())
-    .then(data=>{
-        // need a conditional to compare the slug from each game of the entire game API with the slug from the user_games object, which is our "liked games"
-        data.results.map(eachGame=>{
-            if (eachGame.slug === user.user_games.map(eachLikedGame=> eachLikedGame.slug)
-            })){
-                console.log( "need this game", eachGame )  
-            }
-        })
-    })
-        
-    
+    .then(data=> setAllGames(data.results))
 },[])
 
+console.log("ALL GAMES:", allGames)
+
+// {parkData.map(eachPark=>{
+//     if (user)
+//      return(
+//          parksArray.map(myParks=>{
+//          if (user.id === myParks.user_id && eachPark.parkCode === myParks.parkCode)
+//              return(
+//              <div className='home--park-card'>
+//                  <h4 className='card-title'>{eachPark.fullName}</h4>
+//                  <img className='homepage-images' src={eachPark.images[0].url}></img>
+//                  <button className="info-button" onClick={() => viewPark(eachPark.parkCode)}>More info</button>
+//                  <button onClick={()=>deletePark(myParks.id)}  className='info-button'>Unfollow</button>
+//              </div>
+//              )
+
+//          })
+//      )
+//  })}
+//  </div>
+
 console.log(gamesDB)
+
+
 
     return(
         <div>
@@ -60,13 +80,13 @@ console.log(gamesDB)
             <div className="games-banner">
                 <ul className="page-navbar">
                     <li class="dropdown">
-                        <h4 onClick={viewGameList}  href="javascript:void(0)" class="dropbtn">My Games &#9660;</h4>
+                        <h4 onClick={viewGameList}  href="javascript:void(0)" className="profile-banner-links">My Games &#9660;</h4>
                     </li>
                     <li class="dropdown">
-                        <h4 onClick={viewReviewsList} href="javascript:void(0)" class="dropbtn">My Reviews &#9660;</h4>
+                        <h4 onClick={viewReviewsList} href="javascript:void(0)" className="profile-banner-links">My Reviews &#9660;</h4>
                     </li>
                     <li class="dropdown">
-                        <h4  onClick={viewFriendsList} href="javascript:void(0)" class="dropbtn">My Friends &#9660;</h4>
+                        <h4  onClick={viewFriendsList} href="javascript:void(0)" className="profile-banner-links">My Friends &#9660;</h4>
                     </li>
                    
             </ul>
@@ -74,10 +94,28 @@ console.log(gamesDB)
                     /></div>
     
             </div>
+
+
+
             {viewGame ? 
 
             <div className="profile-games-list">
                 <h4>Games</h4>
+                {allGames.map(eachGame=>{
+                    if (user)
+                    return(
+                        myGames.map(myGames=>{
+                            if (user.id === myGames.user_id && eachGame.slug === myGames.slug)
+                            return(
+                                <div>
+                                    <h4>{eachGame.name}</h4>
+                                    <img className="platform-image" src={eachGame.background_image}></img>
+                                </div>
+                                    )
+                         })
+                    )
+                })}
+               
             </div>
             
             : null}
