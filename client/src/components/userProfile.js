@@ -34,11 +34,11 @@ useEffect(()=>{
     fetch('https://api.rawg.io/api/games?key=9937c17ee7f344e0a27e3d66c7b454e3')
     .then(r=>r.json())
     .then(data=>{
+        // need a conditional to compare the slug from each game of the entire game API with the slug from the user_games object, which is our "liked games"
         data.results.map(eachGame=>{
-            if (eachGame.slug === user.user_games.map(eachLikedGame=>{
-                return eachLikedGame.slug
+            if (eachGame.slug === user.user_games.map(eachLikedGame=> eachLikedGame.slug)
             })){
-                console.log( "need this game", eachGame )
+                console.log( "need this game", eachGame )  
             }
         })
     })
