@@ -40,7 +40,8 @@ function Login({user, setUser}){
         })
         .then((res)=>{
             if (res.ok){
-                res.json().then(user=>{
+                res.json()
+                .then(user=>{
                     setUser(user)
                     console.log("new User:", user)
                     alert("SUCCESS new user:", user)
@@ -49,8 +50,7 @@ function Login({user, setUser}){
                 res.json().then((errors) => {
                     console.log(errors.errors)
                 })
-            }
-        })
+        }})
     }
 
 

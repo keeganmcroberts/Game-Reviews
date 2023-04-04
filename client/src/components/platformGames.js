@@ -8,6 +8,15 @@ function Platforms({gamesDB}){
 
     console.log(id)
     console.log("games DB from App.js", gamesDB)
+
+    let navigate = useNavigate();
+    function viewGame(id){
+        navigate(`/game/${id}`)
+    }
+
+
+
+
     return(
         <div>
             <br></br>
@@ -27,6 +36,7 @@ function Platforms({gamesDB}){
                     <div>
                         <h2>{eachGame.name}</h2>
                         <img className='game-image' src={eachGame.background_image}></img>
+                        <button onClick={()=>viewGame(eachGame.slug)}>View</button>
                     </div>
                 )
             }

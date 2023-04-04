@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_03_194305) do
+ActiveRecord::Schema.define(version: 2023_04_04_171202) do
 
   create_table "reviews", force: :cascade do |t|
     t.integer "user_id"
@@ -22,6 +22,14 @@ ActiveRecord::Schema.define(version: 2023_04_03_194305) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "score"
+  end
+
+  create_table "user_games", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "slug"
+    t.boolean "liked"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|

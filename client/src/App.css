@@ -215,11 +215,14 @@ li.dropdown {
   width: 400px;
 }
 
+.thumbs-up{
+  margin-left: 20px;
+}
 .review-form{
   /* width: 400px;
   height: 400px; */
-  background-color: red;
-  background: red;
+  background-color: rgb(110, 38, 105);
+  background: rgb(102, 20, 86);
 }
 
 

@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {BsHandThumbsUp} from 'react-icons/bs';
+import {BsHandThumbsUpFill} from 'react-icons/bs';
 
 
 function Games(){
 
+    const [likedGame, setLikedGame] = useState(false)
     const [gamesDB, setGamesDB] = useState([])
 
     useEffect(()=>{
@@ -33,6 +36,10 @@ function Games(){
     let navigate = useNavigate();
     function viewGame(id){
         navigate(`/game/${id}`)
+    }
+
+    function likeGame(){
+        setLikedGame(!likedGame)
     }
 
 
@@ -113,6 +120,12 @@ if (gamesDB)
                             <h6>{eachGame.name}</h6>
                             <img className="platform-image" src={eachGame.background_image}></img>
                             <button onClick={()=>viewGame(eachGame.slug)}>View</button>
+                            {likedGame 
+                            ? 
+                            <button onClick={likeGame}>{<BsHandThumbsUpFill/>}</button>
+                            : 
+                            <button onClick={likeGame}>{<BsHandThumbsUp/>}</button>
+                            }
                         </div>
                     )
                 })}

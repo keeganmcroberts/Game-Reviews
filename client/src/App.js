@@ -18,7 +18,7 @@ function App() {
   const [gamesDB, setGamesDB] = useState({})
   const [user, setUser] = useState({})
 
- console.log("OUR USER:",user.id)
+ console.log("OUR USER:",user)
 
  useEffect(()=>{
   fetch("/usersession")

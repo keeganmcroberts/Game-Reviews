@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
-import {useNavigate, useParams} from 'react-router-dom';
+import {json, useNavigate, useParams} from 'react-router-dom';
+import {RiThumbUpLine} from 'react-icons/ri';
+import {RiThumbUpFill} from 'react-icons/ri';
 
 function GameDetailPage({user}){
 
@@ -19,6 +21,7 @@ function GameDetailPage({user}){
         gameplay: 10,
         graphics: 10
     })
+    const [likedGame, setLikedGame] = useState(false)
 
     const { slug, comment, score, difficulty, gameplay, graphics} = review
 
@@ -39,13 +42,52 @@ function GameDetailPage({user}){
 
     console.log("individual game:", gameState)
 
+    console.log(review)
+
     function handleChange(e){
         const {name, value} = e.target
 
         setReview({...review, [name]: value})
-
     }
- console.log("review event", review)
+
+    function submitReview(e){
+        e.preventDefault()
+
+        let newReview = {
+            user_id,
+            slug,
+            comment,
+            score,
+            difficulty,
+            gameplay,
+            graphics
+        }
+
+        fetch('/review', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(newReview)
+        })
+        .then((res =>{
+            if (res.ok){
+                res.json()
+                .then(response=>{
+                console.log(response)
+                 })
+            }
+            else{
+                res.json().then(errors=>{
+                    console.log(errors.errors)
+                })
+            }
+        }))
+    }
+
+
+    function likeGame(){
+        setLikedGame(!likedGame)
+    }
+ 
 
 
     return(
@@ -57,10 +99,17 @@ function GameDetailPage({user}){
             <br></br>
             <br></br>  
            
-            <h2>{gameState.name}</h2>
+            <h2 className="game-review-title">{gameState.name} 
+            {likedGame 
+            ? 
+            <RiThumbUpFill className="thumbs-up"   size={35} cursor='pointer' color="purple" onClick={likeGame}/>
+            : 
+            <RiThumbUpLine className="thumbs-up"  size={35} cursor='pointer' onClick={likeGame}/>
+            }
+            </h2>
             <img className="detailPage-image" src={gameState.background_image}></img>
             <h3>Leave a Review:</h3>
-            <form className="review-form">
+            <form onSubmit={submitReview} className="review-form">
             {/* need a user_id, numerical score for Gameplay, graphics, and difficulty, comment, and game slug  */}
             <h5>Difficulty</h5>
             <select onChange={handleChange} name='difficulty' value={difficulty}>
