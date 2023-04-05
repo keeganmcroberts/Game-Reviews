@@ -52,9 +52,14 @@ function Home({logo, user, setUser}) {
 
 
     return (
-      <div className="App">
-        <header className="App-header">
-          <div className="games-banner">
+      <div >
+        <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>         
+        <div className="games-banner">
             <ul className="page-navbar">
               <li class="dropdown">
                   <h4 onClick={viewFeed}   href="javascript:void(0)" className="profile-banner-links">My Feed &#9660;</h4>
@@ -106,7 +111,7 @@ function Home({logo, user, setUser}) {
           : null }
 
 
-        </header>
+        
       </div>
     );
   }
