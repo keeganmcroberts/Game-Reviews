@@ -100,7 +100,7 @@ console.log("reviewslist", reviewList)
                             if (user.id === myGames.user_id && eachGame.slug === myGames.slug)
                             return(
                                 <div>
-                                    <h3>{eachGame.name}</h3>
+                                    <h4>{eachGame.name}</h4>
                                     <img className="platform-image" src={eachGame.background_image}></img>
                                 </div>
                                     )
@@ -125,12 +125,16 @@ console.log("reviewslist", reviewList)
                                 if (user.id === eachReview.user_id && eachGame.slug === eachReview.slug)
                                 return(
                                     <div>
-                                        <h3>{eachGame.name}</h3>
+                                        <h4>{eachGame.name}</h4>
                                         <img className='platform-image' src={eachGame.background_image}></img>
-                                        <h6>Difficulty:{eachReview.difficulty}</h6>
-                                        <h6>Gameplay:{eachReview.gameplay}</h6>
-                                        <h6>Graphics:{eachReview.graphics}</h6>
-                                        <h6>Review:{eachReview.comment}</h6>
+                                        <h6>Difficulty:</h6>
+                                        <h6>{eachReview.difficulty}</h6>
+                                        <h6>Gameplay:</h6>
+                                        <h6>{eachReview.gameplay}</h6>
+                                        <h6>Graphics:</h6>
+                                        <h6>{eachReview.graphics}</h6>
+                                        <h6>Review:</h6>
+                                        <h6>{eachReview.comment}</h6>
                                     </div>
                                 )
                             })

@@ -231,3 +231,8 @@ li.dropdown {
 }
 
 
+.user-icon:hover{
+ background: red;
+ border-radius: 30%;
+}
+
