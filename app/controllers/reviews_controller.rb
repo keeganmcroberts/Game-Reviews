@@ -9,6 +9,10 @@ class ReviewsController < ApplicationController
 
     end
 
+    def index
+        render json: Review.all
+    end
+
     private 
 
     def strong_params

@@ -8,7 +8,8 @@ const [viewGame, setViewGames] = useState(true)
 const [viewReviews, setViewReviews] = useState(false)
 const [viewFriends, setViewFriends] = useState(false)
 const [allGames, setAllGames] = useState([])
-// const [myGames, setMyGames] = useState([])
+const [reviewList, setReviewList] = useState([])
+
 
 function viewGameList(){
     setViewReviews(false)
@@ -32,10 +33,11 @@ function viewFriendsList(){
 
     const myGames = user.user_games
     console.log("MY GAMES", myGames)
+    console.log("all games", allGames)
 
 
 
-
+// fetching from game API to compare our User's games with the games from the DB
 useEffect(()=>{
 
     fetch('https://api.rawg.io/api/games?key=9937c17ee7f344e0a27e3d66c7b454e3')
@@ -43,28 +45,15 @@ useEffect(()=>{
     .then(data=> setAllGames(data.results))
 },[])
 
-console.log("ALL GAMES:", allGames)
+// get request to backend server to view all reviews and compare which ones are from our user 
+useEffect(()=>{
+    fetch('/reviewsList')
+    .then(r=>r.json())
+    .then(data=> setReviewList( data))
+},[])
 
-// {parkData.map(eachPark=>{
-//     if (user)
-//      return(
-//          parksArray.map(myParks=>{
-//          if (user.id === myParks.user_id && eachPark.parkCode === myParks.parkCode)
-//              return(
-//              <div className='home--park-card'>
-//                  <h4 className='card-title'>{eachPark.fullName}</h4>
-//                  <img className='homepage-images' src={eachPark.images[0].url}></img>
-//                  <button className="info-button" onClick={() => viewPark(eachPark.parkCode)}>More info</button>
-//                  <button onClick={()=>deletePark(myParks.id)}  className='info-button'>Unfollow</button>
-//              </div>
-//              )
+console.log("reviewslist", reviewList)
 
-//          })
-//      )
-//  })}
-//  </div>
-
-console.log(gamesDB)
 
 
 
@@ -76,7 +65,8 @@ console.log(gamesDB)
             <br></br>
             <br></br>
              </h1>
-            <h4>hello {user?.first_name}</h4>
+            <h3>hello {user?.first_name}{user?.last_name}!</h3>
+            <br></br>
             <div className="games-banner">
                 <ul className="page-navbar">
                     <li class="dropdown">
@@ -100,7 +90,9 @@ console.log(gamesDB)
             {viewGame ? 
 
             <div className="profile-games-list">
-                <h4>Games</h4>
+                <h4>My Games</h4>
+                <br></br>
+                <div className='games-grid'>
                 {allGames.map(eachGame=>{
                     if (user)
                     return(
@@ -108,14 +100,14 @@ console.log(gamesDB)
                             if (user.id === myGames.user_id && eachGame.slug === myGames.slug)
                             return(
                                 <div>
-                                    <h4>{eachGame.name}</h4>
+                                    <h3>{eachGame.name}</h3>
                                     <img className="platform-image" src={eachGame.background_image}></img>
                                 </div>
                                     )
                          })
                     )
                 })}
-               
+               </div>
             </div>
             
             : null}
@@ -124,6 +116,28 @@ console.log(gamesDB)
             
             <div className="profile-reviews-list">
                 <h4>Reviews</h4>
+                <div className="games-grid">
+                <br></br>
+                {allGames.map(eachGame=>{
+                    if (user){
+                        return(
+                            reviewList.map(eachReview=>{
+                                if (user.id === eachReview.user_id && eachGame.slug === eachReview.slug)
+                                return(
+                                    <div>
+                                        <h3>{eachGame.name}</h3>
+                                        <img className='platform-image' src={eachGame.background_image}></img>
+                                        <h6>Difficulty:{eachReview.difficulty}</h6>
+                                        <h6>Gameplay:{eachReview.gameplay}</h6>
+                                        <h6>Graphics:{eachReview.graphics}</h6>
+                                        <h6>Review:{eachReview.comment}</h6>
+                                    </div>
+                                )
+                            })
+                        )
+                    }
+                })}
+                </div>
             </div>
             
             : null}
