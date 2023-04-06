@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import steve from "/Users/keegan/Development/code/gamereviews/client/src/favicon-32x32.png"
 import {GrGamepad} from 'react-icons/gr';
+
 
 
 function Home({logo, user, setUser}) {
@@ -46,6 +48,11 @@ function Home({logo, user, setUser}) {
     setSeeFeatured(false)
     setSeeFeed(true)
 
+  }
+
+  let navigate = useNavigate()
+  function viewProfile(firstname, lastname){
+    navigate(`/profile/${firstname}${lastname}`)
   }
 
 
@@ -101,7 +108,7 @@ function Home({logo, user, setUser}) {
           {allUsers.map(eachUser=>{
             return(
               <div>
-              <p>{eachUser.first_name} {eachUser.last_name}<GrGamepad className='user-icon' cursor='pointer' color="red"/></p>
+              <p>{eachUser.first_name} {eachUser.last_name}<GrGamepad onClick={()=>{viewProfile(eachUser.first_name, eachUser.last_name)}} className='user-icon' cursor='pointer' color="red"/></p>
   
               </div>
 
