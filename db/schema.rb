@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_04_171202) do
+ActiveRecord::Schema.define(version: 2023_04_10_193637) do
+
+  create_table "friendlists", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "friend_id"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.boolean "liked"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "reviews", force: :cascade do |t|
     t.integer "user_id"

@@ -55,11 +55,26 @@ function OtherProfiles(){
     setViewFriends(true)
 
     }
+
+
+    // function addFriend(friend){
+
+    //     let newFriend = friend.id
+    //     let newFriendArray = [...user.friends, newFriend]
+
+
+
+    //     fetch('/addFriend', {
+    //         method:"PATCH",
+    //         headers:{"Content-Type":"application/json"},
+    //         body: JSON.stringify({newFriendArray})
+    //     })
+    // }
       
 
-      
-   return(
-allUsers.map(user=>{
+// if (allUsers)
+    return(
+allUsers?.map(user=>{
     if (user.first_name === firstName && user.last_name === lastName)
     return(
         <div>
@@ -87,6 +102,7 @@ allUsers.map(user=>{
                     /></div>
     
             </div>
+
             {viewReviews ? 
             <div className='games-grid'>
             {user.reviews.map(eachReview=>{
@@ -114,6 +130,7 @@ allUsers.map(user=>{
             })}
             </div>
             : null}
+
             {viewGames ? 
             <div>
                 {user.user_games.map(userGames=>{
@@ -131,6 +148,11 @@ allUsers.map(user=>{
                     )
                 })}
             </div>
+            : null}
+            {viewFriends ?
+                <div>
+                    Friends List Here:
+                </div>
             : null}
         </div>
     )

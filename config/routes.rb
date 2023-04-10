@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :friendlists
   resources :user_games
   resources :reviews
   resources :users
