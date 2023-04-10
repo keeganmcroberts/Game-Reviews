@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  
   resources :friendlists
   resources :user_games
   resources :reviews
@@ -7,8 +6,9 @@ Rails.application.routes.draw do
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
   post "/signup", to: "users#create"
-  post "/login", to: "session#create"
   get "/allUsers", to: "users#index"
+  post "/addFriend", to: "friendlists#create"
+  post "/login", to: "session#create"
   get "/usersession", to: "session#show"
   delete "/logout", to: "session#destroy"
   post "/review", to: "reviews#create"
