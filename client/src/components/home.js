@@ -52,7 +52,7 @@ function Home({logo, user, setUser}) {
 
   let navigate = useNavigate()
   function viewProfile(firstname, lastname){
-    navigate(`/profile/${firstname}${lastname}`)
+    navigate(`/profile/${firstname}-${lastname}`)
   }
 
 
