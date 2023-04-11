@@ -4,15 +4,17 @@ import {useNavigate, useParams} from 'react-router-dom';
 import {AiOutlineCheckCircle} from 'react-icons/ai';
 import {AiFillCheckCircle} from 'react-icons/ai';
 
-function OtherProfiles(){
+function OtherProfiles({user}){
+ 
 
-
-
+    const [friendAssociations, setFriendAssociations] = useState([])
     const [allUsers, setAllUsers] = useState([])
     const [allGames, setAllGames] = useState([])
     const [viewGames, setViewGames] = useState(false)
     const [viewReviews, setViewReviews] = useState(false)
     const [viewFriends, setViewFriends] = useState(false)
+    const [friendDetailPage, setFriendDetailPage] = useState({})
+    const [iconSwitch, setIconSwitch] = useState(false)
 
     let {id} = useParams()
     const firstName = id.split("-")[0]
@@ -20,13 +22,45 @@ function OtherProfiles(){
     
 
 
+// this useEffect fetches an index of all Users, compares the attributes of each user to our params and sets that user equal to state
     useEffect(()=>{
         fetch("/allUsers")
         .then(r=>r.json())
-        .then(users=>(setAllUsers(users)))
-      
+        .then(users=>{
+            users.map(eachUser=>{
+                if (eachUser.first_name === firstName && eachUser.last_name === lastName){
+                    setFriendDetailPage(eachUser)
+                } 
+            })
+            })
       },[])
 
+      console.log("detail page:", friendDetailPage)
+
+    // this useEffect fetches an index of all the friend associations and and sets them equal to state: to be used for conditionals 
+    useEffect(()=>{
+        fetch('/allFriends')
+        .then(res=>res.json())
+        .then(data=>setFriendAssociations(data))
+    },[])
+    
+
+        /// this useEffect is for updating the DOM element that indicagtes you've liked a friend or not. empty vs purple check mark by name 
+    useEffect(()=>{
+        friendAssociations.map(association=>{
+            console.log(association.user_id, user.id, association.friend_id, friendDetailPage.id, association.liked )
+            if (association.user_id === user.id && association.friend_id === friendDetailPage.id && association.liked === true){
+                return(
+
+                    setIconSwitch(true)
+                )
+                
+            } 
+        })
+    },)
+
+
+// this fetch simply fetches from the game API to render each profiles games page.
       useEffect(()=>{
 
         fetch('https://api.rawg.io/api/games?key=9937c17ee7f344e0a27e3d66c7b454e3')
@@ -57,33 +91,63 @@ function OtherProfiles(){
     }
 
 
-    // function addFriend(friend){
+    function addFriend(friend){
 
-    //     let newFriend = friend.id
-    //     let newFriendArray = [...user.friends, newFriend]
+        let newFriend = {
+            user_id: user.id,
+            friend_id: friend.id,
+            first_name: friend.first_name,
+            last_name: friend.last_name,
+            liked: true,
+            email: friend.email
+        }
+ 
+        fetch('/addFriend', {
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body: JSON.stringify(newFriend)
+        })
+
+        .then((res =>{
+            if (res.ok){
+                res.json()
+                .then(response=>{
+                console.log(response)
+                 })
+            }
+            else{
+                res.json().then(errors=>{
+                    console.log(errors.errors)
+                })
+            }
+        }))
+    }
+
+
+   
+
+
+    
+
+   
 
 
 
-    //     fetch('/addFriend', {
-    //         method:"PATCH",
-    //         headers:{"Content-Type":"application/json"},
-    //         body: JSON.stringify({newFriendArray})
-    //     })
-    // }
+   
       
 
 // if (allUsers)
-    return(
-allUsers?.map(user=>{
-    if (user.first_name === firstName && user.last_name === lastName)
-    return(
+
+// if (friendDetailPage.first_name === firstName && friendDetailPage.last_name === lastName)
+if (friendDetailPage)
+return(
         <div>
             <br></br>
             <br></br>
             <br></br>
             <br></br>
             <br></br>
-                <h1>{firstName} {lastName} <AiOutlineCheckCircle cursor='pointer'/></h1>
+                <h1>{firstName} {lastName} { iconSwitch ? <AiFillCheckCircle color='purple' cursor='pointer'/> : <AiOutlineCheckCircle onClick={()=>{addFriend(friendDetailPage)}}  cursor='pointer'/>} </h1>
             <br></br>
             <div className="games-banner">
                 <ul className="page-navbar">
@@ -105,12 +169,12 @@ allUsers?.map(user=>{
 
             {viewReviews ? 
             <div className='games-grid'>
-            {user.reviews.map(eachReview=>{
+            {friendDetailPage.reviews.map(eachReview=>{
                 return(
                    
                     allGames.map(eachGame=>{
                         if (eachGame.slug === eachReview.slug){
-                            return(
+                            return ( 
                             <div>
                                 <img src={eachGame.background_image} className='platform-image'></img>
                                 <h5>{eachGame.name}</h5>
@@ -133,7 +197,7 @@ allUsers?.map(user=>{
 
             {viewGames ? 
             <div>
-                {user.user_games.map(userGames=>{
+                {friendDetailPage.user_games.map(userGames=>{
                     return(
                         allGames.map(eachGame=>{
                             if (userGames.slug === eachGame.slug){
@@ -156,8 +220,6 @@ allUsers?.map(user=>{
             : null}
         </div>
     )
-})
- )
 }
 
 

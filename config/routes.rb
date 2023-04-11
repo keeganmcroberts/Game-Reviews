@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   # Leave this here to help deploy your app later!
   post "/signup", to: "users#create"
   get "/allUsers", to: "users#index"
+  get "allFriends", to: "friendlists#index"
   post "/addFriend", to: "friendlists#create"
   post "/login", to: "session#create"
   get "/usersession", to: "session#show"

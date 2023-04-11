@@ -3,7 +3,7 @@ class User < ApplicationRecord
 
     has_many :reviews 
     has_many :user_games
-    has_one :friendlist
+    has_many :friendlist
 
 
     

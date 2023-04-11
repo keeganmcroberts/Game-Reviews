@@ -1,5 +1,10 @@
 class FriendlistsController < ApplicationController
 
+    def index 
+        render json: Friendlist.all
+    end
+
+
     def create
         new_friend = Friendlist.create(strong_params)
 
