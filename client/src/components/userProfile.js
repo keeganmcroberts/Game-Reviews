@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import {useNavigate, useParams} from 'react-router-dom';
+import {GrGamepad} from 'react-icons/gr';
 
 
 function UserProfile({user}){
@@ -30,11 +32,14 @@ function viewFriendsList(){
     setViewFriends(true)
 }
 
+let navigate = useNavigate()
+function viewProfile(firstname, lastname){
+  navigate(`/profile/${firstname}-${lastname}`)
+}
+
 
 
     const myGames = user.user_games
-    console.log("MY GAMES", myGames)
-    console.log("all games", allGames)
 
 
 
@@ -53,9 +58,8 @@ useEffect(()=>{
     .then(data=> setReviewList( data))
 },[])
 
-console.log("reviewslist", reviewList)
 
-
+console.log(user)
 
 
     return(
@@ -85,7 +89,7 @@ console.log("reviewslist", reviewList)
                     /></div>
     
             </div>
-
+        
 
 
             {viewGame ? 
@@ -150,7 +154,14 @@ console.log("reviewslist", reviewList)
             {viewFriends ? 
             
             <div className="profile-friends-list">
-                <h4>Friends</h4>
+                <h3>Friends:</h3>
+                {user.friendlist.map(eachFriend=>{
+                    return(
+                    <div>
+                        <h4>{eachFriend.first_name} {eachFriend.last_name} <GrGamepad onClick={()=>{viewProfile(eachFriend.first_name, eachFriend.last_name)}} className='user-icon' cursor='pointer' color="red"/></h4>
+                    </div>
+                    )
+                })}
             </div>
             
             : null}

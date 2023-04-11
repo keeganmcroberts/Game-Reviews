@@ -3,12 +3,12 @@ import { useEffect, useState } from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import {AiOutlineCheckCircle} from 'react-icons/ai';
 import {AiFillCheckCircle} from 'react-icons/ai';
+import {GrGamepad} from 'react-icons/gr';
 
 function OtherProfiles({user}){
  
 
     const [friendAssociations, setFriendAssociations] = useState([])
-    const [allUsers, setAllUsers] = useState([])
     const [allGames, setAllGames] = useState([])
     const [viewGames, setViewGames] = useState(false)
     const [viewReviews, setViewReviews] = useState(false)
@@ -48,7 +48,6 @@ function OtherProfiles({user}){
         /// this useEffect is for updating the DOM element that indicagtes you've liked a friend or not. empty vs purple check mark by name 
     useEffect(()=>{
         friendAssociations.map(association=>{
-            console.log(association.user_id, user.id, association.friend_id, friendDetailPage.id, association.liked )
             if (association.user_id === user.id && association.friend_id === friendDetailPage.id && association.liked === true){
                 return(
 
@@ -90,6 +89,11 @@ function OtherProfiles({user}){
 
     }
 
+    let navigate = useNavigate()
+    function viewProfile(firstname, lastname){
+      navigate(`/profile/${firstname}-${lastname}`)
+    }
+
 
     function addFriend(friend){
 
@@ -124,21 +128,6 @@ function OtherProfiles({user}){
     }
 
 
-   
-
-
-    
-
-   
-
-
-
-   
-      
-
-// if (allUsers)
-
-// if (friendDetailPage.first_name === firstName && friendDetailPage.last_name === lastName)
 if (friendDetailPage)
 return(
         <div>
@@ -215,7 +204,14 @@ return(
             : null}
             {viewFriends ?
                 <div>
-                    Friends List Here:
+                Friends List Here:
+                {friendDetailPage.friendlist.map(eachFriend=>{
+                    return(
+                        <div>
+                            <h4>{eachFriend.first_name} {eachFriend.last_name} <GrGamepad onClick={()=>{viewProfile(eachFriend.first_name, eachFriend.last_name)}} className='user-icon' cursor='pointer' color="red"/></h4>
+                        </div>
+                    )
+                })}
                 </div>
             : null}
         </div>
