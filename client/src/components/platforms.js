@@ -66,7 +66,8 @@ console.log("PLATFORMS", platformDB.results)
                     return(
                         <div>
                         <h3>{eachPlatform.name}</h3>
-                        <img onClick={()=>viewGames(eachPlatform.slug)} className="platform-image" src={eachPlatform.image_background}></img>
+                        <img  className="platform-image" src={eachPlatform.image_background}></img>
+                        <button onClick={()=>viewGames(eachPlatform.slug)}>View Games</button>
                         </div>
                         )
                 })}

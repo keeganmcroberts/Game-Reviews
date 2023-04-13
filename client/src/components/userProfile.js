@@ -70,7 +70,7 @@ console.log(user)
             <br></br>
             <br></br>
              </h1>
-            <h3>hello {user?.first_name}{user?.last_name}!</h3>
+            <h3>hello {user?.first_name} {user?.last_name}!</h3>
             <br></br>
             <div className="games-banner">
                 <ul className="page-navbar">

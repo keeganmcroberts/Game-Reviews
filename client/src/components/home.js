@@ -28,6 +28,7 @@ function Home({logo, user, setUser}) {
   },[])
 
   console.log("ALL USERs", allUsers)
+  console.log("my user home page:", user)
   
 
 

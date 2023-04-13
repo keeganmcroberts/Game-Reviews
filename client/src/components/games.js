@@ -139,12 +139,6 @@ if (gamesDB)
                             <h6>{eachGame.name}</h6>
                             <img className="platform-image" src={eachGame.background_image}></img>
                             <button onClick={()=>viewGame(eachGame.slug)}>View</button>
-                            {likedGame 
-                            ? 
-                            <button onClick={likeGame}>{<BsHandThumbsUpFill/>}</button>
-                            : 
-                            <button onClick={likeGame}>{<BsHandThumbsUp/>}</button>
-                            }
                         </div>
                             )
                     })
