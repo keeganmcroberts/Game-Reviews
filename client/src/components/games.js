@@ -77,10 +77,11 @@ if (gamesDB)
                     <li className="dropdown">
                         <a href="javascript:void(0)" className="dropbtn">Genre &#9660;</a>
                         <div className="dropdown-content">
+                            <a onClick={()=>setGenreState("")} href="#">All</a> 
                             <a onClick={()=>setGenreState("Action")} href="#">Action</a> 
                             <a onClick={()=>setGenreState("Adventure")} href="#">Adventure</a> 
                             <a onClick={()=>setGenreState("Indie")} href="#">Indie</a> 
-                            <a onClick={()=>setGenreState("MMO")} href="#">MMO</a> 
+                            <a onClick={()=>setGenreState("Massively Multiplayer")} href="#">MMO</a> 
                             <a onClick={()=>setGenreState("RPG")} href="#">RPG</a> 
                             <a onClick={()=>setGenreState("Shooter")} href="#">Shooter</a> 
                             <a onClick={()=>setGenreState("Puzzle")} href="#">Puzzle</a> 
@@ -121,13 +122,20 @@ if (gamesDB)
             </div>
             <br></br>
             <br></br>
+            {platformState || genreState ?
+            
+            <h2>{platformState}:{genreState}</h2>
+            : null}
             <div className="games-grid">
                 {gamesDB.map(eachGame=>{
                     return(
                     eachGame.parent_platforms.map(eachPlatform=>{
                         if (eachPlatform.platform.name === platformState || platformState === "")
-                    return(
-                        <div >
+                        return(
+                        eachGame.genres.map(eachGenre=>{
+                            if (eachGenre.name === genreState || genreState === "")
+                            return(
+                            <div >
                             <h6>{eachGame.name}</h6>
                             <img className="platform-image" src={eachGame.background_image}></img>
                             <button onClick={()=>viewGame(eachGame.slug)}>View</button>
@@ -138,9 +146,12 @@ if (gamesDB)
                             <button onClick={likeGame}>{<BsHandThumbsUp/>}</button>
                             }
                         </div>
+                            )
+                    })
                     )
-                    })   
-                )})}
+                    })  
+                    )
+                })}
             </div>
         </div>
     )
