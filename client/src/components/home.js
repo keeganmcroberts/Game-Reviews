@@ -11,6 +11,7 @@ function Home({logo, user, setUser}) {
   const [seeFeed, setSeeFeed] = useState(true)
   const [seeFeatured, setSeeFeatured] = useState(false)
   const [seeUsers, setSeeUsers] = useState(false)
+  const [friendAssociations, setFriendAssociations] = useState([])
 
 
   useEffect(()=>{
@@ -26,6 +27,13 @@ function Home({logo, user, setUser}) {
     .then(users=>(setAllUsers(users)))
   
   },[])
+
+  useEffect(()=>{
+    fetch('/allFriends')
+    .then(res=>res.json())
+    .then(data=>setFriendAssociations(data))
+},[])
+
 
   console.log("ALL USERs", allUsers)
   console.log("my user home page:", user)

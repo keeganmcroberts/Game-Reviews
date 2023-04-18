@@ -6,8 +6,8 @@ import {BsHandThumbsUpFill} from 'react-icons/bs';
 
 function Games(){
 
-    const [likedGame, setLikedGame] = useState(false)
     const [gamesDB, setGamesDB] = useState([])
+    const [likedGame, setLikedGame] = useState(false)
     const [platformState, setPlatformState] = useState("")
     const [genreState, setGenreState] = useState("")
     const [yearState, setYearState] = useState("")
@@ -25,6 +25,17 @@ function Games(){
         .then(data=>setGamesDB(data.results))
         
     },[])
+
+        // useEffect(()=>{
+        //     if (genreState){
+        //         const filteredGames = gamesDB.filter(genreState === )
+        //         setFilteredGames(filteredGames)
+        //     }
+        
+            
+
+
+        // },[])
 
     console.log("GAMES LIST:", gamesDB)
 
@@ -129,22 +140,39 @@ if (gamesDB)
             <div className="games-grid">
                 {gamesDB.map(eachGame=>{
                     return(
-                    eachGame.parent_platforms.map(eachPlatform=>{
-                        if (eachPlatform.platform.name === platformState || platformState === "")
-                        return(
-                        eachGame.genres.map(eachGenre=>{
-                            if (eachGenre.name === genreState || genreState === "")
-                            return(
-                            <div >
+                        <div>
                             <h6>{eachGame.name}</h6>
                             <img className="platform-image" src={eachGame.background_image}></img>
                             <button onClick={()=>viewGame(eachGame.slug)}>View</button>
                         </div>
-                            )
-                    })
-                    )
-                    })  
-                    )
+                                    )
+                //     if (platformState === ""){
+                //         return(
+                //             <div>
+                //                 <h6>{eachGame.name}</h6>
+                //                 <img className="platform-image" src={eachGame.background_image}></img>
+                //                 <button onClick={()=>viewGame(eachGame.slug)}>View</button>
+                //             </div>
+                //             )
+                //     } else{
+                //     return(
+                //     eachGame.parent_platforms.map(eachPlatform=>{
+                //         if (eachPlatform.platform.name === platformState)
+                //         return(
+                //         eachGame.genres.map(eachGenre=>{
+                //             if (eachGenre.name === genreState || genreState === "")
+                //             return(
+                //             <div>
+                //                 <h6>{eachGame.name}</h6>
+                //                 <img className="platform-image" src={eachGame.background_image}></img>
+                //                 <button onClick={()=>viewGame(eachGame.slug)}>View</button>
+                //             </div>
+                //             )
+                //     })
+                //     )
+                //     }) 
+                 
+                //     )}
                 })}
             </div>
         </div>

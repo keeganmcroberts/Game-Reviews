@@ -43,6 +43,8 @@ function OtherProfiles({user}){
         .then(res=>res.json())
         .then(data=>setFriendAssociations(data))
     },[])
+
+    console.log("friend Associations:", friendAssociations)
     
 
         /// this useEffect is for updating the DOM element that indicagtes you've liked a friend or not. empty vs purple check mark by name 
