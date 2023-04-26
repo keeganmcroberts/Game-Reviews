@@ -69,6 +69,33 @@ useEffect(()=>{
 
 console.log(user)
 
+function setDifficulty(rating){
+    if (rating >= 8){
+        setDifficultyColor('green')
+    } else if (rating < 8 && rating >= 4 ){
+        setDifficultyColor('orange')
+    } else{
+        setDifficultyColor('red')
+    }
+
+    console.log("color function rating:", rating)
+}
+
+console.log('color:', difficultyScoreColor)
+
+function setGraphics(rating){
+
+}
+
+function setGameplay(rating){
+
+}
+
+function changeScoreColor(rating){
+
+}
+
+
 
     return(
         <div>
@@ -142,15 +169,39 @@ console.log(user)
                                         <h4>{eachGame.name}</h4>
                                         <div className='review-ratings'>
                                             <h6 className="review-category">Difficulty:</h6>
-                                            <h6 className="score" style={{color:difficultyScoreColor}}>{eachReview.difficulty}</h6>
+                                            {eachReview.difficulty >= 8 ?
+                                                <h6 className="score" style={{color:"green"}}>{eachReview.difficulty}</h6>
+                                            : eachReview.difficulty < 8 && eachReview.difficulty >= 4 ? 
+                                                <h6 className="score" style={{color:"orange"}}>{eachReview.difficulty}</h6> 
+                                            : 
+                                                <h6 className="score" style={{color:"red"}}>{eachReview.difficulty}</h6>}
+
                                             <h6 className="review-category">Gameplay:</h6>
-                                            <h6 className="score" style={{color:gameplayScoreColor}}>{eachReview.gameplay}</h6>
+                                            {eachReview.gameplay >= 8 ?
+                                                <h6 className="score" style={{color:"green"}}>{eachReview.gameplay}</h6>
+                                            : eachReview.gameplay < 8 && eachReview.gameplay >= 4 ? 
+                                                <h6 className="score" style={{color:"orange"}}>{eachReview.gameplay}</h6> 
+                                            : 
+                                                <h6 className="score" style={{color:"red"}}>{eachReview.gameplay}</h6>}
+
                                             <h6 className="review-category">Graphics:</h6>
-                                            <h6 className="score" style={{color:graphicsScoreColor}}>{eachReview.graphics}</h6>
+                                            {eachReview.graphics >= 8 ?
+                                                <h6 className="score" style={{color:"green"}}>{eachReview.graphics}</h6>
+                                            : eachReview.graphics < 8 && eachReview.graphics >= 4 ? 
+                                                <h6 className="score" style={{color:"orange"}}>{eachReview.graphics}</h6> 
+                                            : 
+                                                <h6 className="score" style={{color:"red"}}>{eachReview.graphics}</h6>}
+
                                             <h6 className="review-category">Review:</h6>
                                             <h6 className="score">{eachReview.comment}</h6>
+
                                             <h6 className="review-category">Score:</h6>
-                                            <h6 className="score" style={{color:scoreColor}}>{eachReview.score}</h6>
+                                            {eachReview.score >= 8 ?
+                                                <h6 className="score" style={{color:"green"}}>{eachReview.score}</h6>
+                                            : eachReview.score < 8 && eachReview.score >= 4 ? 
+                                                <h6 className="score" style={{color:"orange"}}>{eachReview.score}</h6> 
+                                            : 
+                                                <h6 className="score" style={{color:"red"}}>{eachReview.score}</h6>}
                                         </div>
                                     </div>
                                 )
