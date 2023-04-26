@@ -104,6 +104,32 @@
   color: red;
 }
 
+.homepage-body{
+  width: 100%;
+}
+
+.users-list{
+  position: relative;
+  display: flex;
+  text-align: left;
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-bottom: 20px;
+  border-bottom: solid 2px black;
+
+}
+
+.view-user-icon{
+  position: absolute;
+  right: 10px;
+}
+
+.view-user-icon:hover{
+  background-color: rgba(80, 9, 79, 0.748);
+  border-radius: 50%;
+ }
+
+
 
 .platform-grid{
   display: grid;
@@ -200,7 +226,6 @@ li.dropdown {
 }
 
 .search-right{
-
   margin-left: 100px;
 }
 
@@ -231,8 +256,5 @@ li.dropdown {
 }
 
 
-.user-icon:hover{
- background: red;
- border-radius: 30%;
-}
+
 

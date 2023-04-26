@@ -88,37 +88,34 @@ function Home({logo, user, setUser}) {
               </li>
                    
             </ul>
-            <div className="search-right"><input type="text" className="search" placeholder="Search Games..."/>
+            <div className="search-right"><input type="text" className="search" placeholder="Search..."/>
             </div>
     
             </div>
             {seeFeed ? 
           <div className="homepage-body">
-          <img src="https://upload.wikimedia.org/wikipedia/en/e/e7/Steve_%28Minecraft%29.png" className="App-logo" alt="whoops" />
-          <p>
-             Hail Steve
-          </p>
+            <h3>
+              My Feed
+            </h3>
           </div>
           : null }
           {seeFeatured ? 
           <div className="homepage-body">
-          <img src="https://upload.wikimedia.org/wikipedia/en/e/e7/Steve_%28Minecraft%29.png" className="App-logo" alt="whoops" />
-          <p>
+          <h3>
             Featured
-          </p>
+          </h3>
           </div>
           : null }
           {seeUsers ? 
           <div className="homepage-body">
-          <img src="https://upload.wikimedia.org/wikipedia/en/e/e7/Steve_%28Minecraft%29.png" className="App-logo" alt="whoops" />
-          <h4>
-             Users:
-          </h4>
+          <h3>
+             Users
+          </h3>
           {allUsers.map(eachUser=>{
             return(
-              <div>
-              <p>{eachUser.first_name} {eachUser.last_name}<GrGamepad onClick={()=>{viewProfile(eachUser.first_name, eachUser.last_name)}} className='user-icon' cursor='pointer' color="red"/></p>
-  
+              <div className="users-list">
+              <p>{eachUser.first_name} {eachUser.last_name}</p>
+              <GrGamepad onClick={()=>{viewProfile(eachUser.first_name, eachUser.last_name)}} className='view-user-icon' cursor='pointer' size='20'color="red"/>
               </div>
 
             )
