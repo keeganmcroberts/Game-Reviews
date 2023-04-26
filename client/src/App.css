@@ -134,7 +134,7 @@
 .platform-grid{
   display: grid;
   grid-template-columns: 200px 200px 200px 200px;
-  grid-column-gap: 150px;
+  grid-column-gap: 10px;
   grid-row-gap: 100px;
   justify-content: center;
 }
@@ -161,7 +161,7 @@
 .platformGames-grid{
   display: grid;
   grid-template-columns: 200px 200px 200px 200px;
-  grid-column-gap: 150px;
+  grid-column-gap: 10px;
   grid-row-gap: 100px;
   justify-content: center;
 }
@@ -257,6 +257,18 @@ li.dropdown {
 
 .profile-friends-list-body{
   width: 100%;
+}
+
+.reviews-grid{
+  display: flex;
+  grid-template-columns: 200px 200px 200px 200px;
+  grid-column-gap: 10px;
+  grid-row-gap: 100px;
+  justify-content: center;
+}
+
+.profile-reviews-list{
+  justify-content: center;
 }
 
 .review-ratings{

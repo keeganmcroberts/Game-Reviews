@@ -34,7 +34,7 @@ function Platforms({gamesDB}){
             }) ){
                 return(
                     <div>
-                        <h2>{eachGame.name}</h2>
+                        <h5>{eachGame.name}</h5>
                         <img className='game-image' src={eachGame.background_image}></img>
                         <button onClick={()=>viewGame(eachGame.slug)}>View</button>
                     </div>

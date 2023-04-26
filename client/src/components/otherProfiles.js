@@ -159,24 +159,59 @@ return(
             </div>
 
             {viewReviews ? 
-            <div className='games-grid'>
+            <div>
+                <h2>
+                    {firstName}'s Reviews
+                </h2>
+                <br></br>
+                <br></br>
+            <div className='reviews-grid'>
+
             {friendDetailPage.reviews.map(eachReview=>{
                 return(
                    
                     allGames.map(eachGame=>{
                         if (eachGame.slug === eachReview.slug){
                             return ( 
-                            <div>
-                                <img src={eachGame.background_image} className='platform-image'></img>
+                            <div className='profile-review-card'>
+                                <img src={eachGame.background_image} className='review-image'></img>
                                 <h5>{eachGame.name}</h5>
+                                <div className='review-ratings'>
                                 <h6>Difficulty:</h6>
-                                <h6>{eachReview.difficulty}</h6>
-                                <h6>Gameplay:</h6>
-                                <h6>{eachReview.gameplay}</h6>
-                                <h6>Graphics:</h6>
-                                <h6>{eachReview.graphics}</h6>
-                                <h6>Review:</h6>
-                                <h6>{eachReview.comment}</h6>
+                                {eachReview.difficulty >= 8 ?
+                                    <h6 className="score" style={{color:"green"}}>{eachReview.difficulty}</h6>
+                                : eachReview.difficulty < 8 && eachReview.difficulty >= 4 ? 
+                                    <h6 className="score" style={{color:"orange"}}>{eachReview.difficulty}</h6> 
+                                : 
+                                    <h6 className="score" style={{color:"red"}}>{eachReview.difficulty}</h6>}
+
+                                <h6 className="review-category">Gameplay:</h6>
+                                {eachReview.gameplay >= 8 ?
+                                    <h6 className="score" style={{color:"green"}}>{eachReview.gameplay}</h6>
+                                : eachReview.gameplay < 8 && eachReview.gameplay >= 4 ? 
+                                    <h6 className="score" style={{color:"orange"}}>{eachReview.gameplay}</h6> 
+                                : 
+                                    <h6 className="score" style={{color:"red"}}>{eachReview.gameplay}</h6>}
+
+                                <h6 className="review-category">Graphics:</h6>
+                                {eachReview.graphics >= 8 ?
+                                    <h6 className="score" style={{color:"green"}}>{eachReview.graphics}</h6>
+                                : eachReview.graphics < 8 && eachReview.graphics >= 4 ? 
+                                    <h6 className="score" style={{color:"orange"}}>{eachReview.graphics}</h6> 
+                                : 
+                                    <h6 className="score" style={{color:"red"}}>{eachReview.graphics}</h6>}
+
+                                <h6 className="review-category">Review:</h6>
+                                <h6 className="score">{eachReview.comment}</h6>
+
+                                <h6 className="review-category">Score:</h6>
+                                {eachReview.score >= 8 ?
+                                    <h6 className="score" style={{color:"green"}}>{eachReview.score}</h6>
+                                : eachReview.score < 8 && eachReview.score >= 4 ? 
+                                    <h6 className="score" style={{color:"orange"}}>{eachReview.score}</h6> 
+                                : 
+                                    <h6 className="score" style={{color:"red"}}>{eachReview.score}</h6>}
+                                </div>
                             </div>
                             )
                             }
@@ -184,17 +219,22 @@ return(
                 )
             })}
             </div>
+            </div>
             : null}
 
             {viewGames ? 
             <div>
+                <h2>{firstName}'s Games</h2>
+                <br></br>
+                <br></br>
+                <div className='games-grid'>
                 {friendDetailPage.user_games.map(userGames=>{
                     return(
                         allGames.map(eachGame=>{
                             if (userGames.slug === eachGame.slug){
                                 return(
                                     <div>
-                                        <h6>{eachGame.name}</h6>
+                                        <h4>{eachGame.name}</h4>
                                         <img className="platform-image" src={eachGame.background_image}></img>
                                     </div>
                                 )
@@ -202,11 +242,12 @@ return(
                         })
                     )
                 })}
+                </div>
             </div>
             : null}
             {viewFriends ?
                 <div>
-                Friends List Here:
+                <h2>{firstName}'s Friends:</h2>
                 {friendDetailPage.friendlist.map(eachFriend=>{
                     return(
                         <div>

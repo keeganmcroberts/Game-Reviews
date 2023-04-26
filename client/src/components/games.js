@@ -141,7 +141,7 @@ if (gamesDB)
                 {gamesDB.map(eachGame=>{
                     return(
                         <div>
-                            <h6>{eachGame.name}</h6>
+                            <h5>{eachGame.name}</h5>
                             <img className="platform-image" src={eachGame.background_image}></img>
                             <button onClick={()=>viewGame(eachGame.slug)}>View</button>
                         </div>

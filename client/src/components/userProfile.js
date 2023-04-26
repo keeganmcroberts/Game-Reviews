@@ -69,34 +69,6 @@ useEffect(()=>{
 
 console.log(user)
 
-function setDifficulty(rating){
-    if (rating >= 8){
-        setDifficultyColor('green')
-    } else if (rating < 8 && rating >= 4 ){
-        setDifficultyColor('orange')
-    } else{
-        setDifficultyColor('red')
-    }
-
-    console.log("color function rating:", rating)
-}
-
-console.log('color:', difficultyScoreColor)
-
-function setGraphics(rating){
-
-}
-
-function setGameplay(rating){
-
-}
-
-function changeScoreColor(rating){
-
-}
-
-
-
     return(
         <div>
         <h1> 
@@ -155,8 +127,9 @@ function changeScoreColor(rating){
             {viewReviews ? 
             
             <div className="profile-reviews-list">
-                <h4>Reviews</h4>
-                <div className="games-grid">
+                <h2>My Reviews</h2>
+                <br></br>
+                <div className="reviews-grid">
                 <br></br>
                 {allGames.map(eachGame=>{
                     if (user){
