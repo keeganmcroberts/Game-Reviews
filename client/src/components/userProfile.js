@@ -12,6 +12,14 @@ const [viewReviews, setViewReviews] = useState(false)
 const [viewFriends, setViewFriends] = useState(false)
 const [allGames, setAllGames] = useState([])
 const [reviewList, setReviewList] = useState([])
+const [difficultyScoreColor, setDifficultyColor] = useState('green')
+const [difficultyScore, setDifficultyScore] = useState(10)
+const [gameplayScoreColor, setGameplayColor] = useState('green')
+const [gameplayScore, setGameplayScore] = useState(10)
+const [graphicsScoreColor, setGraphicsColor] = useState('green')
+const [graphicsScore, setGraphicsScore] = useState(10)
+const [scoreColor, setScoreColor] = useState('green')
+const [score, setScore] = useState(10)
 
 
 function viewGameList(){
@@ -129,17 +137,21 @@ console.log(user)
                             reviewList.map(eachReview=>{
                                 if (user.id === eachReview.user_id && eachGame.slug === eachReview.slug)
                                 return(
-                                    <div>
+                                    <div className='profile-review-card'>
+                                        <img className='review-image' src={eachGame.background_image}></img>
                                         <h4>{eachGame.name}</h4>
-                                        <img className='platform-image' src={eachGame.background_image}></img>
-                                        <h6>Difficulty:</h6>
-                                        <h6>{eachReview.difficulty}</h6>
-                                        <h6>Gameplay:</h6>
-                                        <h6>{eachReview.gameplay}</h6>
-                                        <h6>Graphics:</h6>
-                                        <h6>{eachReview.graphics}</h6>
-                                        <h6>Review:</h6>
-                                        <h6>{eachReview.comment}</h6>
+                                        <div className='review-ratings'>
+                                            <h6 className="review-category">Difficulty:</h6>
+                                            <h6 className="score" style={{color:difficultyScoreColor}}>{eachReview.difficulty}</h6>
+                                            <h6 className="review-category">Gameplay:</h6>
+                                            <h6 className="score" style={{color:gameplayScoreColor}}>{eachReview.gameplay}</h6>
+                                            <h6 className="review-category">Graphics:</h6>
+                                            <h6 className="score" style={{color:graphicsScoreColor}}>{eachReview.graphics}</h6>
+                                            <h6 className="review-category">Review:</h6>
+                                            <h6 className="score">{eachReview.comment}</h6>
+                                            <h6 className="review-category">Score:</h6>
+                                            <h6 className="score" style={{color:scoreColor}}>{eachReview.score}</h6>
+                                        </div>
                                     </div>
                                 )
                             })
@@ -153,12 +165,12 @@ console.log(user)
             
             {viewFriends ? 
             
-            <div className="profile-friends-list">
+            <div className="profile-friends-list-body">
                 <h3>Friends:</h3>
                 {user.friendlist.map(eachFriend=>{
                     return(
-                    <div>
-                        <h4>{eachFriend.first_name} {eachFriend.last_name} <GrGamepad onClick={()=>{viewProfile(eachFriend.first_name, eachFriend.last_name)}} className='user-icon' cursor='pointer' color="red"/></h4>
+                    <div className="users-list">
+                        <h4>{eachFriend.first_name} {eachFriend.last_name} <GrGamepad onClick={()=>{viewProfile(eachFriend.first_name, eachFriend.last_name)}} className='view-user-icon' cursor='pointer' size="20" color="red"/></h4>
                     </div>
                     )
                 })}

@@ -255,6 +255,49 @@ li.dropdown {
   cursor: pointer;
 }
 
+.profile-friends-list-body{
+  width: 100%;
+}
+
+.review-ratings{
+  background-color: #490b3e;
+  margin-top: 10px;
+  border: solid 3px black;
+  opacity: 50%;
+}
+
+.profile-review-card{
+  border: solid 3px black;
+  padding: 20px;
+}
+
+.profile-review-card:hover .review-image{
+  opacity:100%
+}
+
+.profile-review-card:hover .review-ratings{
+  opacity:100%
+}
+
+.review-image{
+  height: 150px;
+  width: 150px;
+  border-radius: 10%;
+  opacity: 50%;
+}
+
+.review-ratings{
+}
+
+.review-category{
+  color: white;
+}
+
+.score{
+  margin-bottom: 10px;
+}
+
+
 
 
 
