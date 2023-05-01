@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get "/allUsers", to: "users#index"
   get "allFriends", to: "friendlists#index"
   post "/addFriend", to: "friendlists#create"
+  delete "/removeFriend/:id", to: "friendlists#destroy"
   post "/login", to: "session#create"
   get "/usersession", to: "session#show"
   delete "/logout", to: "session#destroy"

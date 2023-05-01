@@ -15,6 +15,18 @@ class FriendlistsController < ApplicationController
         end
     end
 
+    def destroy
+            friend_unfollowed = Friendlist.find_by!(id: params[:id])
+            if friend_unfollowed
+                friend_unfollowed.destroy
+                
+                head :no_content
+            else
+                item_not_found
+            end
+        
+    end
+
     private
 
     def strong_params

@@ -129,6 +129,19 @@ function OtherProfiles({user}){
         }))
     }
 
+    function unfollowFriend(id){
+    
+        fetch(`/unfollowBand/${id}`,{
+            method:'DELETE'
+          })
+        
+          .then(()=>{
+            fetch("/user_bands")
+            .then(res => res.json())
+            .then(data => setPersonalProfilePageBands(data))    
+          })
+    }
+
 
 if (friendDetailPage)
 return(
