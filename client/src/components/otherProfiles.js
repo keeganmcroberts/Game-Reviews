@@ -157,7 +157,29 @@ return(
                     /></div>
     
             </div>
-
+            {viewGames ? 
+            <div>
+                <h2>{firstName}'s Games</h2>
+                <br></br>
+                <br></br>
+                <div className='games-grid'>
+                {friendDetailPage.user_games.map(userGames=>{
+                    return(
+                        allGames.map(eachGame=>{
+                            if (userGames.slug === eachGame.slug){
+                                return(
+                                    <div>
+                                        <h4>{eachGame.name}</h4>
+                                        <img className="platform-image" src={eachGame.background_image}></img>
+                                    </div>
+                                )
+                            }
+                        })
+                    )
+                })}
+                </div>
+            </div>
+            : null}
             {viewReviews ? 
             <div>
                 <h2>
@@ -222,29 +244,6 @@ return(
             </div>
             : null}
 
-            {viewGames ? 
-            <div>
-                <h2>{firstName}'s Games</h2>
-                <br></br>
-                <br></br>
-                <div className='games-grid'>
-                {friendDetailPage.user_games.map(userGames=>{
-                    return(
-                        allGames.map(eachGame=>{
-                            if (userGames.slug === eachGame.slug){
-                                return(
-                                    <div>
-                                        <h4>{eachGame.name}</h4>
-                                        <img className="platform-image" src={eachGame.background_image}></img>
-                                    </div>
-                                )
-                            }
-                        })
-                    )
-                })}
-                </div>
-            </div>
-            : null}
             {viewFriends ?
                 <div>
                 <h2>{firstName}'s Friends:</h2>

@@ -53,10 +53,10 @@ function Banner({user, setUser}){
         <div className="banner-div">
         <div className="banner">
             {/* <h3 onClick={test} className='banner-link'>Test</h3> */}
-            <h3 onClick={goHome} className='banner-link'>Home<MdOutlineGames size={30} color='blue' /></h3>
-            <h3 onClick={viewPlatforms} className='banner-link'>Platforms<GiGameConsole size={30} color='red' /></h3>
-            <h3 onClick={viewGames} className='banner-link'>Games<SiYoutubegaming size={30} color='green'  /></h3>
-            <h3 onClick={viewProfile} className='banner-link'>Profile<CgProfile size={30} color='purple'/> </h3>
+            <h3 onClick={goHome} className='banner-link'>Home<MdOutlineGames className='banner-icon' size={30} color='blue' /></h3>
+            <h3 onClick={viewPlatforms} className='banner-link'>Platforms<GiGameConsole className='banner-icon' size={30} color='red' /></h3>
+            <h3 onClick={viewGames} className='banner-link'>Games<SiYoutubegaming className='banner-icon' size={30} color='green'  /></h3>
+            <h3 onClick={viewProfile} className='banner-link'>Profile<CgProfile className='banner-icon' size={30} color='purple'/> </h3>
             {user.id ?  
             <h3 onClick={logout} className='banner-link'>Logout</h3>
             :

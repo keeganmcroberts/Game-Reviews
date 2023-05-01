@@ -33,8 +33,8 @@ function App() {
       <Banner user={user} setUser={setUser}></Banner>
       <Routes>
         <Route path="/test" element={<Test></Test>}></Route>
-        <Route path="/" element={<Home user={user} setUser={setUser} logo={logo} />} > </Route>
         <Route path='/login' element={<Login user={user} setUser={setUser}/>} > </Route>
+        <Route path="/" element={<Home user={user} setUser={setUser} logo={logo} />} > </Route>
         <Route path='/profile' element={<UserProfile user={user}/>} > </Route>
         <Route path='/profile/:id' element={<OtherProfiles user={user}/>} > </Route>
         <Route path='/games' element={<Games gamesDB={gamesDB} setGamesDB={setGamesDB}/>}></Route>

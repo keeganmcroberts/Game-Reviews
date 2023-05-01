@@ -77,7 +77,7 @@ console.log(user)
             <br></br>
             <br></br>
              </h1>
-            <h3>hello {user?.first_name} {user?.last_name}!</h3>
+            <h2>Hi {user?.first_name}!</h2>
             <br></br>
             <div className="games-banner">
                 <ul className="page-navbar">
@@ -127,7 +127,7 @@ console.log(user)
             {viewReviews ? 
             
             <div className="profile-reviews-list">
-                <h2>My Reviews</h2>
+                <h4>My Reviews</h4>
                 <br></br>
                 <div className="reviews-grid">
                 <br></br>
@@ -190,7 +190,7 @@ console.log(user)
             {viewFriends ? 
             
             <div className="profile-friends-list-body">
-                <h3>Friends:</h3>
+                <h4>My Friends</h4>
                 {user.friendlist.map(eachFriend=>{
                     return(
                     <div className="users-list">

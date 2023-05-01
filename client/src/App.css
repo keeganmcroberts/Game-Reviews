@@ -45,6 +45,7 @@
   justify-content: left;
   align-items: left;
 } */
+
 .banner{
   display: flex;
   justify-content: space-evenly;
@@ -60,6 +61,14 @@
 
 .banner-link{
   cursor: pointer;
+}
+
+.banner-link:hover{
+  color: #ecbfe6;
+}
+
+.banner-link:hover .banner-icon {
+  opacity: 50%;
 }
 
 .login{
@@ -200,6 +209,10 @@
  
 }
 
+.dropbtn:hover{
+  color: #ecbfe6;
+}
+
 
 .dropdown-content {
   display: none;
@@ -223,6 +236,10 @@ li.dropdown {
 .dropdown-content a:hover {
   opacity: 50%;
   cursor: pointer;
+}
+
+.dropdown-content a:hover .dropbtn {
+  color: #ecbfe6;
 }
 
 .search-right{
@@ -253,6 +270,7 @@ li.dropdown {
 
 .profile-banner-links{
   cursor: pointer;
+  margin-left: 20px;
 }
 
 .profile-friends-list-body{
@@ -269,6 +287,10 @@ li.dropdown {
 
 .profile-reviews-list{
   justify-content: center;
+}
+
+.profile-banner-links:hover{
+  color: #ecbfe6;
 }
 
 .review-ratings{
