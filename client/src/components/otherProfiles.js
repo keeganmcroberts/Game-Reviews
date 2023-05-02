@@ -105,7 +105,8 @@ function OtherProfiles({user}){
             first_name: friend.first_name,
             last_name: friend.last_name,
             liked: true,
-            email: friend.email
+            email: friend.email,
+            reviews: friend.reviews
         }
  
         fetch('/addFriend', {
@@ -131,14 +132,8 @@ function OtherProfiles({user}){
 
     function unfollowFriend(id){
     
-        fetch(`/unfollowBand/${id}`,{
+        fetch(`/removeFriend/${id}`,{
             method:'DELETE'
-          })
-        
-          .then(()=>{
-            fetch("/user_bands")
-            .then(res => res.json())
-            .then(data => setPersonalProfilePageBands(data))    
           })
     }
 
@@ -151,7 +146,7 @@ return(
             <br></br>
             <br></br>
             <br></br>
-                <h1>{firstName} {lastName} { iconSwitch ? <AiFillCheckCircle color='purple' cursor='pointer'/> : <AiOutlineCheckCircle onClick={()=>{addFriend(friendDetailPage)}}  cursor='pointer'/>} </h1>
+                <h1>{firstName} {lastName} { iconSwitch ? <AiFillCheckCircle onClick={()=>{unfollowFriend(friendDetailPage.id)}} color='purple' cursor='pointer'/> : <AiOutlineCheckCircle onClick={()=>{addFriend(friendDetailPage)}}  cursor='pointer'/>} </h1>
             <br></br>
             <div className="games-banner">
                 <ul className="page-navbar">

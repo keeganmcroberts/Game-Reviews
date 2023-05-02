@@ -16,7 +16,7 @@ class FriendlistsController < ApplicationController
     end
 
     def destroy
-            friend_unfollowed = Friendlist.find_by!(id: params[:id])
+            friend_unfollowed = Friendlist.find_by!(friend_id: params[:id])
             if friend_unfollowed
                 friend_unfollowed.destroy
                 
@@ -30,6 +30,6 @@ class FriendlistsController < ApplicationController
     private
 
     def strong_params
-        params.permit(:user_id, :friend_id, :first_name, :last_name, :email, :liked)
+        params.permit(:user_id, :friend_id, :first_name, :last_name, :email, :liked, :reviews)
     end
 end
