@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import steve from "/Users/keegan/Development/code/gamereviews/client/src/favicon-32x32.png"
 import {GrGamepad} from 'react-icons/gr';
+import moment from 'moment'
 
 
 
@@ -13,6 +14,7 @@ function Home({logo, user, setUser, games}) {
   const [seeUsers, setSeeUsers] = useState(false)
   const [friendAssociations, setFriendAssociations] = useState([])
   const [myFriends, setMyFriends] = useState([])
+  const [unsortedFriendReviews, setUnsortedFriendReviews] = useState([])
 
    console.log("ALL GAMES", games)
 
@@ -80,8 +82,24 @@ function Home({logo, user, setUser, games}) {
   },[allUsers, friendAssociations])
 
   console.log("FRIENDS I NEED:", myFriends)
+
   
 
+// adding all of our friends reviews into a new array so that we can sort by the date they were submitted and render accordingly. 
+  useEffect(()=>{
+      const newAllReviews = myFriends.flatMap(friend => friend.reviews);
+      setUnsortedFriendReviews(newAllReviews);
+  },[allUsers, friendAssociations])
+
+
+
+  console.log("friend reviews", unsortedFriendReviews)
+
+
+      // return(
+      //   games.map(game=>{
+      //     if (game.slug === friendReview.slug){
+  
 
     return (
       <div >
@@ -123,6 +141,7 @@ function Home({logo, user, setUser, games}) {
                         return(
                         <div className='profile-review-card'>
                         <h4>{eachFriend.first_name} {eachFriend.last_name}</h4>
+                        <h6>{moment(`${friendReview.created_at}`).format('MMMM Do YYYY')}</h6>
                         <br></br>
                         <img className='review-image' src={game.background_image}></img>
                         <h4>{game.name}</h4>
