@@ -5,7 +5,7 @@ import {GrGamepad} from 'react-icons/gr';
 
 
 
-function Home({logo, user, setUser}) {
+function Home({logo, user, setUser, games}) {
 
   const [allUsers, setAllUsers] = useState([])
   const [seeFeed, setSeeFeed] = useState(true)
@@ -13,6 +13,8 @@ function Home({logo, user, setUser}) {
   const [seeUsers, setSeeUsers] = useState(false)
   const [friendAssociations, setFriendAssociations] = useState([])
   const [myFriends, setMyFriends] = useState([])
+
+   console.log("ALL GAMES", games)
 
 
   useEffect(()=>{
@@ -36,9 +38,9 @@ function Home({logo, user, setUser}) {
 },[])
 
 
-  console.log("ALL USERs", allUsers)
+  // console.log("ALL USERs", allUsers)
   // console.log("my user home page:", user)
-  console.log("friend associations:", friendAssociations)
+  // console.log("friend associations:", friendAssociations)
   
 
 
@@ -68,19 +70,14 @@ function Home({logo, user, setUser}) {
 
   // iterating through all users and matching the id's to those on our own friends list, then creating a new array of our friends to render their reviews only
   useEffect(()=>{
-    allUsers.map(eachUser=>{
-      return(
-        friendAssociations.map(eachAssociation=>{
-          if (eachUser.id === eachAssociation.friend_id){ 
-            return(
-              setMyFriends(eachUser)    
 
-            )
-          }
-        })
-      )
-    })
-  },[])
+    const newMatchedUsers = allUsers.filter(user =>
+      friendAssociations.some(friend => friend.friend_id === user.id)
+      );
+
+    setMyFriends(newMatchedUsers);
+
+  },[allUsers, friendAssociations])
 
   console.log("FRIENDS I NEED:", myFriends)
   
@@ -116,9 +113,66 @@ function Home({logo, user, setUser}) {
             <h3>
               My Feed
             </h3>
-            
-            <div>
+            <div className="homepage-reviews-grid">
+            {myFriends.map(eachFriend=>{
+              return(
+                eachFriend.reviews.map(friendReview=>{
+                  return(
+                    games.map(game=>{
+                      if (game.slug === friendReview.slug){
+                        return(
+                        <div className='profile-review-card'>
+                        <h4>{eachFriend.first_name} {eachFriend.last_name}</h4>
+                        <br></br>
+                        <img className='review-image' src={game.background_image}></img>
+                        <h4>{game.name}</h4>
+                        <div className='review-ratings'>
+                            <h6 className="review-category">Difficulty:</h6>
+                            {friendReview.difficulty >= 8 ?
+                                <h6 className="score" style={{color:"green"}}>{friendReview.difficulty}</h6>
+                            : friendReview.difficulty < 8 && friendReview.difficulty >= 4 ? 
+                                <h6 className="score" style={{color:"orange"}}>{friendReview.difficulty}</h6> 
+                            : 
+                                <h6 className="score" style={{color:"red"}}>{friendReview.difficulty}</h6>}
 
+                            <h6 className="review-category">Gameplay:</h6>
+                            {friendReview.gameplay >= 8 ?
+                                <h6 className="score" style={{color:"green"}}>{friendReview.gameplay}</h6>
+                            : friendReview.gameplay < 8 && friendReview.gameplay >= 4 ? 
+                                <h6 className="score" style={{color:"orange"}}>{friendReview.gameplay}</h6> 
+                            : 
+                                <h6 className="score" style={{color:"red"}}>{friendReview.gameplay}</h6>}
+
+                            <h6 className="review-category">Graphics:</h6>
+                            {friendReview.graphics >= 8 ?
+                                <h6 className="score" style={{color:"green"}}>{friendReview.graphics}</h6>
+                            : friendReview.graphics < 8 && friendReview.graphics >= 4 ? 
+                                <h6 className="score" style={{color:"orange"}}>{friendReview.graphics}</h6> 
+                            : 
+                                <h6 className="score" style={{color:"red"}}>{friendReview.graphics}</h6>}
+
+                            <h6 className="review-category">Review:</h6>
+                            <h6 className="score">{friendReview.comment}</h6>
+
+                            <h6 className="review-category">Score:</h6>
+                            {friendReview.score >= 8 ?
+                                <h6 className="score" style={{color:"green"}}>{friendReview.score}</h6>
+                            : friendReview.score < 8 && friendReview.score >= 4 ? 
+                                <h6 className="score" style={{color:"orange"}}>{friendReview.score}</h6> 
+                            : 
+                                <h6 className="score" style={{color:"red"}}>{friendReview.score}</h6>}
+                        </div>
+                        </div>
+  
+                        )
+
+                      }
+                    })
+                    )
+                })
+              )
+              
+            })}
             </div>
           </div>
           : null }

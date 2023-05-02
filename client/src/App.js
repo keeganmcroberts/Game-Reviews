@@ -18,6 +18,7 @@ function App() {
 
   const [gamesDB, setGamesDB] = useState({})
   const [user, setUser] = useState({})
+  const [games, setAllGames] = useState([])
 
  console.log("OUR USER:",user)
 
@@ -28,13 +29,20 @@ function App() {
 
 },[])
 
+useEffect(()=>{
+
+  fetch('https://api.rawg.io/api/games?key=9937c17ee7f344e0a27e3d66c7b454e3')
+  .then(r=>r.json())
+  .then(data=> setAllGames(data.results))
+},[])
+
   return (
     <div className="App">
       <Banner user={user} setUser={setUser}></Banner>
       <Routes>
         <Route path="/test" element={<Test></Test>}></Route>
         <Route path='/login' element={<Login user={user} setUser={setUser}/>} > </Route>
-        <Route path="/" element={<Home user={user} setUser={setUser} logo={logo} />} > </Route>
+        <Route path="/" element={<Home user={user} games={games} setUser={setUser} logo={logo} />} > </Route>
         <Route path='/profile' element={<UserProfile user={user}/>} > </Route>
         <Route path='/profile/:id' element={<OtherProfiles user={user}/>} > </Route>
         <Route path='/games' element={<Games gamesDB={gamesDB} setGamesDB={setGamesDB}/>}></Route>
