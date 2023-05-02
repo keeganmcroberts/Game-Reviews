@@ -120,6 +120,7 @@ function OtherProfiles({user}){
                 res.json()
                 .then(response=>{
                 console.log(response)
+                setIconSwitch(true)
                  })
             }
             else{
@@ -134,7 +135,10 @@ function OtherProfiles({user}){
     
         fetch(`/removeFriend/${id}`,{
             method:'DELETE'
-          })
+          })  
+          
+          setIconSwitch(false)
+        
     }
 
 

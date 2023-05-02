@@ -12,6 +12,7 @@ function Home({logo, user, setUser}) {
   const [seeFeatured, setSeeFeatured] = useState(false)
   const [seeUsers, setSeeUsers] = useState(false)
   const [friendAssociations, setFriendAssociations] = useState([])
+  const [myFriends, setMyFriends] = useState([])
 
 
   useEffect(()=>{
@@ -36,7 +37,8 @@ function Home({logo, user, setUser}) {
 
 
   console.log("ALL USERs", allUsers)
-  console.log("my user home page:", user)
+  // console.log("my user home page:", user)
+  console.log("friend associations:", friendAssociations)
   
 
 
@@ -64,7 +66,24 @@ function Home({logo, user, setUser}) {
     navigate(`/profile/${firstname}-${lastname}`)
   }
 
+  // iterating through all users and matching the id's to those on our own friends list, then creating a new array of our friends to render their reviews only
+  useEffect(()=>{
+    allUsers.map(eachUser=>{
+      return(
+        friendAssociations.map(eachAssociation=>{
+          if (eachUser.id === eachAssociation.friend_id){ 
+            return(
+              setMyFriends(eachUser)    
 
+            )
+          }
+        })
+      )
+    })
+  },[])
+
+  console.log("FRIENDS I NEED:", myFriends)
+  
 
 
     return (
@@ -97,6 +116,10 @@ function Home({logo, user, setUser}) {
             <h3>
               My Feed
             </h3>
+            
+            <div>
+
+            </div>
           </div>
           : null }
           {seeFeatured ? 
