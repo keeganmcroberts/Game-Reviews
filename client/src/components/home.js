@@ -89,7 +89,7 @@ function Home({logo, user, setUser, games}) {
   useEffect(()=>{
       const newAllReviews = myFriends.flatMap(friend => friend.reviews);
       setUnsortedFriendReviews(newAllReviews);
-  },[])
+  },[allUsers])
 
 
 
@@ -97,13 +97,13 @@ function Home({logo, user, setUser, games}) {
 
   const Moment = require('moment')
   
-  const sortedFriendsReviews  = unsortedFriendReviews.sort((a,b) => new Moment(a.created_at).format('YYYYMMDD') - new Moment(b.created_at).format('YYYYMMDD'))
+  const sortedFriendsReviews  = unsortedFriendReviews.sort((a,b) => new Moment(b.created_at).format('YYYYMMDD') - new Moment(a.created_at).format('YYYYMMDD'))
  
 
   console.log("sorted array", sortedFriendsReviews)
 
 
-  unsortedFriendReviews.sort((a,b) => new Moment(a.created_at).format('YYYYMMDD') - new Moment(b.created_at).format('YYYYMMDD'))
+
  
 
 
@@ -143,16 +143,79 @@ function Home({logo, user, setUser, games}) {
               My Feed
             </h3>
             <div className="homepage-reviews-grid">
-            {myFriends.map(eachFriend=>{
+              {sortedFriendsReviews.map(eachReview=>{
+                return(
+                  games.map(game=>{
+                    if (game.slug === eachReview.slug){
+                      return(
+                        allUsers.map(eachFriend=>{
+
+                            if (eachFriend.id === eachReview.user_id){
+                              return(
+                                <div className='profile-review-card'>
+                                <h4>{eachFriend.first_name} {eachFriend.last_name}</h4>
+                                <h6>{moment(`${eachReview.created_at}`).format('MMMM Do YYYY')}</h6>
+                                <br></br>
+                                <img className='review-image' src={game.background_image}></img>
+                                <h4>{game.name}</h4>
+                                <div className='review-ratings'>
+                                    <h6 className="review-category">Difficulty:</h6>
+                                    {eachReview.difficulty >= 8 ?
+                                        <h6 className="score" style={{color:"green"}}>{eachReview.difficulty}</h6>
+                                    : eachReview.difficulty < 8 && eachReview.difficulty >= 4 ? 
+                                        <h6 className="score" style={{color:"orange"}}>{eachReview.difficulty}</h6> 
+                                    : 
+                                        <h6 className="score" style={{color:"red"}}>{eachReview.difficulty}</h6>}
+    
+                                    <h6 className="review-category">Gameplay:</h6>
+                                    {eachReview.gameplay >= 8 ?
+                                        <h6 className="score" style={{color:"green"}}>{eachReview.gameplay}</h6>
+                                    : eachReview.gameplay < 8 && eachReview.gameplay >= 4 ? 
+                                        <h6 className="score" style={{color:"orange"}}>{eachReview.gameplay}</h6> 
+                                    : 
+                                        <h6 className="score" style={{color:"red"}}>{eachReview.gameplay}</h6>}
+    
+                                    <h6 className="review-category">Graphics:</h6>
+                                    {eachReview.graphics >= 8 ?
+                                        <h6 className="score" style={{color:"green"}}>{eachReview.graphics}</h6>
+                                    : eachReview.graphics < 8 && eachReview.graphics >= 4 ? 
+                                        <h6 className="score" style={{color:"orange"}}>{eachReview.graphics}</h6> 
+                                    : 
+                                        <h6 className="score" style={{color:"red"}}>{eachReview.graphics}</h6>}
+    
+                                    <h6 className="review-category">Review:</h6>
+                                    <h6 className="score">{eachReview.comment}</h6>
+    
+                                    <h6 className="review-category">Score:</h6>
+                                    {eachReview.score >= 8 ?
+                                        <h6 className="score" style={{color:"green"}}>{eachReview.score}</h6>
+                                    : eachReview.score < 8 && eachReview.score >= 4 ? 
+                                        <h6 className="score" style={{color:"orange"}}>{eachReview.score}</h6> 
+                                    : 
+                                        <h6 className="score" style={{color:"red"}}>{eachReview.score}</h6>}
+                                </div>
+                                </div> 
+    
+    
+                              )
+
+
+
+                            }
+                          
+                        })
+                      )
+                    }
+                  })
+                )
+              })}
+            {/* {myFriends.map(eachFriend=>{
               return(
                 eachFriend.reviews.map(friendReview=>{
                   return(
                     games.map(game=>{
                       if (game.slug === friendReview.slug){
-                        return(
-                          sortedFriendsReviews.map(eachReview=>{
-                            if (eachReview.id === friendReview.id)
-                            return(
+                        return(      
                         <div className='profile-review-card'>
                         <h4>{eachFriend.first_name} {eachFriend.last_name}</h4>
                         <h6>{moment(`${friendReview.created_at}`).format('MMMM Do YYYY')}</h6>
@@ -195,12 +258,7 @@ function Home({logo, user, setUser, games}) {
                             : 
                                 <h6 className="score" style={{color:"red"}}>{friendReview.score}</h6>}
                         </div>
-                        </div>
-
-                            )
-                          })
-                          
-  
+                        </div>  
                         )
 
                       }
@@ -209,7 +267,7 @@ function Home({logo, user, setUser, games}) {
                 })
               )
               
-            })}
+            })} */}
             </div>
           </div>
           : null }

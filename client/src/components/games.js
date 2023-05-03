@@ -29,8 +29,8 @@ function Games(){
         // useEffect(()=>{
         //     if (genreState){
         //         const filteredGames = gamesDB.filter(genreState === )
-        //         setFilteredGames(filteredGames)
-        //     }
+        //         setFilteredGames(filteredGames)}
+        //   )  }
         
             
 
@@ -139,40 +139,40 @@ if (gamesDB)
             : null}
             <div className="games-grid">
                 {gamesDB.map(eachGame=>{
+                    // return(
+                    //     <div>
+                    //         <h5>{eachGame.name}</h5>
+                    //         <img className="platform-image" src={eachGame.background_image}></img>
+                    //         <button onClick={()=>viewGame(eachGame.slug)}>View</button>
+                    //     </div>
+                    //                 )
+                    if (platformState === ""){
+                        return(
+                            <div>
+                                <h6>{eachGame.name}</h6>
+                                <img className="platform-image" src={eachGame.background_image}></img>
+                                <button onClick={()=>viewGame(eachGame.slug)}>View</button>
+                            </div>
+                            )
+                    } else{
                     return(
-                        <div>
-                            <h5>{eachGame.name}</h5>
-                            <img className="platform-image" src={eachGame.background_image}></img>
-                            <button onClick={()=>viewGame(eachGame.slug)}>View</button>
-                        </div>
-                                    )
-                //     if (platformState === ""){
-                //         return(
-                //             <div>
-                //                 <h6>{eachGame.name}</h6>
-                //                 <img className="platform-image" src={eachGame.background_image}></img>
-                //                 <button onClick={()=>viewGame(eachGame.slug)}>View</button>
-                //             </div>
-                //             )
-                //     } else{
-                //     return(
-                //     eachGame.parent_platforms.map(eachPlatform=>{
-                //         if (eachPlatform.platform.name === platformState)
-                //         return(
-                //         eachGame.genres.map(eachGenre=>{
-                //             if (eachGenre.name === genreState || genreState === "")
-                //             return(
-                //             <div>
-                //                 <h6>{eachGame.name}</h6>
-                //                 <img className="platform-image" src={eachGame.background_image}></img>
-                //                 <button onClick={()=>viewGame(eachGame.slug)}>View</button>
-                //             </div>
-                //             )
-                //     })
-                //     )
-                //     }) 
+                    eachGame.parent_platforms.map(eachPlatform=>{
+                        if (eachPlatform.platform.name === platformState)
+                        return(
+                        eachGame.genres.map(eachGenre=>{
+                            if (eachGenre.name === genreState || genreState === "")
+                            return(
+                            <div>
+                                <h6>{eachGame.name}</h6>
+                                <img className="platform-image" src={eachGame.background_image}></img>
+                                <button onClick={()=>viewGame(eachGame.slug)}>View</button>
+                            </div>
+                            )
+                    })
+                    )
+                    }) 
                  
-                //     )}
+                    )}
                 })}
             </div>
         </div>
