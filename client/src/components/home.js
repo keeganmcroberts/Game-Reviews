@@ -83,17 +83,28 @@ function Home({logo, user, setUser, games}) {
 
   console.log("FRIENDS I NEED:", myFriends)
 
-  
+
 
 // adding all of our friends reviews into a new array so that we can sort by the date they were submitted and render accordingly. 
   useEffect(()=>{
       const newAllReviews = myFriends.flatMap(friend => friend.reviews);
       setUnsortedFriendReviews(newAllReviews);
-  },[allUsers, friendAssociations])
+  },[])
 
 
 
   console.log("friend reviews", unsortedFriendReviews)
+
+  const Moment = require('moment')
+  
+  const sortedFriendsReviews  = unsortedFriendReviews.sort((a,b) => new Moment(a.created_at).format('YYYYMMDD') - new Moment(b.created_at).format('YYYYMMDD'))
+ 
+
+  console.log("sorted array", sortedFriendsReviews)
+
+
+  unsortedFriendReviews.sort((a,b) => new Moment(a.created_at).format('YYYYMMDD') - new Moment(b.created_at).format('YYYYMMDD'))
+ 
 
 
       // return(
@@ -139,6 +150,9 @@ function Home({logo, user, setUser, games}) {
                     games.map(game=>{
                       if (game.slug === friendReview.slug){
                         return(
+                          sortedFriendsReviews.map(eachReview=>{
+                            if (eachReview.id === friendReview.id)
+                            return(
                         <div className='profile-review-card'>
                         <h4>{eachFriend.first_name} {eachFriend.last_name}</h4>
                         <h6>{moment(`${friendReview.created_at}`).format('MMMM Do YYYY')}</h6>
@@ -182,6 +196,10 @@ function Home({logo, user, setUser, games}) {
                                 <h6 className="score" style={{color:"red"}}>{friendReview.score}</h6>}
                         </div>
                         </div>
+
+                            )
+                          })
+                          
   
                         )
 
