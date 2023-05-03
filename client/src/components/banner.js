@@ -44,6 +44,7 @@ function Banner({user, setUser}){
                 setUser(false)
         }})
         alert("You've been Logged out")
+        navigate('/login')
     }
 
 

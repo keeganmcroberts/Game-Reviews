@@ -15,8 +15,10 @@ function Home({logo, user, setUser, games}) {
   const [friendAssociations, setFriendAssociations] = useState([])
   const [myFriends, setMyFriends] = useState([])
   const [unsortedFriendReviews, setUnsortedFriendReviews] = useState([])
+  const [unsortedReviews, setUnsortedReviews] = useState([])
 
    console.log("ALL GAMES", games)
+   console.log(allUsers)
 
 
   useEffect(()=>{
@@ -79,37 +81,35 @@ function Home({logo, user, setUser, games}) {
 
     setMyFriends(newMatchedUsers);
 
-  },[allUsers, friendAssociations])
-
-  console.log("FRIENDS I NEED:", myFriends)
-
-
+  },[user, allUsers])
 
 // adding all of our friends reviews into a new array so that we can sort by the date they were submitted and render accordingly. 
   useEffect(()=>{
       const newAllReviews = myFriends.flatMap(friend => friend.reviews);
       setUnsortedFriendReviews(newAllReviews);
+  },[])
+
+  // console.log("unsorted array:", unsortedFriendReviews)
+
+  
+  
+  const Moment = require('moment')
+  // sorting our friends Review array to compare the dates and render the latest submissions first
+  const sortedFriendsReviews  = unsortedFriendReviews.sort((a,b) => new Moment(b.created_at).format('YYYYMMDD') - new Moment(a.created_at).format('YYYYMMDD'))
+  // console.log("sorted Array", sortedFriendsReviews)
+ 
+
+  // same process as above but for all the users on the platform 
+  useEffect(()=>{
+    const allUserReviews = allUsers.flatMap(user => user.reviews);
+    setUnsortedReviews(allUserReviews);
   },[allUsers])
 
+  // console.log('unsorted Reviews', unsortedReviews)
+
+  const sortedAllReviews = unsortedReviews.sort((a,b) => new Moment(b.created_at).format('YYYYMMDD') - new Moment(a.created_at).format('YYYYMMDD'))
 
 
-  console.log("friend reviews", unsortedFriendReviews)
-
-  const Moment = require('moment')
-  
-  const sortedFriendsReviews  = unsortedFriendReviews.sort((a,b) => new Moment(b.created_at).format('YYYYMMDD') - new Moment(a.created_at).format('YYYYMMDD'))
- 
-
-  console.log("sorted array", sortedFriendsReviews)
-
-
-
- 
-
-
-      // return(
-      //   games.map(game=>{
-      //     if (game.slug === friendReview.slug){
   
 
     return (
@@ -137,166 +137,160 @@ function Home({logo, user, setUser, games}) {
             </div>
     
             </div>
-            {seeFeed ? 
-          <div className="homepage-body">
-            <h3>
-              My Feed
-            </h3>
-            <div className="homepage-reviews-grid">
-              {sortedFriendsReviews.map(eachReview=>{
-                return(
-                  games.map(game=>{
-                    if (game.slug === eachReview.slug){
-                      return(
-                        allUsers.map(eachFriend=>{
 
-                            if (eachFriend.id === eachReview.user_id){
-                              return(
-                                <div className='profile-review-card'>
+        {seeFeed ? 
+        <div className="homepage-body">
+          <h3>
+            My Feed
+          </h3>
+          <div className="homepage-reviews-grid">
+            {sortedFriendsReviews.map(eachReview=>{
+              return(
+                games.map(game=>{
+                  if (game.slug === eachReview.slug){
+                    return(
+                      allUsers.map(eachFriend=>{
+                          if (eachFriend.id === eachReview.user_id){
+                            return(
+                              <div className='profile-review-card'>
                                 <h4>{eachFriend.first_name} {eachFriend.last_name}</h4>
                                 <h6>{moment(`${eachReview.created_at}`).format('MMMM Do YYYY')}</h6>
                                 <br></br>
                                 <img className='review-image' src={game.background_image}></img>
                                 <h4>{game.name}</h4>
-                                <div className='review-ratings'>
-                                    <h6 className="review-category">Difficulty:</h6>
-                                    {eachReview.difficulty >= 8 ?
-                                        <h6 className="score" style={{color:"green"}}>{eachReview.difficulty}</h6>
-                                    : eachReview.difficulty < 8 && eachReview.difficulty >= 4 ? 
-                                        <h6 className="score" style={{color:"orange"}}>{eachReview.difficulty}</h6> 
-                                    : 
-                                        <h6 className="score" style={{color:"red"}}>{eachReview.difficulty}</h6>}
-    
-                                    <h6 className="review-category">Gameplay:</h6>
-                                    {eachReview.gameplay >= 8 ?
-                                        <h6 className="score" style={{color:"green"}}>{eachReview.gameplay}</h6>
-                                    : eachReview.gameplay < 8 && eachReview.gameplay >= 4 ? 
-                                        <h6 className="score" style={{color:"orange"}}>{eachReview.gameplay}</h6> 
-                                    : 
-                                        <h6 className="score" style={{color:"red"}}>{eachReview.gameplay}</h6>}
-    
-                                    <h6 className="review-category">Graphics:</h6>
-                                    {eachReview.graphics >= 8 ?
-                                        <h6 className="score" style={{color:"green"}}>{eachReview.graphics}</h6>
-                                    : eachReview.graphics < 8 && eachReview.graphics >= 4 ? 
-                                        <h6 className="score" style={{color:"orange"}}>{eachReview.graphics}</h6> 
-                                    : 
-                                        <h6 className="score" style={{color:"red"}}>{eachReview.graphics}</h6>}
-    
-                                    <h6 className="review-category">Review:</h6>
-                                    <h6 className="score">{eachReview.comment}</h6>
-    
-                                    <h6 className="review-category">Score:</h6>
-                                    {eachReview.score >= 8 ?
-                                        <h6 className="score" style={{color:"green"}}>{eachReview.score}</h6>
-                                    : eachReview.score < 8 && eachReview.score >= 4 ? 
-                                        <h6 className="score" style={{color:"orange"}}>{eachReview.score}</h6> 
-                                    : 
-                                        <h6 className="score" style={{color:"red"}}>{eachReview.score}</h6>}
-                                </div>
-                                </div> 
-    
-    
-                              )
-
-
-
-                            }
-                          
-                        })
-                      )
-                    }
-                  })
-                )
-              })}
-            {/* {myFriends.map(eachFriend=>{
-              return(
-                eachFriend.reviews.map(friendReview=>{
-                  return(
-                    games.map(game=>{
-                      if (game.slug === friendReview.slug){
-                        return(      
-                        <div className='profile-review-card'>
-                        <h4>{eachFriend.first_name} {eachFriend.last_name}</h4>
-                        <h6>{moment(`${friendReview.created_at}`).format('MMMM Do YYYY')}</h6>
-                        <br></br>
-                        <img className='review-image' src={game.background_image}></img>
-                        <h4>{game.name}</h4>
-                        <div className='review-ratings'>
-                            <h6 className="review-category">Difficulty:</h6>
-                            {friendReview.difficulty >= 8 ?
-                                <h6 className="score" style={{color:"green"}}>{friendReview.difficulty}</h6>
-                            : friendReview.difficulty < 8 && friendReview.difficulty >= 4 ? 
-                                <h6 className="score" style={{color:"orange"}}>{friendReview.difficulty}</h6> 
-                            : 
-                                <h6 className="score" style={{color:"red"}}>{friendReview.difficulty}</h6>}
-
-                            <h6 className="review-category">Gameplay:</h6>
-                            {friendReview.gameplay >= 8 ?
-                                <h6 className="score" style={{color:"green"}}>{friendReview.gameplay}</h6>
-                            : friendReview.gameplay < 8 && friendReview.gameplay >= 4 ? 
-                                <h6 className="score" style={{color:"orange"}}>{friendReview.gameplay}</h6> 
-                            : 
-                                <h6 className="score" style={{color:"red"}}>{friendReview.gameplay}</h6>}
-
-                            <h6 className="review-category">Graphics:</h6>
-                            {friendReview.graphics >= 8 ?
-                                <h6 className="score" style={{color:"green"}}>{friendReview.graphics}</h6>
-                            : friendReview.graphics < 8 && friendReview.graphics >= 4 ? 
-                                <h6 className="score" style={{color:"orange"}}>{friendReview.graphics}</h6> 
-                            : 
-                                <h6 className="score" style={{color:"red"}}>{friendReview.graphics}</h6>}
-
-                            <h6 className="review-category">Review:</h6>
-                            <h6 className="score">{friendReview.comment}</h6>
-
-                            <h6 className="review-category">Score:</h6>
-                            {friendReview.score >= 8 ?
-                                <h6 className="score" style={{color:"green"}}>{friendReview.score}</h6>
-                            : friendReview.score < 8 && friendReview.score >= 4 ? 
-                                <h6 className="score" style={{color:"orange"}}>{friendReview.score}</h6> 
-                            : 
-                                <h6 className="score" style={{color:"red"}}>{friendReview.score}</h6>}
-                        </div>
-                        </div>  
-                        )
-
-                      }
-                    })
+                              <div className='review-ratings'>
+                                  <h6 className="review-category">Difficulty:</h6>
+                                  {eachReview.difficulty >= 8 ?
+                                      <h6 className="score" style={{color:"green"}}>{eachReview.difficulty}</h6>
+                                  : eachReview.difficulty < 8 && eachReview.difficulty >= 4 ? 
+                                      <h6 className="score" style={{color:"orange"}}>{eachReview.difficulty}</h6> 
+                                  : 
+                                      <h6 className="score" style={{color:"red"}}>{eachReview.difficulty}</h6>}
+  
+                                  <h6 className="review-category">Gameplay:</h6>
+                                  {eachReview.gameplay >= 8 ?
+                                      <h6 className="score" style={{color:"green"}}>{eachReview.gameplay}</h6>
+                                  : eachReview.gameplay < 8 && eachReview.gameplay >= 4 ? 
+                                      <h6 className="score" style={{color:"orange"}}>{eachReview.gameplay}</h6> 
+                                  : 
+                                      <h6 className="score" style={{color:"red"}}>{eachReview.gameplay}</h6>}
+  
+                                  <h6 className="review-category">Graphics:</h6>
+                                  {eachReview.graphics >= 8 ?
+                                      <h6 className="score" style={{color:"green"}}>{eachReview.graphics}</h6>
+                                  : eachReview.graphics < 8 && eachReview.graphics >= 4 ? 
+                                      <h6 className="score" style={{color:"orange"}}>{eachReview.graphics}</h6> 
+                                  : 
+                                      <h6 className="score" style={{color:"red"}}>{eachReview.graphics}</h6>}
+  
+                                  <h6 className="review-category">Review:</h6>
+                                  <h6 className="score">{eachReview.comment}</h6>
+  
+                                  <h6 className="review-category">Score:</h6>
+                                  {eachReview.score >= 8 ?
+                                      <h6 className="score" style={{color:"green"}}>{eachReview.score}</h6>
+                                  : eachReview.score < 8 && eachReview.score >= 4 ? 
+                                      <h6 className="score" style={{color:"orange"}}>{eachReview.score}</h6> 
+                                  : 
+                                      <h6 className="score" style={{color:"red"}}>{eachReview.score}</h6>}
+                              </div>
+                              </div> 
+                            )
+                          } 
+                      })
                     )
+                  }
                 })
               )
-              
-            })} */}
-            </div>
+            })}
           </div>
-          : null }
-          {seeFeatured ? 
-          <div className="homepage-body">
-          <h3>
-            Featured
-          </h3>
-          </div>
-          : null }
-          {seeUsers ? 
-          <div className="homepage-body">
+        </div>
+        : null }
+
+        {seeFeatured ? 
+               <div className="homepage-body">
+               <h3>
+                 Featured
+               </h3>
+               <div className="homepage-reviews-grid">
+                 {sortedAllReviews.map(eachReview=>{
+                   return(
+                     games.map(game=>{
+                       if (game.slug === eachReview.slug){
+                         return(
+                           allUsers.map(eachFriend=>{
+                               if (eachFriend.id === eachReview.user_id){
+                                 return(
+                                   <div className='profile-review-card'>
+                                     <h4>{eachFriend.first_name} {eachFriend.last_name}</h4>
+                                     <h6>{moment(`${eachReview.created_at}`).format("MMMM Do YYYY, HH:mm A")}</h6>
+                                     <br></br>
+                                     <img className='review-image' src={game.background_image}></img>
+                                     <h4>{game.name}</h4>
+                                   <div className='review-ratings'>
+                                       <h6 className="review-category">Difficulty:</h6>
+                                       {eachReview.difficulty >= 8 ?
+                                           <h6 className="score" style={{color:"green"}}>{eachReview.difficulty}</h6>
+                                       : eachReview.difficulty < 8 && eachReview.difficulty >= 4 ? 
+                                           <h6 className="score" style={{color:"orange"}}>{eachReview.difficulty}</h6> 
+                                       : 
+                                           <h6 className="score" style={{color:"red"}}>{eachReview.difficulty}</h6>}
+       
+                                       <h6 className="review-category">Gameplay:</h6>
+                                       {eachReview.gameplay >= 8 ?
+                                           <h6 className="score" style={{color:"green"}}>{eachReview.gameplay}</h6>
+                                       : eachReview.gameplay < 8 && eachReview.gameplay >= 4 ? 
+                                           <h6 className="score" style={{color:"orange"}}>{eachReview.gameplay}</h6> 
+                                       : 
+                                           <h6 className="score" style={{color:"red"}}>{eachReview.gameplay}</h6>}
+       
+                                       <h6 className="review-category">Graphics:</h6>
+                                       {eachReview.graphics >= 8 ?
+                                           <h6 className="score" style={{color:"green"}}>{eachReview.graphics}</h6>
+                                       : eachReview.graphics < 8 && eachReview.graphics >= 4 ? 
+                                           <h6 className="score" style={{color:"orange"}}>{eachReview.graphics}</h6> 
+                                       : 
+                                           <h6 className="score" style={{color:"red"}}>{eachReview.graphics}</h6>}
+       
+                                       <h6 className="review-category">Review:</h6>
+                                       <h6 className="score">{eachReview.comment}</h6>
+       
+                                       <h6 className="review-category">Score:</h6>
+                                       {eachReview.score >= 8 ?
+                                           <h6 className="score" style={{color:"green"}}>{eachReview.score}</h6>
+                                       : eachReview.score < 8 && eachReview.score >= 4 ? 
+                                           <h6 className="score" style={{color:"orange"}}>{eachReview.score}</h6> 
+                                       : 
+                                           <h6 className="score" style={{color:"red"}}>{eachReview.score}</h6>}
+                                   </div>
+                                   </div> 
+                                 )
+                               } 
+                           })
+                         )
+                       }
+                     })
+                   )
+                 })}
+               </div>
+             </div>
+        : null }
+
+        {seeUsers ? 
+        <div className="homepage-body">
           <h3>
              Users
           </h3>
           {allUsers.map(eachUser=>{
             return(
               <div className="users-list">
-              <p>{eachUser.first_name} {eachUser.last_name}</p>
-              <GrGamepad onClick={()=>{viewProfile(eachUser.first_name, eachUser.last_name)}} className='view-user-icon' cursor='pointer' size='20'color="red"/>
+                <p>{eachUser.first_name} {eachUser.last_name}</p>
+                <GrGamepad onClick={()=>{viewProfile(eachUser.first_name, eachUser.last_name)}} className='view-user-icon' cursor='pointer' size='20'color="red"/>
               </div>
-
             )
           })}
           </div>
           : null }
-
-
-        
       </div>
     );
   }

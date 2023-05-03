@@ -54,6 +54,7 @@
   height: 60px;
   position: fixed;
   color: white;
+  z-index: 10;
   /* background-color: rgb(83, 36, 83); */
   background-color: #282c34;
   box-shadow: 0 4px 8px 0 #490b3e, 0 6px 20px 0 #540c54;

@@ -6,6 +6,7 @@ import {RiThumbUpFill} from 'react-icons/ri';
 function GameDetailPage({user}){
 
     const user_id = user.id
+    let navigate = useNavigate();
 
     console.log("user id:", user_id)
     
@@ -86,6 +87,7 @@ function GameDetailPage({user}){
                 res.json()
                 .then(response=>{
                 console.log(response)
+                navigate('/profile')
                  })
             }
             else{
