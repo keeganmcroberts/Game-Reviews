@@ -11,6 +11,7 @@ function Games(){
     const [platformState, setPlatformState] = useState("")
     const [genreState, setGenreState] = useState("")
     const [yearState, setYearState] = useState("")
+    const [searchBarDB, setSearchBarDB] = useState([])
 
 
 
@@ -22,7 +23,10 @@ function Games(){
 
         fetch('https://api.rawg.io/api/games?key=9937c17ee7f344e0a27e3d66c7b454e3')
         .then(r=>r.json())
-        .then(data=>setGamesDB(data.results))
+        .then(data=> { setGamesDB(data.results)
+            setSearchBarDB(data.results)
+
+        })
         
     },[])
 
@@ -38,6 +42,7 @@ function Games(){
         // },[])
 
     console.log("GAMES LIST:", gamesDB)
+    console.log("search bar db", searchBarDB)
 
 
     const [allBands, setAllBands] = useState([])
@@ -45,12 +50,12 @@ function Games(){
     const [followBand, setFollowBand] = useState(false)
     
     function handleingtheSearch(thethingsItypeintotheSearchBar){
-      let resultofSearch= bandSearchBar.filter((whatItype)=> {
-        if(whatItype.name.toLowerCase().includes(thethingsItypeintotheSearchBar.toLowerCase())){
-          return whatItype
+      let resultofSearch= searchBarDB.filter((game)=> {
+        if(game.name.toLowerCase().includes(thethingsItypeintotheSearchBar.toLowerCase())){
+          return game
         }
       })
-      setAllBands(resultofSearch)
+      setGamesDB(resultofSearch)
     }
 
     let navigate = useNavigate();

@@ -75,19 +75,19 @@ function Home({logo, user, setUser, games}) {
   // iterating through all users and matching the id's to those on our own friends list, then creating a new array of our friends to render their reviews only
   useEffect(()=>{
 
-    const newMatchedUsers = allUsers.filter(user =>
+    const myFriends = allUsers.filter(user =>
       friendAssociations.some(friend => friend.friend_id === user.id)
       );
 
-    setMyFriends(newMatchedUsers);
+    setMyFriends(myFriends);
 
-  },[user, allUsers])
+  },[ allUsers])
 
 // adding all of our friends reviews into a new array so that we can sort by the date they were submitted and render accordingly. 
   useEffect(()=>{
       const newAllReviews = myFriends.flatMap(friend => friend.reviews);
       setUnsortedFriendReviews(newAllReviews);
-  },[])
+  },[myFriends])
 
   // console.log("unsorted array:", unsortedFriendReviews)
 
@@ -154,7 +154,7 @@ function Home({logo, user, setUser, games}) {
                             return(
                               <div className='profile-review-card'>
                                 <h4>{eachFriend.first_name} {eachFriend.last_name}</h4>
-                                <h6>{moment(`${eachReview.created_at}`).format('MMMM Do YYYY')}</h6>
+                                <h6>{moment(`${eachReview.created_at}`).format("MMMM Do YYYY, HH:mm A")}</h6>
                                 <br></br>
                                 <img className='review-image' src={game.background_image}></img>
                                 <h4>{game.name}</h4>
