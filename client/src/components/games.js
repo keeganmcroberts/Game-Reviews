@@ -72,10 +72,12 @@ function Games(){
 if (gamesDB)
     return (
         <div>
+        <h1 className="page-title">
             <br></br>
             <br></br>
             <br></br>
-            <br></br>
+            Games
+        </h1>
             <br></br>
             <br></br>
             <div className="games-banner">

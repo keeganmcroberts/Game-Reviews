@@ -113,13 +113,15 @@ function Home({logo, user, setUser, games}) {
   
 
     return (
-      <div >
-        <br></br>
+      <div>
+        <h1 className="page-title">
             <br></br>
             <br></br>
             <br></br>
+            Home
+        </h1>
             <br></br>
-            <br></br>         
+            <br></br>        
         <div className="games-banner">
             <ul className="page-navbar">
               <li class="dropdown">

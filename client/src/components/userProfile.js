@@ -71,13 +71,13 @@ console.log(user)
 
     return(
         <div>
-        <h1> 
+        <h1 className="page-title">
             <br></br>
             <br></br>
             <br></br>
+            Hi {user?.first_name}!
+        </h1>
             <br></br>
-             </h1>
-            <h2>Hi {user?.first_name}!</h2>
             <br></br>
             <div className="games-banner">
                 <ul className="page-navbar">

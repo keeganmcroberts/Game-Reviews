@@ -62,6 +62,7 @@
 
 .banner-link{
   cursor: pointer;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .banner-link:hover{
@@ -72,6 +73,9 @@
   opacity: 50%;
 }
 
+.page-title{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
 .login{
   color: black;
   background-color: purple;
@@ -214,6 +218,10 @@
  
 }
 
+.dropbtn{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
 .dropbtn:hover{
   color: #ecbfe6;
 }
@@ -276,6 +284,7 @@ li.dropdown {
 .profile-banner-links{
   cursor: pointer;
   margin-left: 20px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .profile-friends-list-body{
