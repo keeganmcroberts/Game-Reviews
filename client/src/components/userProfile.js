@@ -12,6 +12,10 @@ const [viewReviews, setViewReviews] = useState(false)
 const [viewFriends, setViewFriends] = useState(false)
 const [allGames, setAllGames] = useState([])
 const [reviewList, setReviewList] = useState([])
+const [myGames, setMyGames] = useState([])
+const [gameSearchBar, setGameSearchBar] = useState([])
+const [reviewSearchBar, setReviewSearchBar] = useState([])
+const [friendSearchBar, setFriendSearchBar] = useState([])
 const [difficultyScoreColor, setDifficultyColor] = useState('green')
 const [difficultyScore, setDifficultyScore] = useState(10)
 const [gameplayScoreColor, setGameplayColor] = useState('green')
@@ -46,9 +50,15 @@ function viewProfile(firstname, lastname){
 }
 
 
-
-    const myGames = user.user_games
-
+// search for userprofile games, but need to add game name property when liking game, because the logic to compare the slug with what is typed is complicated
+function handleingtheSearch(thethingsItypeintotheSearchBar){
+    let resultofSearch= gameSearchBar.filter((game)=> {
+      if(game.slug.toLowerCase().includes(thethingsItypeintotheSearchBar.toLowerCase())){
+        return game
+      }
+    })
+    setMyGames(resultofSearch)
+  }
 
 
 // fetching from game API to compare our User's games with the games from the DB
@@ -56,7 +66,10 @@ useEffect(()=>{
 
     fetch('https://api.rawg.io/api/games?key=9937c17ee7f344e0a27e3d66c7b454e3')
     .then(r=>r.json())
-    .then(data=> setAllGames(data.results))
+    .then(data=>  {setAllGames(data.results)
+        setMyGames(user.user_games)
+        setGameSearchBar(user.user_games)
+    })
 },[])
 
 // get request to backend server to view all reviews and compare which ones are from our user 
@@ -92,19 +105,28 @@ console.log(user)
                     </li>
                    
             </ul>
-                    <div className="search-right"><input type="text" className="search" placeholder="Search Games..."
-                    /></div>
+                {viewGame ? 
+                // onChange={(synthEvent)=> handleingtheSearch(synthEvent.target.value)}
+                    <div className="search-right"><input type="text" className="search" placeholder="Search Games..." onChange={(synthEvent)=> handleingtheSearch(synthEvent.target.value)}/></div>
+                    : null}
+                {viewReviews ? 
+                    <div className="search-right"><input type="text" className="search" placeholder="Search Reviews..."/></div>
+                    : null}
+                {viewFriends ? 
+                    <div className="search-right"><input type="text" className="search" placeholder="Search Friends..."/></div>
+                    : null}
     
             </div>
         
 
 
-            {viewGame ? 
+            {viewGame && allGames && myGames ? 
 
             <div className="profile-games-list">
                 <h4>My Games</h4>
                 <br></br>
                 <div className='games-grid'>
+                
                 {allGames.map(eachGame=>{
                     if (user)
                     return(
