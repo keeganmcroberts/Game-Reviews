@@ -127,7 +127,7 @@ console.log(user)
                 <br></br>
                 <div className='games-grid'>
                 
-                {allGames.map(eachGame=>{
+                {allGames?.map(eachGame=>{
                     if (user)
                     return(
                         myGames.map(myGames=>{
@@ -209,11 +209,11 @@ console.log(user)
             
             : null}
             
-            {viewFriends ? 
+            {viewFriends && user ? 
             
             <div className="profile-friends-list-body">
                 <h4>My Friends</h4>
-                {user.friendlist.map(eachFriend=>{
+                {user.friendlist?.map(eachFriend=>{
                     return(
                     <div className="users-list">
                         <h4>{eachFriend.first_name} {eachFriend.last_name} <GrGamepad onClick={()=>{viewProfile(eachFriend.first_name, eachFriend.last_name)}} className='view-user-icon' cursor='pointer' size="20" color="red"/></h4>
@@ -221,7 +221,7 @@ console.log(user)
                     )
                 })}
             </div>
-            
+
             : null}
         </div>
     )

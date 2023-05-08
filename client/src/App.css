@@ -102,6 +102,16 @@
   margin-bottom: 50px;
 }
 
+.login-field{
+  margin-bottom: 10px;
+}
+
+.login-password{
+  margin-bottom: 20px;
+  -webkit-text-security: disc;
+  text-security: disc;
+}
+
 .login_submit{
   margin-top: 10px;
 }

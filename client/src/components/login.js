@@ -82,10 +82,22 @@ function Login({user, setUser}){
               setLoginErrorMessage("Username or Password is Incorrect")     
               }
             })
+
+            const timer = setTimeout(() => {
+                setLoginError(false)
+              }, 4000);
+              return () => clearTimeout(timer);
         }
 
 
     console.log(first_name, last_name, email, password)
+
+    function loginErrorCancel(){
+        const timer = setTimeout(() => {
+            setLoginError(false)
+          }, 10000);
+          return timer;
+    }
 
 
 
@@ -103,11 +115,11 @@ function Login({user, setUser}){
                     <h5>email:</h5>
                     <input className="login-field" name="email" value={email} onChange={handleChange}></input>
                     <h5>password:</h5>
-                    <input className="login-field" name="password" value={password} onChange={handleChange}></input>
+                    <input className="login-password" name="password" value={password} onChange={handleChange}></input>
                     <br></br>
                     <input className='login_submit' type='submit'></input>
                 </form>
-                <h4 className='login-error'>{loginErrorMessage}</h4>
+                <h4 className='login-error'>{ loginError ? loginErrorMessage : null}</h4>
                  or
                 <div className='create-account'>
                     <h5 className='login-links' onClick={switchToggle}>Create Account</h5>
