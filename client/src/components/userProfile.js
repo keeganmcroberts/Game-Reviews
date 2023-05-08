@@ -16,6 +16,7 @@ const [myGames, setMyGames] = useState([])
 const [gameSearchBar, setGameSearchBar] = useState([])
 const [reviewSearchBar, setReviewSearchBar] = useState([])
 const [friendSearchBar, setFriendSearchBar] = useState([])
+const [friendList, setFriendList] = useState([])
 const [difficultyScoreColor, setDifficultyColor] = useState('green')
 const [difficultyScore, setDifficultyScore] = useState(10)
 const [gameplayScoreColor, setGameplayColor] = useState('green')
@@ -49,18 +50,6 @@ function viewProfile(firstname, lastname){
   navigate(`/profile/${firstname}-${lastname}`)
 }
 
-
-// search for userprofile games, but need to add game name property when liking game, because the logic to compare the slug with what is typed is complicated
-function handleingtheSearch(thethingsItypeintotheSearchBar){
-    let resultofSearch= gameSearchBar.filter((game)=> {
-      if(game.slug.toLowerCase().includes(thethingsItypeintotheSearchBar.toLowerCase())){
-        return game
-      }
-    })
-    setMyGames(resultofSearch)
-  }
-
-
 // fetching from game API to compare our User's games with the games from the DB
 useEffect(()=>{
 
@@ -72,12 +61,55 @@ useEffect(()=>{
     })
 },[])
 
+// search for userprofile games, but need to add game name property when liking game, because the logic to compare the slug with what is typed is complicated
+function gameSearch(thethingsItypeintotheSearchBar){
+    let resultofSearch= gameSearchBar.filter((game)=> {
+      if(game.slug.toLowerCase().includes(thethingsItypeintotheSearchBar.toLowerCase())){
+        return game
+      }
+    })
+    setMyGames(resultofSearch)
+  }
+
+
 // get request to backend server to view all reviews and compare which ones are from our user 
 useEffect(()=>{
     fetch('/reviewsList')
     .then(r=>r.json())
-    .then(data=> setReviewList( data))
+    .then(data=> {
+        setReviewList( data)
+        setReviewSearchBar(data)
+    })
 },[])
+
+  function reviewSearch(thethingsItypeintotheSearchBar){
+    let resultofSearch= reviewSearchBar.filter((review)=> {
+      if(review.slug.toLowerCase().includes(thethingsItypeintotheSearchBar.toLowerCase())){
+        return review
+      }
+    })
+    setReviewList(resultofSearch)
+  }
+
+  console.log(reviewList)
+
+
+ //setting friendlist to state for filter function
+ useEffect(()=>{
+    setFriendSearchBar(user.friendlist)
+    setFriendList(user.friendlist)
+  }, [])
+
+  function friendSearch(thethingsItypeintotheSearchBar){
+    let resultofSearch= friendSearchBar.filter((friend)=> {
+        let friendName = friend.first_name + " " + friend.last_name + " "
+      if(friendName.toLowerCase().includes(thethingsItypeintotheSearchBar.toLowerCase())){
+        return friend
+      }
+    })
+    setFriendList(resultofSearch)
+  }
+
 
 
 console.log(user)
@@ -107,13 +139,13 @@ console.log(user)
             </ul>
                 {viewGame ? 
                 // onChange={(synthEvent)=> handleingtheSearch(synthEvent.target.value)}
-                    <div className="search-right"><input type="text" className="search" placeholder="Search Games..." onChange={(synthEvent)=> handleingtheSearch(synthEvent.target.value)}/></div>
+                    <div className="search-right"><input type="text" className="search" placeholder="Search Games..." onChange={(synthEvent)=> gameSearch(synthEvent.target.value)}/></div>
                     : null}
                 {viewReviews ? 
-                    <div className="search-right"><input type="text" className="search" placeholder="Search Reviews..."/></div>
+                    <div className="search-right"><input type="text" className="search" placeholder="Search Reviews..." onChange={(synthEvent)=> reviewSearch(synthEvent.target.value)}/></div>
                     : null}
                 {viewFriends ? 
-                    <div className="search-right"><input type="text" className="search" placeholder="Search Friends..."/></div>
+                    <div className="search-right"><input type="text" className="search" placeholder="Search Friends..." onChange={(synthEvent)=> friendSearch(synthEvent.target.value)}/></div>
                     : null}
     
             </div>
@@ -213,7 +245,7 @@ console.log(user)
             
             <div className="profile-friends-list-body">
                 <h4>My Friends</h4>
-                {user.friendlist?.map(eachFriend=>{
+                {friendList?.map(eachFriend=>{
                     return(
                     <div className="users-list">
                         <h4>{eachFriend.first_name} {eachFriend.last_name} <GrGamepad onClick={()=>{viewProfile(eachFriend.first_name, eachFriend.last_name)}} className='view-user-icon' cursor='pointer' size="20" color="red"/></h4>
