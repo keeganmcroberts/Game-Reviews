@@ -71,6 +71,8 @@ function gameSearch(thethingsItypeintotheSearchBar){
     setMyGames(resultofSearch)
   }
 
+  console.log("my games:", myGames)
+
 
 // get request to backend server to view all reviews and compare which ones are from our user 
 useEffect(()=>{
@@ -109,6 +111,14 @@ useEffect(()=>{
     })
     setFriendList(resultofSearch)
   }
+
+
+  function unlikeGame(id){
+    
+    fetch(`/removeGame/${id}`,{
+        method:'DELETE'
+      })  
+}
 
 
 
@@ -168,6 +178,8 @@ console.log(user)
                                 <div>
                                     <h4>{eachGame.name}</h4>
                                     <img className="platform-image" src={eachGame.background_image}></img>
+                                    <button onClick={()=>unlikeGame(myGames.id)} >Delete</button>
+                                    {/*  */}
                                 </div>
                                     )
                          })

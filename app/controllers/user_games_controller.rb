@@ -18,6 +18,28 @@ class UserGamesController < ApplicationController
 
     end
 
+    def destroy
+        user_game = UserGame.find_by!(id: params[:id])
+        if user_game
+            user_game.destroy 
+            head :no_content
+        else
+            item_not_found
+        end
+    end
+
+
+#     def destroy
+#         friend_unfollowed = Friendlist.find_by!(friend_id: params[:id])
+#         if friend_unfollowed
+#             friend_unfollowed.destroy  
+            
+#             head :no_content
+#         else
+#             item_not_found
+#         end
+# end
+
 
     private
 

@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   post "/review", to: "reviews#create"
   get "/reviewsList", to: "reviews#index"
   post "/likeGame", to: "user_games#create"
+  delete "/removeGame/:id", to: "user_games#destroy"
   get "/usergames", to: "user_games#index"
   # post "/users", to: "users#create"
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }

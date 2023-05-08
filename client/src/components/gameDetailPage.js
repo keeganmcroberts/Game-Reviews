@@ -128,6 +128,7 @@ function GameDetailPage({user}){
             }
         }))
     }
+
  
 
 
