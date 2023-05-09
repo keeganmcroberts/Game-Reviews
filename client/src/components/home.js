@@ -9,6 +9,7 @@ import moment from 'moment'
 function Home({logo, user, setUser, games}) {
 
   const [allUsers, setAllUsers] = useState([])
+  const [allUsersSearch, setAllUsersSearch] = useState([])
   const [seeFeed, setSeeFeed] = useState(true)
   const [seeFeatured, setSeeFeatured] = useState(false)
   const [seeUsers, setSeeUsers] = useState(false)
@@ -31,7 +32,11 @@ function Home({logo, user, setUser, games}) {
   useEffect(()=>{
     fetch("/allUsers")
     .then(r=>r.json())
-    .then(users=>(setAllUsers(users)))
+    .then(users=>{
+      setAllUsers(users)
+      setAllUsersSearch(users)
+    
+    })
   
   },[])
 
@@ -111,6 +116,15 @@ function Home({logo, user, setUser, games}) {
   const sortedAllReviews = unsortedReviews.sort((a,b) => new Moment(b.created_at).format('YYYYMMDD') - new Moment(a.created_at).format('YYYYMMDD'))
 
 
+  function friendSearch(thethingsItypeintotheSearchBar){
+    let resultofSearch= allUsersSearch.filter((friend)=> {
+        let friendName = friend.first_name + " " + friend.last_name + " "
+      if(friendName.toLowerCase().includes(thethingsItypeintotheSearchBar.toLowerCase())){
+        return friend
+      }
+    })
+    setAllUsers(resultofSearch)
+  }
   
 
     return (
@@ -136,8 +150,17 @@ function Home({logo, user, setUser, games}) {
               </li>
                    
             </ul>
-            <div className="search-right"><input type="text" className="search" placeholder="Search..."/>
-            </div>
+            {seeFeed ? 
+                // onChange={(synthEvent)=> handleingtheSearch(synthEvent.target.value)}
+                <div className="search-right"><input type="text" className="search" placeholder="Search..." /></div>
+              : null}
+            {seeFeatured ? 
+                <div className="search-right"><input type="text" className="search" placeholder="Search..." /></div>
+            : null}
+            {seeUsers ? 
+                <div className="search-right"><input type="text" className="search" placeholder="Search Users..." onChange={(synthEvent)=> friendSearch(synthEvent.target.value)}/></div>
+            : null}
+            
     
             </div>
 
