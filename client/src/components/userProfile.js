@@ -64,7 +64,7 @@ useEffect(()=>{
 // search for userprofile games, but need to add game name property when liking game, because the logic to compare the slug with what is typed is complicated
 function gameSearch(thethingsItypeintotheSearchBar){
     let resultofSearch= gameSearchBar.filter((game)=> {
-      if(game.slug.toLowerCase().includes(thethingsItypeintotheSearchBar.toLowerCase())){
+      if(game.name.toLowerCase().includes(thethingsItypeintotheSearchBar.toLowerCase())){
         return game
       }
     })

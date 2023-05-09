@@ -99,13 +99,15 @@ function GameDetailPage({user}){
     }
 
 
-    function likeGame(slug){
+
+    function likeGame(game){
         setLikedGame(!likedGame)
 
         let object = {
             user_id: user_id,
-            slug: slug,
-            liked: true
+            slug: game.slug,
+            liked: true,
+            name: game.name
         }
 
         fetch('/likeGame', {
@@ -146,7 +148,7 @@ function GameDetailPage({user}){
             ? 
             <RiThumbUpFill className="thumbs-up"   size={35} cursor='pointer' color="purple"/>
             : 
-            <RiThumbUpLine className="thumbs-up"  size={35} cursor='pointer' onClick={()=>likeGame(gameState.slug)}/>
+            <RiThumbUpLine className="thumbs-up"  size={35} cursor='pointer' onClick={()=>likeGame(gameState)}/>
             }
             </h2>
             <img className="detailPage-image" src={gameState.background_image}></img>

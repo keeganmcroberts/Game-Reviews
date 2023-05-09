@@ -44,6 +44,6 @@ class UserGamesController < ApplicationController
     private
 
     def strong_params
-        params.permit(:user_id, :slug, :liked)
+        params.permit(:user_id, :slug, :liked, :name)
     end
 end

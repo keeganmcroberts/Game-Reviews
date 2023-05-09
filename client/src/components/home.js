@@ -89,7 +89,8 @@ function Home({logo, user, setUser, games}) {
       setUnsortedFriendReviews(newAllReviews);
   },[myFriends])
 
-  // console.log("unsorted array:", unsortedFriendReviews)
+
+  console.log("unsorted array:", unsortedFriendReviews)
 
   
   
