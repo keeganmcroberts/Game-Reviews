@@ -16,6 +16,6 @@ class ReviewsController < ApplicationController
     private 
 
     def strong_params
-        params.permit(:user_id, :graphics, :gameplay, :difficulty, :comment, :slug, :score)
+        params.permit(:user_id, :graphics, :gameplay, :difficulty, :comment, :slug, :score, :gameTitle)
     end
 end

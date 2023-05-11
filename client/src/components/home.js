@@ -102,7 +102,7 @@ function Home({logo, user, setUser, games}) {
   const Moment = require('moment')
   // sorting our friends Review array to compare the dates and render the latest submissions first
   const sortedFriendsReviews  = unsortedFriendReviews.sort((a,b) => new Moment(b.created_at).format('YYYYMMDD') - new Moment(a.created_at).format('YYYYMMDD'))
-  // console.log("sorted Array", sortedFriendsReviews)
+  console.log("sorted Array", sortedFriendsReviews)
  
 
   // same process as above but for all the users on the platform 
@@ -125,6 +125,16 @@ function Home({logo, user, setUser, games}) {
     })
     setAllUsers(resultofSearch)
   }
+
+
+  // function reviewSearch(thethingsItypeintotheSearchBar){
+  //   let resultofSearch= reviewSearchBar.filter((review)=> {
+  //     if(review.slug.toLowerCase().includes(thethingsItypeintotheSearchBar.toLowerCase())){
+  //       return review
+  //     }
+  //   })
+  //   setReviewList(resultofSearch)
+  // }
   
 
     return (

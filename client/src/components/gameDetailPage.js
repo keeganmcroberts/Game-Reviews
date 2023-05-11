@@ -7,12 +7,16 @@ function GameDetailPage({user}){
 
     const user_id = user.id
     let navigate = useNavigate();
-
+    
     console.log("user id:", user_id)
     
     const params = useParams();
     let {id} = params
     const [gameState, setGameState] = useState({})
+   
+    const gameTitle = gameState.name
+    console.log("game name:", gameTitle)
+    
     const [review, setReview] = useState({
         user_id: user_id,
         slug: id,
@@ -21,6 +25,7 @@ function GameDetailPage({user}){
         difficulty: 10,
         gameplay: 10,
         graphics: 10
+        
     })
     const [likedGame, setLikedGame] = useState(false)
 
@@ -41,6 +46,8 @@ function GameDetailPage({user}){
         
     },[])
 
+   
+
     useEffect(()=>{
 
         fetch('/usergames')
@@ -56,7 +63,7 @@ function GameDetailPage({user}){
 
     console.log("individual game:", gameState)
 
-    console.log(review)
+    console.log("review:", review)
 
     function handleChange(e){
         const {name, value} = e.target
@@ -65,10 +72,12 @@ function GameDetailPage({user}){
     }
 
     function submitReview(e){
-        e.preventDefault()
+        
+        e.preventDefault();
 
         let newReview = {
             user_id,
+            gameTitle,
             slug,
             comment,
             score,
