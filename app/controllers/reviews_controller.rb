@@ -9,6 +9,16 @@ class ReviewsController < ApplicationController
 
     end
 
+    def destroy
+        review = Review.find_by!(id: params[:id])
+        if review
+            review.destroy 
+            head :no_content
+        else
+            item_not_found
+        end
+    end
+
     def index
         render json: Review.all
     end

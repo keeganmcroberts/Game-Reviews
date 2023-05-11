@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {useNavigate, useParams} from 'react-router-dom';
 import {GrGamepad} from 'react-icons/gr';
+import {BsTrash} from 'react-icons/bs'
 
 
 function UserProfile({user}){
@@ -116,6 +117,13 @@ useEffect(()=>{
   function unlikeGame(id){
     
     fetch(`/removeGame/${id}`,{
+        method:'DELETE'
+      })  
+}
+
+function deleteReview(id){
+    
+    fetch(`/deleteReview/${id}`,{
         method:'DELETE'
       })  
 }
@@ -242,6 +250,7 @@ console.log(user)
                                             : 
                                                 <h6 className="score" style={{color:"red"}}>{eachReview.score}</h6>}
                                         </div>
+                                        <button><BsTrash onClick={()=>deleteReview(eachReview.id)}/></button>
                                     </div>
                                 )
                             })

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get "/usersession", to: "session#show"
   delete "/logout", to: "session#destroy"
   post "/review", to: "reviews#create"
+  delete '/deleteReview/:id', to: "reviews#destroy"
   get "/reviewsList", to: "reviews#index"
   post "/likeGame", to: "user_games#create"
   delete "/removeGame/:id", to: "user_games#destroy"
