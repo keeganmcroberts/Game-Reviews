@@ -16,11 +16,13 @@ function Home({logo, user, setUser, games}) {
   const [friendAssociations, setFriendAssociations] = useState([])
   const [myFriends, setMyFriends] = useState([])
   const [unsortedFriendReviews, setUnsortedFriendReviews] = useState([])
+  const [unsortedFriendReviewsSearch, setUnsortedFriendReviewsSearch] = useState([])
   const [unsortedReviews, setUnsortedReviews] = useState([])
 
-   console.log("ALL GAMES", games)
-   console.log(allUsers)
+  //  console.log("ALL GAMES", games)
+  //  console.log(allUsers)
 
+  const Moment = require('moment')
 
   useEffect(()=>{
     fetch("/usersession")
@@ -88,22 +90,21 @@ function Home({logo, user, setUser, games}) {
 
   },[ allUsers])
 
+
+
+
 // adding all of our friends reviews into a new array so that we can sort by the date they were submitted and render accordingly. 
   useEffect(()=>{
       const newAllReviews = myFriends.flatMap(friend => friend.reviews);
-      setUnsortedFriendReviews(newAllReviews);
+      setUnsortedFriendReviews(newAllReviews)
+      setUnsortedFriendReviewsSearch(newAllReviews);
   },[myFriends])
 
-
-  console.log("unsorted array:", unsortedFriendReviews)
-
-  
-  
-  const Moment = require('moment')
   // sorting our friends Review array to compare the dates and render the latest submissions first
-  const sortedFriendsReviews  = unsortedFriendReviews.sort((a,b) => new Moment(b.created_at).format('YYYYMMDD') - new Moment(a.created_at).format('YYYYMMDD'))
-  console.log("sorted Array", sortedFriendsReviews)
+  // const sortedFriendsReviews  = unsortedFriendReviews.sort((a,b) => new Moment(b.created_at).format('YYYYMMDD') - new Moment(a.created_at).format('YYYYMMDD'))
  
+ 
+
 
   // same process as above but for all the users on the platform 
   useEffect(()=>{
@@ -111,11 +112,13 @@ function Home({logo, user, setUser, games}) {
     setUnsortedReviews(allUserReviews);
   },[allUsers])
 
-  // console.log('unsorted Reviews', unsortedReviews)
+  console.log('unsorted Reviews', unsortedReviews)
 
-  const sortedAllReviews = unsortedReviews.sort((a,b) => new Moment(b.created_at).format('YYYYMMDD') - new Moment(a.created_at).format('YYYYMMDD'))
+  // const sortedAllReviews = unsortedReviews.sort((a,b) => new Moment(b.created_at).format('YYYYMMDD') - new Moment(a.created_at).format('YYYYMMDD'))
 
 
+  
+  
   function friendSearch(thethingsItypeintotheSearchBar){
     let resultofSearch= allUsersSearch.filter((friend)=> {
         let friendName = friend.first_name + " " + friend.last_name + " "
@@ -128,12 +131,12 @@ function Home({logo, user, setUser, games}) {
 
 
   // function reviewSearch(thethingsItypeintotheSearchBar){
-  //   let resultofSearch= reviewSearchBar.filter((review)=> {
+  //   let resultofSearch= unsortedFriendReviewsSearch.filter((review)=> {
   //     if(review.slug.toLowerCase().includes(thethingsItypeintotheSearchBar.toLowerCase())){
   //       return review
   //     }
   //   })
-  //   setReviewList(resultofSearch)
+  //   setUnsortedFriendReviews(resultofSearch)
   // }
   
 
@@ -162,10 +165,10 @@ function Home({logo, user, setUser, games}) {
             </ul>
             {seeFeed ? 
                 // onChange={(synthEvent)=> handleingtheSearch(synthEvent.target.value)}
-                <div className="search-right"><input type="text" className="search" placeholder="Search..." /></div>
+                <div className="search-right"><input type="text" className="search" placeholder="Search..." onChange={(synthEvent)=> reviewSearch(synthEvent.target.value)}/></div>
               : null}
             {seeFeatured ? 
-                <div className="search-right"><input type="text" className="search" placeholder="Search..." /></div>
+                <div className="search-right"><input type="text" className="search" placeholder="Search..." onChange={(synthEvent)=> reviewSearch(synthEvent.target.value)}/></div>
             : null}
             {seeUsers ? 
                 <div className="search-right"><input type="text" className="search" placeholder="Search Users..." onChange={(synthEvent)=> friendSearch(synthEvent.target.value)}/></div>

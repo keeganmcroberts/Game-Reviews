@@ -6,6 +6,8 @@ import {BsTrash} from 'react-icons/bs'
 
 function UserProfile({user}){
 
+    console.log(user)
+
 
 const [gamesDB, setGamesDB] = useState([])
 const [viewGame, setViewGames] = useState(true)
@@ -72,7 +74,7 @@ function gameSearch(thethingsItypeintotheSearchBar){
     setMyGames(resultofSearch)
   }
 
-  console.log("my games:", myGames)
+
 
 
 // get request to backend server to view all reviews and compare which ones are from our user 
@@ -94,7 +96,7 @@ useEffect(()=>{
     setReviewList(resultofSearch)
   }
 
-  console.log(reviewList)
+
 
 
  //setting friendlist to state for filter function
@@ -126,11 +128,19 @@ function deleteReview(id){
     fetch(`/deleteReview/${id}`,{
         method:'DELETE'
       })  
+
+      fetch('/reviewsList')
+      .then(r=>r.json())
+      .then(data=> {
+          setReviewList( data)
+          setReviewSearchBar(data)
+      })
+
 }
 
 
 
-console.log(user)
+
 
     return(
         <div>
