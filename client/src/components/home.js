@@ -101,7 +101,7 @@ function Home({logo, user, setUser, games}) {
   },[myFriends])
 
   // sorting our friends Review array to compare the dates and render the latest submissions first
-  // const sortedFriendsReviews  = unsortedFriendReviews.sort((a,b) => new Moment(b.created_at).format('YYYYMMDD') - new Moment(a.created_at).format('YYYYMMDD'))
+  const sortedFriendsReviews  = unsortedFriendReviews.sort((a,b) => new Moment(b.created_at).format('YYYYMMDD') - new Moment(a.created_at).format('YYYYMMDD'))
  
  
 
@@ -114,7 +114,7 @@ function Home({logo, user, setUser, games}) {
 
   console.log('unsorted Reviews', unsortedReviews)
 
-  // const sortedAllReviews = unsortedReviews.sort((a,b) => new Moment(b.created_at).format('YYYYMMDD') - new Moment(a.created_at).format('YYYYMMDD'))
+  const sortedAllReviews = unsortedReviews.sort((a,b) => new Moment(b.created_at).format('YYYYMMDD') - new Moment(a.created_at).format('YYYYMMDD'))
 
 
   
@@ -165,10 +165,10 @@ function Home({logo, user, setUser, games}) {
             </ul>
             {seeFeed ? 
                 // onChange={(synthEvent)=> handleingtheSearch(synthEvent.target.value)}
-                <div className="search-right"><input type="text" className="search" placeholder="Search..." onChange={(synthEvent)=> reviewSearch(synthEvent.target.value)}/></div>
+                <div className="search-right"><input type="text" className="search" placeholder="Search..."/></div>
               : null}
             {seeFeatured ? 
-                <div className="search-right"><input type="text" className="search" placeholder="Search..." onChange={(synthEvent)=> reviewSearch(synthEvent.target.value)}/></div>
+                <div className="search-right"><input type="text" className="search" placeholder="Search..." /></div>
             : null}
             {seeUsers ? 
                 <div className="search-right"><input type="text" className="search" placeholder="Search Users..." onChange={(synthEvent)=> friendSearch(synthEvent.target.value)}/></div>

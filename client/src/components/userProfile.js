@@ -96,6 +96,7 @@ useEffect(()=>{
     setReviewList(resultofSearch)
   }
 
+  console.log("reviews list", reviewSearchBar)
 
 
 
