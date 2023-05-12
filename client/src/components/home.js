@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import steve from "/Users/keegan/Development/code/gamereviews/client/src/favicon-32x32.png"
 import {GrGamepad} from 'react-icons/gr';
 import moment from 'moment'
+import CommentSection from "./commentSection";
 
 
 
@@ -18,6 +19,7 @@ function Home({logo, user, setUser, games}) {
   const [unsortedFriendReviews, setUnsortedFriendReviews] = useState([])
   const [unsortedFriendReviewsSearch, setUnsortedFriendReviewsSearch] = useState([])
   const [unsortedReviews, setUnsortedReviews] = useState([])
+  const [viewComments, setViewComments] = useState(false)
 
   //  console.log("ALL GAMES", games)
   //  console.log(allUsers)
@@ -140,6 +142,10 @@ function Home({logo, user, setUser, games}) {
   // }
   
 
+  function toggleComments(){
+    setViewComments(!viewComments)
+  }
+
     return (
       <div>
         <h1 className="page-title">
@@ -233,6 +239,10 @@ function Home({logo, user, setUser, games}) {
                                   : 
                                       <h6 className="score" style={{color:"red"}}>{eachReview.score}</h6>}
                               </div>
+                              <button onClick={toggleComments}>View Comments</button>
+                              {viewComments ?
+                              <CommentSection/> 
+                              : null}
                               </div> 
                             )
                           } 
