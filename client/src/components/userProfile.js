@@ -156,13 +156,13 @@ function deleteReview(id){
             <div className="games-banner">
                 <ul className="page-navbar">
                     <li class="dropdown">
-                        <h4 onClick={viewGameList}  href="javascript:void(0)" className="profile-banner-links">My Games &#9660;</h4>
+                        <a onClick={viewGameList}  href="javascript:void(0)" className="profile-banner-links">My Games &#9660;</a>
                     </li>
                     <li class="dropdown">
-                        <h4 onClick={viewReviewsList} href="javascript:void(0)" className="profile-banner-links">My Reviews &#9660;</h4>
+                        <a onClick={viewReviewsList} href="javascript:void(0)" className="profile-banner-links">My Reviews &#9660;</a>
                     </li>
                     <li class="dropdown">
-                        <h4  onClick={viewFriendsList} href="javascript:void(0)" className="profile-banner-links">My Friends &#9660;</h4>
+                        <a  onClick={viewFriendsList} href="javascript:void(0)" className="profile-banner-links">My Friends &#9660;</a>
                     </li>
                    
             </ul>

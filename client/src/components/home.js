@@ -157,17 +157,20 @@ function Home({logo, user, setUser, games}) {
             <br></br>
             <br></br>        
         <div className="games-banner">
-            <ul className="page-navbar">
-              <li class="dropdown">
-                  <h4 onClick={viewFeed}   href="javascript:void(0)" className="profile-banner-links">My Feed &#9660;</h4>
-              </li>
-              <li class="dropdown">
-                  <h4 onClick={viewFeatured} href="javascript:void(0)" className="profile-banner-links">Featured &#9660;</h4>
-              </li>
-              <li class="dropdown">
-                  <h4 onClick={viewUsers} href="javascript:void(0)" className="profile-banner-links">Find Users &#9660;</h4>
-              </li>
-                   
+          <ul className="page-navbar">
+            <li className="dropdown">
+              
+              <a onClick={viewFeed}   href="javascript:void(0)" className="profile-banner-links">My Feed &#9660;</a>
+              
+            </li>
+
+            <li className="dropdown">
+              <a onClick={viewFeatured} href="javascript:void(0)" className="profile-banner-links">Featured &#9660;</a>
+            </li>
+
+            <li className="dropdown">
+              <a onClick={viewUsers} href="javascript:void(0)" className="profile-banner-links">Find Users &#9660;</a>
+            </li>  
             </ul>
             {seeFeed ? 
                 // onChange={(synthEvent)=> handleingtheSearch(synthEvent.target.value)}
