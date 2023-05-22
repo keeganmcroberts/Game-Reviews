@@ -89,7 +89,7 @@ useEffect(()=>{
 
   function reviewSearch(thethingsItypeintotheSearchBar){
     let resultofSearch= reviewSearchBar.filter((review)=> {
-      if(review.slug.toLowerCase().includes(thethingsItypeintotheSearchBar.toLowerCase())){
+      if(review.gameTitle.toLowerCase().includes(thethingsItypeintotheSearchBar.toLowerCase())){
         return review
       }
     })
