@@ -145,28 +145,28 @@ function OtherProfiles({user}){
 if (friendDetailPage)
 return(
         <div>
+        <h1 className="page-title">
             <br></br>
             <br></br>
             <br></br>
+            {firstName} {lastName} { iconSwitch ? <AiFillCheckCircle onClick={()=>{unfollowFriend(friendDetailPage.id)}} color='purple' cursor='pointer'/> : <AiOutlineCheckCircle onClick={()=>{addFriend(friendDetailPage)}}  cursor='pointer'/>}
+        </h1>
             <br></br>
-            <br></br>
-                <h1>{firstName} {lastName} { iconSwitch ? <AiFillCheckCircle onClick={()=>{unfollowFriend(friendDetailPage.id)}} color='purple' cursor='pointer'/> : <AiOutlineCheckCircle onClick={()=>{addFriend(friendDetailPage)}}  cursor='pointer'/>} </h1>
             <br></br>
             <div className="games-banner">
                 <ul className="page-navbar">
-                    <li class="dropdown">
-                        <h4 onClick={viewGameList}   href="javascript:void(0)" className="profile-banner-links"> Games &#9660;</h4>
+                    <li className="dropdown">
+                        <a onClick={viewGameList}   href="javascript:void(0)" className="profile-banner-links"> Games &#9660;</a>
                     </li>
-                    <li class="dropdown">
-                        <h4 onClick={viewReviewsList}  href="javascript:void(0)" className="profile-banner-links"> Reviews &#9660;</h4>
+                    <li className="dropdown">
+                        <a onClick={viewReviewsList}  href="javascript:void(0)" className="profile-banner-links"> Reviews &#9660;</a>
                     </li>
-                    <li class="dropdown">
-                        <h4 onClick={viewFriendsList}  href="javascript:void(0)" className="profile-banner-links"> Friends &#9660;</h4>
+                    <li className="dropdown">
+                        <a onClick={viewFriendsList}  href="javascript:void(0)" className="profile-banner-links"> Friends &#9660;</a>
                     </li>
                    
                 </ul>
-                    <div className="search-right"><input type="text" className="search" placeholder="Search Games..."
-                    /></div>
+                    <div className="search-right"><input type="text" className="search" placeholder="Search Games..."/></div>
     
             </div>
             {viewGames ? 
