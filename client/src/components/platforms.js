@@ -87,10 +87,10 @@ useEffect(()=>{
             <div className="platform-grid">
                 {platformDB.map(eachPlatform=>{
                     return(
-                        <div>
+                        <div className="card"> 
                         <h3>{eachPlatform.name}</h3>
                         <img  className="platform-image" src={eachPlatform.image_background}></img>
-                        <button onClick={()=>viewGames(eachPlatform.slug)}>View Games</button>
+                        <button className="game-and-platform-page-buttons" onClick={()=>viewGames(eachPlatform.slug)}>View Games</button>
                         </div>
                         )
                 })}

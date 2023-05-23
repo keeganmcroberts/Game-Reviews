@@ -155,10 +155,10 @@ if (gamesDB)
                     //                 )
                     if (platformState === ""){
                         return(
-                            <div>
-                                <h6>{eachGame.name}</h6>
+                            <div className="card">
+                                <h3>{eachGame.name}</h3>
                                 <img className="platform-image" src={eachGame.background_image}></img>
-                                <button onClick={()=>viewGame(eachGame.slug)}>View</button>
+                                <button className="game-and-platform-page-buttons" onClick={()=>viewGame(eachGame.slug)}>View</button>
                             </div>
                             )
                     } else{
@@ -172,7 +172,7 @@ if (gamesDB)
                             <div>
                                 <h6>{eachGame.name}</h6>
                                 <img className="platform-image" src={eachGame.background_image}></img>
-                                <button onClick={()=>viewGame(eachGame.slug)}>View</button>
+                                <button className="game-and-platform-page-buttons" onClick={()=>viewGame(eachGame.slug)}>View</button>
                             </div>
                             )
                     })

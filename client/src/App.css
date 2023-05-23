@@ -168,20 +168,20 @@ html{
 .platform-grid{
   display: grid;
   grid-template-columns: 200px 200px 200px 200px;
-  grid-column-gap: 10px;
+  grid-column-gap: 50px;
   grid-row-gap: 100px;
   justify-content: center;
 }
 .platform-image{
   height: 200px;
-  width: 200px;
+  width: 195px;
   border-radius: 10%;
 }
 
 .games-grid{
   display: grid;
   grid-template-columns: 200px 200px 200px 200px;
-  grid-column-gap: 10px;
+  grid-column-gap: 50px;
   grid-row-gap: 100px;
   justify-content: center;
 }
@@ -195,10 +195,35 @@ html{
 .platformGames-grid{
   display: grid;
   grid-template-columns: 200px 200px 200px 200px;
-  grid-column-gap: 10px;
+  grid-column-gap: 50px;
   grid-row-gap: 100px;
   justify-content: center;
 }
+
+.card{
+  border: solid 2px rgb(252, 251, 251);
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  box-shadow: 8px 8px 16px 5px rgba(82, 7, 54, 0.748);
+}
+
+.card:hover {
+  box-shadow: 8px 8px 16px 5px rgba(155, 14, 101, 0.748);
+}
+
+.game-and-platform-page-buttons{
+  border-radius: 50%;
+  color: white;
+  background-color: #490b3e;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.game-and-platform-page-buttons:hover{
+  color: #7f899f;
+  background-color: #851470;
+}
+
+
 
 
 .games-banner{

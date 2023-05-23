@@ -133,14 +133,14 @@ function Home({logo, user, setUser, games}) {
   }
 
 
-  // function reviewSearch(thethingsItypeintotheSearchBar){
-  //   let resultofSearch= unsortedFriendReviewsSearch.filter((review)=> {
-  //     if(review.slug.toLowerCase().includes(thethingsItypeintotheSearchBar.toLowerCase())){
-  //       return review
-  //     }
-  //   })
-  //   setUnsortedFriendReviews(resultofSearch)
-  // }
+  function reviewSearch(thethingsItypeintotheSearchBar){
+    let resultofSearch= unsortedFriendReviewsSearch.filter((review)=> {
+      if(review.gameTitle.toLowerCase().includes(thethingsItypeintotheSearchBar.toLowerCase())){
+        return review
+      }
+    })
+    setUnsortedFriendReviews(resultofSearch)
+  }
   
 
   function toggleComments(){
@@ -183,10 +183,10 @@ function Home({logo, user, setUser, games}) {
             </ul>
             {seeFeed ? 
                 // onChange={(synthEvent)=> handleingtheSearch(synthEvent.target.value)}
-                <div className="search-right"><input type="text" className="search" placeholder="Search..."/></div>
+                <div className="search-right"><input type="text" className="search" placeholder="Search..." onChange={(synthEvent)=> reviewSearch(synthEvent.target.value)}/></div>
               : null}
             {seeFeatured ? 
-                <div className="search-right"><input type="text" className="search" placeholder="Search..." /></div>
+                <div className="search-right"><input type="text" className="search" placeholder="Search..." onChange={(synthEvent)=> reviewSearch(synthEvent.target.value)}/></div>
             : null}
             {seeUsers ? 
                 <div className="search-right"><input type="text" className="search" placeholder="Search Users..." onChange={(synthEvent)=> friendSearch(synthEvent.target.value)}/></div>
