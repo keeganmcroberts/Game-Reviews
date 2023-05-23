@@ -161,7 +161,7 @@ return(
                     <li className="dropdown">
                         <a onClick={viewReviewsList}  href="javascript:void(0)" className="profile-banner-links"> Reviews &#9660;</a>
                     </li>
-                    <li className="dropdown">
+                    <li className="dropdown"> 
                         <a onClick={viewFriendsList}  href="javascript:void(0)" className="profile-banner-links"> Friends &#9660;</a>
                     </li>
                    

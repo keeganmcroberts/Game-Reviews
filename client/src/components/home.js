@@ -20,6 +20,7 @@ function Home({logo, user, setUser, games}) {
   const [unsortedFriendReviewsSearch, setUnsortedFriendReviewsSearch] = useState([])
   const [unsortedReviews, setUnsortedReviews] = useState([])
   const [viewComments, setViewComments] = useState(false)
+  const [hover, setHover]= useState(false)
 
   //  console.log("ALL GAMES", games)
   //  console.log(allUsers)
@@ -144,6 +145,14 @@ function Home({logo, user, setUser, games}) {
 
   function toggleComments(){
     setViewComments(!viewComments)
+  }
+
+  function toggleHoverTrue(){
+    setHover(true)
+  }
+
+  function toggleHoverFalse(){
+    setHover(false)
   }
 
     return (
@@ -337,7 +346,11 @@ function Home({logo, user, setUser, games}) {
             return(
               <div className="users-list">
                 <p>{eachUser.first_name} {eachUser.last_name}</p>
-                <GrGamepad onClick={()=>{viewProfile(eachUser.first_name, eachUser.last_name)}} className='view-user-icon' cursor='pointer' size='20'color="red"/>
+                <GrGamepad onMouseOver={toggleHoverTrue} onMouseOut={toggleHoverFalse} onClick={()=>{viewProfile(eachUser.first_name, eachUser.last_name)}} className='view-user-icon' cursor='pointer' size='20'color="red"/>
+                {hover ? 
+                <p className="view-user-icon">View Profile</p> 
+                : null}
+                
               </div>
             )
           })}
