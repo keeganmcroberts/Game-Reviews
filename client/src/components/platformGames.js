@@ -19,13 +19,36 @@ function Platforms({gamesDB}){
 
     return(
         <div>
+            <h1 className="page-title">
             <br></br>
             <br></br>
             <br></br>
-        <h1>Platforms: {id}</h1>
+            {id} games
+        </h1>
             <br></br>
             <br></br>
-            <br></br>
+            <div className="games-banner">
+                <ul className="page-navbar">
+                    <li className="dropdown">
+                      
+                       
+                    </li>
+                    <li className="dropdown">
+                       
+                       
+                    </li>
+                    <li className="dropdown">
+                       
+                    </li>
+                    <li className="dropdown">
+                        
+                     
+                    </li>
+                   
+            </ul>
+                    <div className="search-right"><input type="text" className="search" placeholder="Search Games..."/></div>
+    
+            </div>
         {gamesDB.results ? 
         <div className='platformGames-grid'>
         {gamesDB.results.map(eachGame=>{
@@ -33,10 +56,10 @@ function Platforms({gamesDB}){
                 return platform.platform.slug === id
             }) ){
                 return(
-                    <div>
+                    <div className='card'>
                         <h5>{eachGame.name}</h5>
-                        <img className='game-image' src={eachGame.background_image}></img>
-                        <button onClick={()=>viewGame(eachGame.slug)}>View</button>
+                        <img className='platform-image' src={eachGame.background_image}></img>
+                        <button className='game-and-platform-page-buttons' onClick={()=>viewGame(eachGame.slug)}>View</button>
                     </div>
                 )
             }

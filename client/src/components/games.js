@@ -156,7 +156,7 @@ if (gamesDB)
                     if (platformState === ""){
                         return(
                             <div className="card">
-                                <h3>{eachGame.name}</h3>
+                                <h5>{eachGame.name}</h5>
                                 <img className="platform-image" src={eachGame.background_image}></img>
                                 <button className="game-and-platform-page-buttons" onClick={()=>viewGame(eachGame.slug)}>View</button>
                             </div>

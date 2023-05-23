@@ -174,8 +174,8 @@ html{
 }
 .platform-image{
   height: 200px;
-  width: 195px;
-  border-radius: 10%;
+  width: 196px;
+  border-radius: 0%;
 }
 
 .games-grid{
@@ -211,6 +211,7 @@ html{
 }
 
 .game-and-platform-page-buttons{
+  border-color: #444b59;
   border-radius: 50%;
   color: white;
   background-color: #490b3e;
