@@ -28,6 +28,7 @@ function GameDetailPage({user}){
         
     })
     const [likedGame, setLikedGame] = useState(false)
+    const [form, setForm] = useState(false)
 
     const { slug, comment, score, difficulty, gameplay, graphics} = review
 
@@ -71,6 +72,9 @@ function GameDetailPage({user}){
         setReview({...review, [name]: value})
     }
 
+    function toggleForm(){
+        setForm(!form)
+    }
     function submitReview(e){
         
         e.preventDefault();
@@ -142,6 +146,9 @@ function GameDetailPage({user}){
 
  
 
+    gameState.platforms.map(eachPlat=>{
+        console.log("eachPlat:", eachPlat.platform.name)
+    })
 
     return(
         <div>
@@ -151,7 +158,7 @@ function GameDetailPage({user}){
             <br></br>
             <br></br>
             <br></br>  
-           
+        <div>
             <h2 className="game-review-title">{gameState.name} 
             {likedGame 
             ? 
@@ -161,7 +168,10 @@ function GameDetailPage({user}){
             }
             </h2>
             <img className="detailPage-image" src={gameState.background_image}></img>
-            <h3>Leave a Review:</h3>
+            
+            <button className="review-toggle" onClick={toggleForm}>Leave a Review</button>
+        </div>
+            {form ?  
             <form onSubmit={submitReview} className="review-form">
             {/* need a user_id, numerical score for Gameplay, graphics, and difficulty, comment, and game slug  */}
             <h5>Difficulty</h5>
@@ -224,7 +234,9 @@ function GameDetailPage({user}){
             <input onChange={handleChange} name='comment' value={comment}></input>
             <br></br>
             <input type='submit'></input>
-            </form>
+            </form> 
+            : null}
+           
         </div>
     )
 }

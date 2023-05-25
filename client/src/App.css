@@ -315,6 +315,15 @@ li.dropdown {
 .thumbs-up{
   margin-left: 20px;
 }
+
+.review-toggle{
+  cursor: pointer;
+  border: solid 3px black;
+  display: flex;
+  margin: 0 auto
+ 
+}
+
 .review-form{
   /* width: 400px;
   height: 400px; */
