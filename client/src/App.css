@@ -331,6 +331,14 @@ li.dropdown {
   background: rgb(102, 20, 86);
 }
 
+.game-platforms{
+  display: inline-block;
+}
+
+.game-card{
+  display: inline-block;
+}
+
 
 .profile-banner-links{
   cursor: pointer;

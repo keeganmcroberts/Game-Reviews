@@ -158,7 +158,8 @@ function GameDetailPage({user}){
             <br></br>
             <br></br>
             <br></br>  
-        <div>
+        
+        <div className="game-card">
             <h2 className="game-review-title">{gameState.name} 
             {likedGame 
             ? 
@@ -170,6 +171,16 @@ function GameDetailPage({user}){
             <img className="detailPage-image" src={gameState.background_image}></img>
             
             <button className="review-toggle" onClick={toggleForm}>Leave a Review</button>
+        </div>
+        <div className="game-platforms">
+            <h3>Platforms:</h3>
+            {gameState.platforms.map(platform=>{
+                return(
+                    
+                        <h4>{platform.platform.name}</h4>
+                    
+                )
+            })}
         </div>
             {form ?  
             <form onSubmit={submitReview} className="review-form">
