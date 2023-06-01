@@ -11,8 +11,8 @@ function Home({logo, user, setUser, games}) {
 
   const [allUsers, setAllUsers] = useState([])
   const [allUsersSearch, setAllUsersSearch] = useState([])
-  const [seeFeed, setSeeFeed] = useState(true)
-  const [seeFeatured, setSeeFeatured] = useState(false)
+  const [seeFeed, setSeeFeed] = useState(false)
+  const [seeFeatured, setSeeFeatured] = useState(true)
   const [seeUsers, setSeeUsers] = useState(false)
   const [friendAssociations, setFriendAssociations] = useState([])
   const [myFriends, setMyFriends] = useState([])

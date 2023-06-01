@@ -105,7 +105,11 @@ html{
 
 .login-title{
   margin-top: -50px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
+}
+
+.login-label{
+  margin-bottom: 0px;
 }
 
 .login-field{
@@ -121,9 +125,20 @@ html{
 .login_submit{
   margin-top: 10px;
 }
-.create-account{
-  margin-top: 20px;
+
+.signup-field{
+  margin-top: 0px;
 }
+.create-account{
+  /* margin-bottom: 0px; */
+  
+}
+
+/* .login-links{
+  margin-top: 10px;
+} */
+
+
 
 .login-links:hover{
   color: blue;
@@ -336,7 +351,8 @@ li.dropdown {
 }
 
 .game-card{
-  display: inline-block;
+ 
+  margin-top: 100px;
 }
 
 

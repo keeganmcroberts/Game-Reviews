@@ -146,9 +146,9 @@ function GameDetailPage({user}){
 
  
 
-    gameState.platforms.map(eachPlat=>{
-        console.log("eachPlat:", eachPlat.platform.name)
-    })
+    // gameState.platforms.map(eachPlat=>{
+    //     console.log("eachPlat:", eachPlat.platform.name)
+    // })
 
     return(
         <div>
@@ -173,14 +173,14 @@ function GameDetailPage({user}){
             <button className="review-toggle" onClick={toggleForm}>Leave a Review</button>
         </div>
         <div className="game-platforms">
-            <h3>Platforms:</h3>
-            {gameState.platforms.map(platform=>{
+            {/* <h3>Platforms:</h3> */}
+            {/* {gameState.platforms.map(platform=>{
                 return(
                     
                         <h4>{platform.platform.name}</h4>
                     
                 )
-            })}
+            })} */}
         </div>
             {form ?  
             <form onSubmit={submitReview} className="review-form">

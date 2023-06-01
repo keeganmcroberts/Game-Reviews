@@ -112,9 +112,9 @@ function Login({user, setUser}){
             <div>
                 <h3 className="login-title">Login</h3>
                 <form onSubmit={signin} className='login_form'>
-                    <h5>email:</h5>
+                    <h5 className='login-label'>email:</h5>
                     <input className="login-field" name="email" value={email} onChange={handleChange}></input>
-                    <h5>password:</h5>
+                    <h5 className='login-label'>password:</h5>
                     <input className="login-password" name="password" value={password} onChange={handleChange}></input>
                     <br></br>
                     <input className='login_submit' type='submit'></input>
@@ -130,21 +130,20 @@ function Login({user, setUser}){
             <div>
                 <h3 className="login-title">Sign Up</h3>
                 <form onSubmit={signup} className='login_form'>
-                    <h5>First Name:</h5>
-                        <input className="login-field" name="first_name" value={first_name} onChange={handleChange}></input>
-                    <h5>Last Name:</h5>
-                        <input className="login-field" name="last_name" value={last_name} onChange={handleChange}></input>
-                    <h5>email:</h5>
-                        <input className="login-field" name="email" value={email} onChange={handleChange}></input>
-                    <h5>password:</h5>
-                        <input className="login-field" name="password" value={password} onChange={handleChange}></input>
+                    <h5 className='login-label'>First Name:</h5>
+                        <input className="signup-field" name="first_name" value={first_name} onChange={handleChange}></input>
+                    <h5 className='login-label'>Last Name:</h5>
+                        <input className="signup-field" name="last_name" value={last_name} onChange={handleChange}></input>
+                    <h5 className='login-label'>email:</h5>
+                        <input className="signup-field" name="email" value={email} onChange={handleChange}></input>
+                    <h5 className='login-label'>password:</h5>
+                        <input className="signup-field" name="password" value={password} onChange={handleChange}></input>
                     <br></br>
                     <input className='login_submit' type='submit'></input>
                 </form>
                 or
                 <div className='create-account'>
                     <h5 className='login-links' onClick={switchToggle}>Sign in</h5>
-                    <h5 className='login-links'>Forgot Password?</h5>
                 </div>
             </div>
             
