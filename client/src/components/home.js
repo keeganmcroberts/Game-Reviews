@@ -195,7 +195,7 @@ function Home({logo, user, setUser, games}) {
     
             </div>
 
-        {seeFeed ? 
+        {seeFeed && user ? 
         <div className="homepage-body">
           <h3>
             My Feed
@@ -207,6 +207,7 @@ function Home({logo, user, setUser, games}) {
                   if (game.slug === eachReview.slug){
                     return(
                       allUsers.map(eachFriend=>{
+
                           if (eachFriend.id === eachReview.user_id){
                             return(
                               <div className='profile-review-card'>
@@ -266,7 +267,10 @@ function Home({logo, user, setUser, games}) {
             })}
           </div>
         </div>
-        : null }
+        : seeFeed && !user ? 
+        <h1>Login to view Feed</h1> 
+        : null
+        }
 
         {seeFeatured ? 
                <div className="homepage-body">
