@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
   post "/signup", to: "users#create"
+  patch "/addAvatar/:id", to: "users#update"
   get "/allUsers", to: "users#index"
   get "allFriends", to: "friendlists#index"
   post "/addFriend", to: "friendlists#create"

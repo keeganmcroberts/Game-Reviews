@@ -3,6 +3,7 @@ import {useNavigate, useParams} from 'react-router-dom';
 import {GrGamepad} from 'react-icons/gr';
 import {BsTrash} from 'react-icons/bs'
 
+import {RxAvatar} from 'react-icons/rx'
 
 function UserProfile({user}){
 
@@ -28,6 +29,8 @@ const [graphicsScoreColor, setGraphicsColor] = useState('green')
 const [graphicsScore, setGraphicsScore] = useState(10)
 const [scoreColor, setScoreColor] = useState('green')
 const [score, setScore] = useState(10)
+const [avatar, setAvatar] = useState(false)
+const [avatarData, setAvatarData] = useState(null)
 
 
 function viewGameList(){
@@ -46,6 +49,23 @@ function viewFriendsList(){
     setViewGames(false)
     setViewReviews(false)
     setViewFriends(true)
+}
+
+function addAvatar(){
+    setAvatar(!avatar)
+}
+
+function handleAvatarSubmit(){
+    const formData = new FormData()
+    formData.append('avatar', avatarData)
+
+    fetch(`/addAvatar/${user.id}`, {
+        method: "PATCH",
+        body: formData
+    })
+    .then(res=>res.json())
+    .then(res => console.log("avatar edited"))
+    window.location.reload(false)
 }
 
 let navigate = useNavigate()
@@ -149,10 +169,20 @@ function deleteReview(id){
             <br></br>
             <br></br>
             <br></br>
-            Hi {user?.first_name}!
+            Hi &#160; <RxAvatar className="avatar" onClick={addAvatar}/> {user?.first_name}!
         </h1>
             <br></br>
             <br></br>
+            { avatar ? 
+            <div className="upload-avatar-field">
+                <form>
+                <label for="myfile">Upload Avatar:</label>
+                <input type="file" accept="image/*"/>
+                <button type="submit">Submit</button>
+                </form>
+
+            </div>
+            : null}
             <div className="games-banner">
                 <ul className="page-navbar">
                     <li class="dropdown">
